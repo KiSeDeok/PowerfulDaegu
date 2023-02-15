@@ -1,0 +1,18 @@
+.aaa {
+    height: 56px;
+    background-color: #B1B1B1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: 400;
+    font-size: 15px;
+}
+
+.bbb {
+    position: absolute;
+    right: 66px;
+
+    font-weight: 400;
+    font-size: 15px;
+}

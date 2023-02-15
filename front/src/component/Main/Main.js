@@ -4,13 +4,19 @@ import Banner from "./banner/Banner"
 import Contents from "./contents/Contents";
 import Footer from "./footer/Footer";
 
+import classes from "./Main.module.css";
+
 function Main() {
     return (
         <>
-            <Notification/>
-            <Header/>
-            <Banner/>
-            <Contents/>
+            <div className={classes.bbb}>
+                <Notification/>
+                <Header/>
+                <div className={classes.aaa}>
+                    <Banner/>
+                    <Contents/>
+                </div>
+            </div>
             <Footer/>
         </>
     );

@@ -1,0 +1,36 @@
+.aaa {
+    height: 64px;
+    background-color: #D9D9D9;
+    display: flex;
+    align-items: center;
+
+    font-weight: 400;
+    font-size: 15px;
+}
+
+.bbb {
+    position: absolute;
+    right: 58px;
+
+    font-weight: 400;
+    font-size: 15px;
+}
+
+.ccc {
+    display: flex;
+}
+
+.ccc > div {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+
+    width: 90px;
+    text-align: center;
+}
+
+.ddd {
+    width: 40px;
+    height: 40px;
+    margin: 0 27px;
+}

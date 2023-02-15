@@ -1,0 +1,11 @@
+.aaa {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bbb {
+    height: auto;
+    min-height: 100%;
+    padding-bottom: 50px;
+}
