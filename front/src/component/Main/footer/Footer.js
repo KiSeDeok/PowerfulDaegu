@@ -2,8 +2,8 @@ import classes from "./Footer.module.css";
 
 function Footer() {
     return (
-        <div>
-            sadfasdf
+        <div className={classes.aaa}>
+            ~~~
         </div>
     );
 }

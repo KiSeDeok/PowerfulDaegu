@@ -1,3 +1,14 @@
 .aaa {
     display: flex;
 }
+
+.bbb {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 1132px;
+}
+
+.ccc {
+    margin-bottom: 188px;
+}
