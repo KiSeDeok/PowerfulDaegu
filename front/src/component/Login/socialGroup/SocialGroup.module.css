@@ -1,0 +1,10 @@
+.aaa {
+    display: flex;
+    justify-content: center;
+}
+
+.aaa > img:nth-child(n + 2) {
+    margin-left: 16px;
+    background-color: red;
+}
+

@@ -1,0 +1,29 @@
+.aaa {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    margin-bottom: 8px;
+}
+
+.bbb {
+    width: 100%;
+    height: 44px;
+    outline: none;
+    padding: 16px;
+    box-sizing: border-box;
+
+    border-radius: 6px;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    border: 1px solid #DDDDDD;
+}
+
+
+.bbb:focus {
+    border: 1px solid #303030;
+}
+
