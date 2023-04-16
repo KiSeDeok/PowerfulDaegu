@@ -1,0 +1,43 @@
+.aaa {
+    width: 100%;
+    height: 221px;
+    background-color: #303030;
+    box-sizing: border-box;
+}
+
+.bbb {
+    font-style: normal;
+    font-weight: 800;
+    font-size: 30px;
+    line-height: 36px;
+    margin-top: 69px;
+    color: #F8F8F8;
+}
+
+.ccc {
+    display: flex;
+
+    margin-top: 28px;
+}
+
+.ddd {
+    padding: 12px;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 19px;
+
+    color: #F8F8F8;
+}
+
+.eee {
+    padding: 12px;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 19px;
+
+    color: #F8F8F8;
+    background: #FF7D00;
+    border-radius: 22px;
+}

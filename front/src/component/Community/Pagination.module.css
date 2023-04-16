@@ -1,0 +1,29 @@
+.aaa {
+    height: 40px;
+    margin-top: 58px;
+    margin-bottom: 101px;
+    display: flex;
+    justify-content: center;
+}
+
+.bbb {
+    background-image: url("/public/icon/leftArrow_active.png");
+    background-size: cover;
+    width: 40px;
+    height: 40px;
+}
+
+.ccc {
+    background-image: url("/public/icon/rightArrow_active.png");
+    background-size: cover;
+    width: 40px;
+    height: 40px;
+}
+
+.ddd {
+
+}
+
+.eee {
+
+}
