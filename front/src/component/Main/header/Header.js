@@ -9,6 +9,7 @@ function Header() {
             <div className={classes.ccc}>
                 <div>가맹점 조회</div>
                 <div>커뮤니티</div>
+                <div><span>맵</span></div>
             </div>
             <div className={classes.bbb}>
                 로그인
