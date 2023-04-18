@@ -1,4 +1,5 @@
 import classes from "./Store.module.css"
+import Content from "./Content";
 
 function Store(){
     const nowDate = new Date()
@@ -106,40 +107,7 @@ function Store(){
     return (
         <div className={classes.box}>
             {items.map((ele) => (
-                <div className={classes.content}>
-                    <div className={classes.left}>
-                        <div className={classes.titleDiv}>
-                            <span>{ele.title}</span>
-                            <lable>{ele.type}</lable>
-                        </div>
-                        <div>
-                            {true ?? <div className={classes.open}><span>영업 중</span></div>}
-                            {ele.point[0].has ?? <div className={classes.delivery}><span>배달º포장</span></div>}
-                            {ele.point[1].has ?? <div className={classes.nice}><span>선한영향력가게</span></div>}
-                        </div>
-                        <div>
-                            <img />
-                            <div>
-                                <div>
-                                    <span>{ele.address.doro}</span>
-                                    <label>{ele.address.upyen}</label>
-                                </div>
-                                <span>{ele.address.jibun}</span>
-                            </div>
-                        </div>
-                        <div>
-                            <img />
-                            <span>11:00 ~ 19:00</span>
-                        </div>
-                        <div>
-                            <img />
-                            <span>{ele.address.phone}</span>
-                        </div>
-                    </div>
-                    <div className={classes.right}>
-
-                    </div>
-                </div>
+                <Content data={ele}/>
             ))}
         </div>
 

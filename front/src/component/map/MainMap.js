@@ -773,7 +773,6 @@ const MainMap = () => {
                 style={{ width: '100%', height: '100vh' }}
                 ref={mapRef}
             />
-            <button onClick={fetchData}>길찾기</button>
         </div>
     );
 };
