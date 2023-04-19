@@ -17,7 +17,7 @@ function Store(){
             start:"11:00",
             end:"19:00"
         },
-        phone:"053-475-1121"
+        phone:"053-475-1121", startP:{x:123,y:123}, endP:{x:456,y:566}
     },{
         title:"세븐일레븐 대구대봉점",
         type:"편의점",
@@ -31,7 +31,7 @@ function Store(){
             start:"11:00",
             end:"19:00"
         },
-        phone:"053-475-1121"
+        phone:"053-475-1121", startP:{x:123,y:123}, endP:{x:456,y:566}
     },{
         title:"세븐일레븐 대구대봉점",
         type:"편의점",
@@ -45,7 +45,7 @@ function Store(){
             start:"11:00",
             end:"19:00"
         },
-        phone:"053-475-1121"
+        phone:"053-475-1121", startP:{x:123,y:123}, endP:{x:456,y:566}
     },{
         title:"세븐일레븐 대구대봉점",
         type:"편의점",
@@ -59,7 +59,7 @@ function Store(){
             start:"11:00",
             end:"19:00"
         },
-        phone:"053-475-1121"
+        phone:"053-475-1121", startP:{x:123,y:123}, endP:{x:456,y:566}
     },{
         title:"세븐일레븐 대구대봉점",
         type:"편의점",
@@ -73,7 +73,7 @@ function Store(){
             start:"11:00",
             end:"19:00"
         },
-        phone:"053-475-1121"
+        phone:"053-475-1121", startP:{x:123,y:123}, endP:{x:456,y:566}
     },{
         title:"세븐일레븐 대구대봉점",
         type:"편의점",
@@ -87,7 +87,7 @@ function Store(){
             start:"11:00",
             end:"19:00"
         },
-        phone:"053-475-1121"
+        phone:"053-475-1121", startP:{x:123,y:123}, endP:{x:456,y:566}
     },{
         title:"세븐일레븐 대구대봉점",
         type:"편의점",
@@ -101,7 +101,7 @@ function Store(){
             start:"11:00",
             end:"19:00"
         },
-        phone:"053-475-1121"
+        phone:"053-475-1121", startP:{x:123,y:123}, endP:{x:456,y:566}
     }]
 
     return (
