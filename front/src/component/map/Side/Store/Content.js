@@ -84,7 +84,7 @@ function Content(props){
         else{
             console.log("asdas")
             addContentRef.current.querySelectorAll('*').forEach(element => {
-                element.style.maxHeight = '100%';
+                element.style.maxHeight = '100vh';
             });
         }
     }
@@ -141,59 +141,75 @@ function Content(props){
                 <div className={isActive ? classes.contentActiveSet : classes.contentSet}>
                     <div className={classes.menu}>
                         <div className={classes.menuTop}><span>메뉴</span></div>
-                        <div className={classes.menuContents}>
-                            <div className={classes.menuContent}>
-                                <span>자연산 참가자미 모둠(1인)</span>
-                                <div className={classes.dotDiv}></div>
-                                <label>25,000</label>
-                            </div>
-                            <div className={classes.menuContent}>
-                                <span>도다리 세꼬시, 대방어 (1인)</span>
-                                <div className={classes.dotDiv}></div>
-                                <label>35,000</label>
-                            </div>
-                            <div className={classes.menuContent}>
-                                <span>줄가자미 (1인)</span>
-                                <div className={classes.dotDiv}></div>
-                                <label>48,000</label>
-                            </div>
-                            <div className={classes.menuContent}>
-                                <span>물회</span>
-                                <div className={classes.dotDiv}></div>
-                                <label>23,000</label>
-                            </div>
-                            <div className={classes.menuContent}>
-                                <span>공기밥</span>
-                                <div className={classes.dotDiv}></div>
-                                <label>2,000</label>
-                            </div>
-                            <div className={classes.menuContent}>
-                                <span>어린이 돈가스</span>
-                                <div className={classes.dotDiv}></div>
-                                <label>5,000</label>
-                            </div>
-                        </div>
+                        {
+                            data.menu ?
+                                <div className={classes.menuContents}>
+                                    <div className={classes.menuContent}>
+                                        <span>자연산 참가자미 모둠(1인)</span>
+                                        <div className={classes.dotDiv}></div>
+                                        <label>25,000</label>
+                                    </div>
+                                    <div className={classes.menuContent}>
+                                        <span>도다리 세꼬시, 대방어 (1인)</span>
+                                        <div className={classes.dotDiv}></div>
+                                        <label>35,000</label>
+                                    </div>
+                                    <div className={classes.menuContent}>
+                                        <span>줄가자미 (1인)</span>
+                                        <div className={classes.dotDiv}></div>
+                                        <label>48,000</label>
+                                    </div>
+                                    <div className={classes.menuContent}>
+                                        <span>물회</span>
+                                        <div className={classes.dotDiv}></div>
+                                        <label>23,000</label>
+                                    </div>
+                                    <div className={classes.menuContent}>
+                                        <span>공기밥</span>
+                                        <div className={classes.dotDiv}></div>
+                                        <label>2,000</label>
+                                    </div>
+                                    <div className={classes.menuContent}>
+                                        <span>어린이 돈가스</span>
+                                        <div className={classes.dotDiv}></div>
+                                        <label>5,000</label>
+                                    </div>
+                                </div>
+                                :
+                                <div className={classes.noMenuDiv}>
+                                    <img src={"/images/map/noMenu.svg"}/>
+                                    <span>등록된 메뉴가 없어요</span>
+                                </div>
+                        }
+
                     </div>
                     <div className={classes.talk}>
                         <div className={classes.talkTop}><span>현장 토크</span></div>
-                        <div className={classes.talkContents}>
-                            <div className={classes.talkContent}>
-                                <img/>
-                            </div>
-                            <div className={classes.talkContent}>
-                                <span>돈까스 먹고싶어용가리 치킨도 먹고싶어용가리 치킨도 먹고싶어용가리 치킨도 먹고싶어용가리</span>
-                            </div>
-                            <div className={classes.talkContent}>
-                                <span>돈까스 먹고싶어용가리 치킨도 먹고싶어용가리 치킨도 먹고싶어용가리 치킨도 먹고싶어용가리</span>
-                            </div>
-                            <div className={classes.talkContent}>
-                                <span>돈까스 먹고싶어용가리 치킨도 먹고싶어용가리 치킨도 먹고싶어용가리 치킨도 먹고싶어용가리</span>
-                            </div>
-                            <div className={classes.talkContent}>
-                                <span>돈까스 먹고싶어용가리 치킨도 먹고싶어용가리 치킨도 먹고싶어용가리 치킨도 먹고싶어용가리</span>
-                            </div>
+                        {
+                            data.menu ?
+                                <div className={classes.talkContents}>
+                                    <div className={classes.talkContent}>
+                                        <img/>
+                                    </div>
+                                    <div className={classes.talkContent}>
+                                        <span>돈까스 먹고싶어용가리 치킨도 먹고싶어용가리 치킨도 먹고싶어용가리 치킨도 먹고싶어용가리</span>
+                                    </div>
+                                    <div className={classes.talkContent}>
+                                        <span>돈까스 먹고싶어용가리 치킨도 먹고싶어용가리 치킨도 먹고싶어용가리 치킨도 먹고싶어용가리</span>
+                                    </div>
+                                    <div className={classes.talkContent}>
+                                        <span>돈까스 먹고싶어용가리 치킨도 먹고싶어용가리 치킨도 먹고싶어용가리 치킨도 먹고싶어용가리</span>
+                                    </div>
+                                    <div className={classes.talkContent}>
+                                        <span>돈까스 먹고싶어용가리 치킨도 먹고싶어용가리 치킨도 먹고싶어용가리 치킨도 먹고싶어용가리</span>
+                                    </div>
 
-                        </div>
+                                </div> :
+                                <div className={classes.noTalkDiv}>
+                                    <img src={"/images/map/noMenu.svg"}/>
+                                    <span>등록된 현장토크가 없어요</span>
+                                </div>
+                        }
                         <div className={classes.talkWriteDiv}>
                             <div className={classes.writeDiv}>
                                 <img src={"/images/map/writePencil.svg"}/>

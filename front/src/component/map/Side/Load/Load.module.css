@@ -1,0 +1,49 @@
+.box{
+    margin: 44px 22px;
+}
+
+.searchBox{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 92px;
+    margin-bottom: 68px;
+    background: #FFFFFF;
+    border: 1.5px solid #EEEEEE;
+    border-radius: 12px;
+}
+
+.searchBox input{
+    min-width: 343px;
+    height: 90%;
+    outline: none;
+    border: none;
+}
+
+.searchBox input::placeholder{
+    color: #969696;
+}
+
+.startDiv, .endDiv{
+    display: flex;
+    align-items: center;
+    padding-left: 18px;
+    margin-right: 58px;
+    height: 46px;
+    font-weight: 400;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.startDiv{
+    border-bottom: 1px dashed #EEEEEE;
+}
+
+.changeDiv{
+    position: absolute;
+    right: 13px;
+    cursor: pointer;
+}

@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {mapActions} from "../../../store/map/map-slice";
 import {useState} from "react";
 import SearchModal from "./SearchModal";
+import Load from "./Load/Load";
 
 function SideMain(){
     const dispatch = useDispatch()
@@ -43,7 +44,8 @@ function SideMain(){
             <div className={classes.contentBox}>
                 {pageIndex === 0 ?
                     <Store /> : pageIndex === 1 ?
-                        <></> : <></>
+                    <Load/> :
+                    <></>
                 }
             </div>
         </div>

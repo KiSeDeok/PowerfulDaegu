@@ -1,0 +1,72 @@
+.pathBox{
+    display: flex;
+    flex-direction: column;
+    padding: 0 22px;
+    margin-bottom: 24px;
+}
+
+.pHead{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 12px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #EEEEEE;
+    font-weight: 700;
+    font-size: 14px;
+    color: #575757;
+    gap: 10px;
+
+}
+
+.pBody{
+    display: flex;
+    flex-direction: column;
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
+.phLeft{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+}
+
+.phRight{
+    font-weight: 400;
+    font-size: 14px;
+    color: #FF7D00;
+}
+
+.rContents{
+    display: flex;
+    align-items: flex-start;
+    min-height: fit-content;
+    padding: 9px 0;
+    font-weight: 400;
+    font-size: 14px;
+    color: #575757;
+    box-sizing: border-box;
+    transition: all 0.1s linear;
+}
+
+.rContents:hover{
+    background: #FAFAFA;
+}
+
+.reFImg{
+    margin-right: 11px;
+}
+
+.rcBody{
+    display: flex;
+    width: 100%;
+    margin-right: 11px;
+    gap: 11px;
+    box-sizing: border-box;
+}
+
+.reSImg{
+    cursor: pointer;
+}
