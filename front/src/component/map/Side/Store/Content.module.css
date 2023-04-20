@@ -3,19 +3,24 @@
     height: 100%;
 }
 
-.content{
-    transition: all 0.15s linear;
-
-}
-
 .mainContent{
     display: flex;
     justify-content: space-between;
-    padding: 22px 44px;
+    padding: 22px 44px 8px 44px;
     box-sizing: border-box;
-    border-bottom: 1px solid #EAEAEA;
     transition: all 0.15s linear;
     cursor: pointer;
+}
+
+.content, .contentActive{
+    transition: background-color 0.15s linear;
+    transition: max-height 0.5s ease;
+    border-bottom: 1px solid #EAEAEA;
+    max-height: 240px;
+}
+
+.contentActive{
+    max-height: 100%;
 }
 
 .content:hover{
@@ -170,4 +175,151 @@
 
 .activeSpan{
     color: #FFFFFF;
+}
+
+.contentActiveSet, .contentSet{
+    transition: all 0.4s linear;
+    opacity: 1;
+    /*max-height: 100%;*/
+}
+
+.contentSet{
+    opacity: 0;
+    /*height: 0;*/
+}
+.contentSet *{
+    padding: 0;
+    margin: 0;
+    /*height: 0;*/
+    /*max-height: 0;*/
+    opacity: 0;
+    transition: opacity 0.4s linear;
+}
+
+.addActiveContent, .addContent{
+    border-top: 1px solid #EEEEEE;
+    margin: 0px 44px 18px 44px;
+}
+
+.addContent{
+    border: none;
+}
+
+.menu{
+    margin: 18px 0px;
+}
+
+.menuTop ,.talkTop{
+    margin-bottom: 8px;
+    font-weight: 700;
+    font-size: 14px;
+    color: #575757;
+}
+
+.menuContents{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.menuContent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 400;
+    font-size: 14px;
+    color: #969696;
+}
+
+.menuContent > span{
+    width: fit-content;
+    min-width: fit-content;
+    margin-right: 15px;
+}
+
+.menuContent > label{
+    width: fit-content;
+    min-width: fit-content;
+    margin-left: 15px;
+}
+
+.dotDiv{
+    width: 100%;
+    height: 1px;
+    border-top: 1px dotted rgba(238, 238, 238, 1);
+    box-sizing: border-box;
+}
+
+.talk{
+    border-top: 1px solid #EEEEEE;
+    box-sizing: border-box;
+}
+
+.talkTop{
+    margin-top: 18px;
+}
+
+.talkContents{
+    display: flex;
+    gap: 13px;
+    overflow-x: scroll;
+}
+
+.talkContents::-webkit-scrollbar{
+    /*display: none;*/
+}
+
+.talkContent{
+    min-width: 100px;
+    max-width: 100px;
+    min-height: 100px;
+    max-height: 100px;
+    padding: 12px 12px;
+    box-sizing: border-box;
+    overflow: hidden;
+    background: #FBD970;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.talkWriteDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 22px 0;
+    cursor: pointer;
+}
+
+.writeDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 155px;
+    height: 36px;
+    background: #FFFFFF;
+    border: 1px solid #FF7D00;
+    border-radius: 12px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #FF7D00;
+    box-sizing: border-box;
+    gap: 12px;
+}
+
+.functionSet{
+    display: flex;
+    gap: 19px;
+}
+
+.functionDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    background: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    border-radius: 100px;
+    box-sizing: border-box;
+    cursor: pointer;
 }
