@@ -110,7 +110,7 @@ function Notice() {
                     ))}
                 </div>
 
-                <Pagination />
+                <Pagination nowPage={1} totalPage={4} />
             </div>
             <Footer/>
         </>
