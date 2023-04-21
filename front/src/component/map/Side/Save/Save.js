@@ -1,7 +1,7 @@
 import classes from "./Save.module.css"
 import {useState} from "react";
 import Favorite from "./Content/Favorite/Favorite";
-import Path from "./Content/Path";
+import Path from "./Content/Path/Path";
 
 function Save(){
     const [type, setType] = useState(0)

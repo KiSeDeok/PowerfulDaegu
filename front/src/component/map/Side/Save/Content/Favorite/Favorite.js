@@ -1,6 +1,6 @@
 import classes from "./Favorite.module.css"
 import Fcontent from "./Fcontent";
-import TitleModal from "./Modal/TitleModal";
+import TitleModal from "../Modal/TitleModal";
 import {useState} from "react";
 
 function Favorite(){
@@ -53,12 +53,12 @@ function Favorite(){
                 <div className={classes.fhContent} onClick={() => handleModal(1)}>
                     <span>{placeModal.text}</span>
                     <img src={"/images/map/saveType/arrow.svg"}/>
-                    {placeModal.open ? <TitleModal index={sortModal.index} func={handleType} type={"place"}/> : ""}
+                    {placeModal.open ? <TitleModal index={placeModal.index} func={handleType} type={"place"}/> : ""}
                 </div>
                 <div className={classes.fhContent} onClick={() => handleModal(2)}>
                     <span>{regionModal.text}</span>
                     <img src={"/images/map/saveType/arrow.svg"}/>
-                    {regionModal.open ? <TitleModal index={sortModal.index} func={handleType} type={"region"}/> : ""}
+                    {regionModal.open ? <TitleModal index={regionModal.index} func={handleType} type={"region"}/> : ""}
                 </div>
             </div>
             <div className={classes.fBody}>
