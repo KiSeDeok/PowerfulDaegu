@@ -1,0 +1,58 @@
+.pathBox{
+    display: flex;
+    flex-direction: column;
+    padding: 0 22px;
+    margin-bottom: 24px;
+}
+
+.pHead{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 12px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #EEEEEE;
+    font-weight: 700;
+    font-size: 14px;
+    color: #575757;
+    gap: 10px;
+}
+
+.phLeft{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 6px;
+}
+
+.pBody{
+    display: flex;
+    flex-direction: column;
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
+.phRight{
+    font-weight: 400;
+    font-size: 14px;
+    color: #FF7D00;
+}
+
+.pContents{
+    display: flex;
+    align-items: center;
+    min-height: 35px;
+    padding: 9px 0;
+    font-weight: 400;
+    font-size: 14px;
+    color: #575757;
+    box-sizing: border-box;
+    transition: all 0.1s linear;
+    gap: 7px;
+
+}
+
+.pContents:hover{
+    background: #FAFAFA;
+}

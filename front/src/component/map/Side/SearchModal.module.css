@@ -1,0 +1,101 @@
+.activeSearchDiv, .noSearchDiv{
+    position: absolute;
+    top: 57px;
+    left: 0;
+    width: 418px;
+    max-height: 300px;
+    opacity: 1;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 11px;
+    box-sizing: border-box;
+    z-index: 3;
+    transition: max-height 0.35s ease;
+    overflow: hidden;
+}
+
+
+.noSearchDiv{
+    max-height: 10px
+}
+
+.noSearchDiv > *{
+    transition: all .4s ease;
+}
+
+
+.sHead{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    min-height: 20px;
+    padding: 18px 18px 0 18px;
+    margin-bottom: 7px;
+    cursor: pointer;
+}
+
+.sBody{
+    padding: 0 29px;
+}
+
+.ssHead{
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #575757;
+}
+
+.ssBody{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+    gap: 10px;
+}
+
+.ssBody:nth-child(1){
+    margin-bottom: 24px;
+}
+
+
+.ssBody > div{
+    display: flex;
+    gap: 8px;
+}
+
+.ssItem, .ssActiveItem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    padding: 7px 15px;
+    box-sizing: border-box;
+    font-weight: 400;
+    font-size: 14px;
+    color: #969696;
+    border: 1px solid #DDDDDD;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.1s linear;
+}
+
+.ssActiveItem{
+    background: #FFEEDD;
+    border: 1px solid #FF7D00;
+    color: #FF7D00;
+}
+
+.sfoot{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.sfootBody{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+}
