@@ -1,0 +1,30 @@
+.box{
+    display: flex;
+    flex-direction: column;
+}
+
+.fHead{
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 42px;
+    max-height: 42px;
+    margin-bottom: 25px;
+    border-top: 1px solid #EEEEEE;
+    border-bottom: 1px solid #EEEEEE;
+
+}
+
+.fhContent{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 33%;
+    font-weight: 400;
+    font-size: 16px;
+    color: #969696;
+    gap: 3px;
+    cursor: pointer;
+}

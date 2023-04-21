@@ -1,0 +1,48 @@
+.fbContent{
+    display: flex;
+    align-items: center;
+    padding: 9px 41px;
+    gap: 9px;
+}
+
+.activeCheckbox, .defaultCheckbox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 16px;
+    max-height: 16px;
+    min-height: 16px;
+    min-width: 16px;
+    border: 1px solid #DDDDDD;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.fbSpan{
+    display: flex;
+    align-items: center;
+    width: 90%;
+    gap: 11px;
+}
+
+.fbName{
+    font-weight: 400;
+    font-size: 14px;
+    color: #575757;
+}
+
+.fbFunction{
+    display: flex;
+    gap: 16px;
+}
+
+.fbShare, .fbDestination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    background: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    border-radius: 100px;
+}

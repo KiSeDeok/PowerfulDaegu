@@ -1,0 +1,45 @@
+.box{
+    display: flex;
+    flex-direction: column;
+}
+
+.head{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 34px 0 24px 0;
+}
+
+.hBody{
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-width: 114px;
+    min-height: 37px;
+    background: #FAFAFA;
+    border-radius: 24px;
+}
+
+.hbContent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.leftHbColor, .rightHbColor{
+    position: absolute;
+    height: 37px;
+    width: 50%;
+    left: 0;
+    background: #FBD970;
+    border-radius: 23.5px;
+    transition: all 0.3s ease;
+}
+
+.rightHbColor{
+    left:50%
+}
