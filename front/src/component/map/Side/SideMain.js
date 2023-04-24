@@ -23,7 +23,6 @@ function SideMain(){
 
     const handleSearchOpt = () => {
         const state = isSearchSet
-        console.log("state = ", state)
 
         setSearchOpen(!state)
     }

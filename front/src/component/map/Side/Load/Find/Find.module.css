@@ -11,6 +11,7 @@
 }
 
 .headBox{
+    position: relative;
     display: flex;
     width: fit-content;
     background: #FAFAFA;
@@ -24,4 +25,18 @@
     justify-content: center;
     width: 48px;
     cursor: pointer;
+}
+
+.hbContent > img{
+    z-index: 2;
+}
+
+.hbColor{
+    position: absolute;
+    left: 0;
+    background: #FBD970;
+    border-radius: 24px;
+    width: 48px;
+    height: 37px;
+    transition: all 0.2s ease;
 }
