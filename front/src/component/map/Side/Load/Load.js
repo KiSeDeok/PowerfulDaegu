@@ -2,6 +2,7 @@ import classes from "./Load.module.css"
 import Recently from "./Content/Recently";
 import Store from "./Content/Store";
 import Path from "./Content/Path";
+import Find from "./Find/Find";
 
 function Load(){
     return (
@@ -16,9 +17,14 @@ function Load(){
                 <img className={classes.changeDiv} src={"/images/map/changeBtn.svg"}/>
             </div>
 
-            <Recently/>
-            <Store />
-            <Path />
+            {/*<div className={classes.funcBox}>*/}
+            {/*    <Recently/>*/}
+            {/*    <Store />*/}
+            {/*    <Path />*/}
+            {/*</div>*/}
+            <div className={classes.loadBox}>
+                <Find />
+            </div>
 
         </div>
     )
