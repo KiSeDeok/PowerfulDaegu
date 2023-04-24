@@ -29,49 +29,39 @@ function DetailContent() {
     }, [])
 
     return (
-        <>
-            <Header/>
-            <div className={classes.aaa}>
-                <CommunityHeader selector="notice"/>
+        <div className={classes.kkk}>
+            <div className={classes.bbb}>
+                <div className={classes.ccc}>
+                    공지
+                </div>
 
-                <div className={classes.kkk}>
-                    <div className={classes.bbb}>
-                        <div className={classes.ccc}>
-                            공지
-                        </div>
-
-                        <Link to={"/notice"} className={classes.ddd}>
-                            <div className={classes.eee}/>
-                            <div className={classes.fff}>
-                                목록으로
-                            </div>
-                        </Link>
+                <Link to={"/community/notice"} className={classes.ddd}>
+                    <div className={classes.eee}/>
+                    <div className={classes.fff}>
+                        목록으로
                     </div>
+                </Link>
+            </div>
 
-                    <div className={classes.lll}>
-                        <div className={classes.ddd}>
-                            <div className={classes.ggg}>
-                                {category}
-                            </div>
-                            <div className={classes.hhh}>
-                                {title}
-                            </div>
-                        </div>
-
-                        <div className={classes.iii}>
-                            {date}
-                        </div>
+            <div className={classes.lll}>
+                <div className={classes.ddd}>
+                    <div className={classes.ggg}>
+                        {category}
                     </div>
-
-                    <div className={classes.jjj}>
-                        {detail}
+                    <div className={classes.hhh}>
+                        {title}
                     </div>
                 </div>
 
-
+                <div className={classes.iii}>
+                    {date}
+                </div>
             </div>
-            <Footer/>
-        </>
+
+            <div className={classes.jjj}>
+                {detail}
+            </div>
+        </div>
     );
 }
 

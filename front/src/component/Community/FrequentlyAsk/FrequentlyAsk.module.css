@@ -1,0 +1,51 @@
+.aaa {
+    display: flex;
+    flex-direction: column;
+}
+
+.aaa > div {
+    padding: 0 20vw;
+    min-width: 700px;
+}
+
+.bbb {
+    height: 75px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #DDDDDD;
+    margin-top: 49px;
+}
+
+.ccc {
+    display: flex;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+
+    letter-spacing: -0.01em;
+
+    color: #303030;
+}
+
+.ccc > div:not(:last-child) {
+    padding-right: 16px;
+    border-right: 1px solid #C2C2C2;
+}
+
+.ccc > div:not(:first-child) {
+    padding-left: 16px;
+}
+
+.ddd {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    color: #303030;
+}
+
+.eee {
+    color: #FF7D00;
+}

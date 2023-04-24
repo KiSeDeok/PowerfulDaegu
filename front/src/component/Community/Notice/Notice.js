@@ -81,38 +81,32 @@ function Notice() {
 
     return (
         <>
-            <Header/>
-            <div className={classes.aaa}>
-                <CommunityHeader selector="notice"/>
-
-                <div>
-                    <div className={classes.bbb}>
-                        <div className={classes.ddd}>
-                            공지
+            <div>
+                <div className={classes.bbb}>
+                    <div className={classes.ddd}>
+                        공지
+                    </div>
+                    <div className={classes.ccc}>
+                        <div className={category === 0 ? classes.eee : classes.fff} onClick={changeCategory.bind(this, 0)}>
+                            전체
                         </div>
-                        <div className={classes.ccc}>
-                            <div className={category === 0 ? classes.eee : classes.fff} onClick={changeCategory.bind(this, 0)}>
-                                전체
-                            </div>
-                            <div className={category === 1 ? classes.eee : classes.fff} onClick={changeCategory.bind(this, 1)}>
-                                안내
-                            </div>
-                            <div className={category === 2 ? classes.eee : classes.fff} onClick={changeCategory.bind(this, 2)}>
-                                점검
-                            </div>
+                        <div className={category === 1 ? classes.eee : classes.fff} onClick={changeCategory.bind(this, 1)}>
+                            안내
+                        </div>
+                        <div className={category === 2 ? classes.eee : classes.fff} onClick={changeCategory.bind(this, 2)}>
+                            점검
                         </div>
                     </div>
                 </div>
-
-                <div>
-                    {contents.map(content => (
-                        <Content content={content} />
-                    ))}
-                </div>
-
-                <Pagination nowPage={1} totalPage={4} />
             </div>
-            <Footer/>
+
+            <div>
+                {contents.map(content => (
+                    <Content content={content} />
+                ))}
+            </div>
+
+            <Pagination nowPage={1} totalPage={4} />
         </>
     );
 }
