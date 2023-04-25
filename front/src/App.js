@@ -5,16 +5,20 @@ import Login from "./component/Login/Login"
 import SignUp from "./component/SignUp/SignUP";
 import Community from "./component/Community/Community";
 
+import { CookiesProvider } from 'react-cookie';
+
 function App() {
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/home" element={<Main/>}/>
-                <Route path="/login" element={<Login/>}/>
-                <Route path="/signup" element={<SignUp/>}/>
-                <Route path="/community/*" element={<Community/>}/>
-            </Routes>
-        </BrowserRouter>
+        <CookiesProvider>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/home" element={<Main/>}/>
+                    <Route path="/login" element={<Login/>}/>
+                    <Route path="/signup" element={<SignUp/>}/>
+                    <Route path="/community/*" element={<Community/>}/>
+                </Routes>
+            </BrowserRouter>
+        </CookiesProvider>
     );
 }
 
