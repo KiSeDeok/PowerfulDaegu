@@ -1,8 +1,11 @@
 import classes from "./Find.module.css"
 import {useState} from "react";
+import {useSelector} from "react-redux";
+import FindContent from "./FindContent";
 
 function Find(){
     const [index, setIndex] = useState(0)
+    const searchData = useSelector(state => state.map.searchData)
 
     const handleIndex= (index) => {
         setIndex(index)
@@ -23,6 +26,11 @@ function Find(){
                     </div>
                     <div className={classes.hbColor} style={{left: `${index === 0 ? "0px" : index === 1 ? "48px" : "96px"}`}} ></div>
                 </div>
+            </div>
+            <div className={classes.body}>
+                {searchData.map((ele) => (
+                    <FindContent data={ele}/>
+                ))}
             </div>
         </div>
     )

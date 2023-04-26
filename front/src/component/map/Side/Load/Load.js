@@ -4,8 +4,12 @@ import Store from "./Content/Store";
 import Path from "./Content/Path";
 import Find from "./Find/Find";
 import axios from "axios";
+import {useDispatch} from "react-redux";
+import {mapActions} from "../../../../store/map/map-slice";
 
 function Load(){
+    const dispatch = useDispatch()
+
     const handleEnter = (e) => {
         if(e.key === "Enter"){
             const opt = {
@@ -17,7 +21,7 @@ function Load(){
 
             axios(opt)
                 .then(function a(response) {
-                    console.log("respons =", response)
+                    dispatch(mapActions.handleSearch({data : response.data?.staticPaths}))
                 })
                 .catch(function (error) {
                     console.log(error);
