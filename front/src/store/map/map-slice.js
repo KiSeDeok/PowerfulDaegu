@@ -11,7 +11,7 @@ const mapSlice = createSlice({
             state.index = action.payload.index
         },
         handleSearch(state, action){
-            state.data = action.payload.data
+            state.searchData = action.payload.data
         }
     }
 })

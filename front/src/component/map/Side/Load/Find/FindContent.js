@@ -1,6 +1,8 @@
 import classes from "./FindContent.module.css"
 
 function FindContent(props){
+
+
     return (
         <div className={classes.box}>
             <div className={classes.head}>

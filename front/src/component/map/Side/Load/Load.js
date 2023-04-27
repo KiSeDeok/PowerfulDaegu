@@ -21,7 +21,8 @@ function Load(){
 
             axios(opt)
                 .then(function a(response) {
-                    dispatch(mapActions.handleSearch({data : response.data?.staticPaths}))
+                    console.log("asdas")
+                    dispatch(mapActions.handleSearch({data : response.data.staticPaths}))
                 })
                 .catch(function (error) {
                     console.log(error);

@@ -40,3 +40,10 @@
     height: 37px;
     transition: all 0.2s ease;
 }
+
+.body{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: scroll;
+}
