@@ -38,7 +38,7 @@
     border-radius: 24px;
     width: 48px;
     height: 37px;
-    transition: all 0.2s ease;
+    /*transition: all 0.1s linear;*/
 }
 
 .body{

@@ -10,7 +10,7 @@
     border-radius: 11px;
     box-sizing: border-box;
     z-index: 3;
-    transition: max-height 0.35s ease;
+    /*transition: max-height 0.35s ease;*/
     overflow: hidden;
 }
 
@@ -20,7 +20,7 @@
 }
 
 .noSearchDiv > *{
-    transition: all .4s ease;
+    /*transition: all .4s ease;*/
 }
 
 

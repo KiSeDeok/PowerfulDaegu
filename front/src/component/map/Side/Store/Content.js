@@ -142,7 +142,7 @@ function Content(props){
                     <div className={classes.menu}>
                         <div className={classes.menuTop}><span>메뉴</span></div>
                         {
-                            data.menu ?
+                            !data.menu ?
                                 <div className={classes.menuContents}>
                                     <div className={classes.menuContent}>
                                         <span>자연산 참가자미 모둠(1인)</span>
@@ -186,7 +186,7 @@ function Content(props){
                     <div className={classes.talk}>
                         <div className={classes.talkTop}><span>현장 토크</span></div>
                         {
-                            data.menu ?
+                            !data.menu ?
                                 <div className={classes.talkContents}>
                                     <div className={classes.talkContent}>
                                         <img/>
