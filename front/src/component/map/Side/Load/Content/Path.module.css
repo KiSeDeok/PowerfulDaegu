@@ -1,7 +1,6 @@
 .pathBox{
     display: flex;
     flex-direction: column;
-    padding: 0 22px;
     margin-bottom: 24px;
 }
 
@@ -9,8 +8,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin: 0 22px 12px 22px;
     padding-bottom: 12px;
-    margin-bottom: 10px;
     border-bottom: 1px solid #EEEEEE;
     font-weight: 700;
     font-size: 14px;
@@ -43,7 +42,7 @@
     display: flex;
     align-items: flex-start;
     min-height: fit-content;
-    padding: 9px 0;
+    padding: 9px 28px;
     font-weight: 400;
     font-size: 14px;
     color: #575757;

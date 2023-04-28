@@ -5,6 +5,7 @@ import {mapActions} from "../../../store/map/map-slice";
 import {useState} from "react";
 import SearchModal from "./SearchModal";
 import Load from "./Load/Load";
+import Save from "./Save/Save";
 
 function SideMain(){
     const dispatch = useDispatch()
@@ -22,7 +23,6 @@ function SideMain(){
 
     const handleSearchOpt = () => {
         const state = isSearchSet
-        console.log("state = ", state)
 
         setSearchOpen(!state)
     }
@@ -45,7 +45,7 @@ function SideMain(){
                 {pageIndex === 0 ?
                     <Store /> : pageIndex === 1 ?
                     <Load/> :
-                    <></>
+                    <Save />
                 }
             </div>
         </div>

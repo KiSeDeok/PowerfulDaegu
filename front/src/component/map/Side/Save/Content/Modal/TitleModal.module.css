@@ -1,0 +1,40 @@
+.openBox, .closeBox{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: fit-content;
+    max-height: 100vh;
+    top: 38px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    font-weight: 400;
+    font-size: 16px;
+    color: #969696;
+    box-sizing: border-box;
+    /*transition: all 1.0s ease;*/
+}
+
+.content{
+    padding: 8px;
+}
+
+.openBox *{
+    opacity: 1;
+    /*transition: all 0.4s linear;*/
+}
+
+.closeBox{
+    max-height: 0;
+}
+
+.closeBox *{
+    opacity: 0;
+    /*transition: all 0.5s linear;*/
+}
+
+.activeSpan{
+    font-weight: 600;
+    font-size: 16px;
+    color: #969696;
+}

@@ -3,11 +3,15 @@ import {createSlice} from "@reduxjs/toolkit";
 const mapSlice = createSlice({
     name: "map",
     initialState:{
-        index:0
+        index:0,
+        searchData:[]
     },
     reducers:{
         handleIndex(state, action){
             state.index = action.payload.index
+        },
+        handleSearch(state, action){
+            state.searchData = action.payload.data
         }
     }
 })
