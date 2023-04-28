@@ -12,7 +12,7 @@
     font-size: 16px;
     color: #969696;
     box-sizing: border-box;
-    transition: all 1.0s ease;
+    /*transition: all 1.0s ease;*/
 }
 
 .content{
@@ -21,7 +21,7 @@
 
 .openBox *{
     opacity: 1;
-    transition: all 0.4s linear;
+    /*transition: all 0.4s linear;*/
 }
 
 .closeBox{
@@ -30,7 +30,7 @@
 
 .closeBox *{
     opacity: 0;
-    transition: all 0.5s linear;
+    /*transition: all 0.5s linear;*/
 }
 
 .activeSpan{
