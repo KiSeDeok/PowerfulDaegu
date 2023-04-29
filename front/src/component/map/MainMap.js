@@ -706,7 +706,6 @@ const MainMap = () => {
                 return new window.naver.maps.LatLng(ele.y, ele.x)
             })
 
-            console.log("asd =", asd)
 
             const polyline = new window.naver.maps.Polyline({
                 map: naverMap,
