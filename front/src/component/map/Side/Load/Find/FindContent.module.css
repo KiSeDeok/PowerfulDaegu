@@ -77,23 +77,48 @@
 }
 
 .sdFirstBox{
-    width: 100%;
+    width: 65px;
     height: 15px;
     min-height: 15px;
-}
-
-.sdLeftArea{
-    max-width: 65px;
-    min-width: 65px;
-    height: 15px;
     border-right: 1px dashed #DDDDDD;
 }
 
-.sdDetailBox{
-    min-height: 100px;
+.sdLeftArea{
+    max-width: 66px;
+    min-width: 66px;
+    height: 100px;
 }
 
-.sdDetailBox.sdLastIndexBox{
+.sdDetailBusBox, .sdDetailSubwayBox{
+    display: flex;
+    min-height: 100px;
+    position: relative;
+}
+
+.sdDetailBusBox .sdLeftArea{
+    display: flex;
+    align-items: baseline;
+    padding-top: 4px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #FF7D00;
+    border-right: 1px dashed #FF7D00;
+    box-sizing: border-box;
+    gap: 7px;
+
+}
+
+.sdDetailSubwayBox .sdLeftArea{
+    font-weight: 400;
+    font-size: 14px;
+    color: #FF7D00;
+    border-right: 1px dashed #0098fe;
+}
+
+.sdDetailBusBox.sdLastIndexBox,
+.sdDetailSubwayBox.sdLastIndexBox{
+    display: flex;
+    align-items: center;
     min-height: fit-content;
 }
 
@@ -109,4 +134,105 @@
 
 .sdLastBox > span{
     cursor: pointer;
+}
+
+.sdMiddleArea{
+    position: absolute;
+    left: 65.5px;
+    top: 0;
+}
+
+.sdmCircle{
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+}
+
+.sdMiddleAreaBus > .sdmLine{
+    height: 100%;
+    width: 1px;
+}
+
+.sdMiddleAreaBus > .sdmCircle{
+    background: #FF7D00;
+    left: -3px;
+    top: 9px;
+}
+
+.sdMiddleAreaSubway > .sdmLine{
+    border-left: 1px dashed #FF7D00;
+    height: 100%;
+    width: 1px;
+}
+
+.sdMiddleAreaSubway > .sdmCircle{
+    background: #FF7D00;
+    left: -2.5px;
+    top: 7px;
+}
+
+.sdRightArea{
+    display: flex;
+    align-items: baseline;
+    height: 100px;
+    padding-top: 4px;
+    padding-left: 9px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #575757;
+    gap: 4px;
+    box-sizing: border-box;
+}
+
+.sdRightArea > label{
+    font-size: 12px;
+    color: rgba(150, 150, 150, 1);
+}
+
+.sdDetailArriveBox{
+    position: relative;
+    display: flex;
+}
+
+.sdDetailArriveBox .sdLeftArea{
+    display: flex;
+    align-items: center;
+    max-width: 65px;
+    min-width: 65px;
+    height: 20px;
+}
+
+.sdDetailArriveBox .sdmLine{
+    height: 10px;
+    border-left: 1px dashed #303030;
+    box-sizing: border-box;
+    position: absolute;
+    left: -1px;
+    top: 2px;
+}
+
+.sdDetailArriveBox .sdmCircle{
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #303030;
+    position: absolute;
+    left: -2.5px;
+    top: 8px;
+}
+
+.sdlBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 45px;
+    min-width: 45px;
+    height: 20px;
+    background: #303030;
+    border-radius: 10px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #FFFFFF;
 }

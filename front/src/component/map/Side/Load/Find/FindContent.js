@@ -6,7 +6,6 @@ function FindContent(props){
     const busSubwaySet = props.data?.legs[0]?.steps.filter(ele => ele.type === "BUS" || ele.type === "SUBWAY")
 
     console.log("data= ", data)
-    console.log("busSubwaySet= ", busSubwaySet)
 
     return (
         <div className={classes.box}>
@@ -48,22 +47,36 @@ function FindContent(props){
                     <div className={classes.sdLeftArea}></div>
                 </div>
                 {busSubwaySet.map((ele, index) => {
-                    if(ele.type === "BUS" || ele.type === "SUBWAY"){
-                        return (
-                            <div className={`${classes.sdDetailBox} ${index === busSubwaySet.length-1 ? classes.sdLastIndexBox : ""}`}>
+                    return (
+                        <>
+                            <div className={`${ele.type === "BUS" ? classes.sdDetailBusBox : classes.sdDetailSubwayBox} ${index === busSubwaySet.length-1 ? classes.sdLastIndexBox : ""}`}>
                                 <div className={classes.sdLeftArea}>
                                     <img src={ele.type === "BUS" ? "/images/map/bus.svg" : "/images/map/bus.svg"} />
                                     <span>{ele.routes[0].name}</span>
                                 </div>
-                                <div className={classes.sdMiddleArea}>
-                                    <div className={classes.sdmTop}></div>
+                                <div className={`${classes.sdMiddleArea} ${ele.type === "BUS" ? classes.sdMiddleAreaBus : classes.sdMiddleAreaSubway}`}>
                                     <div className={classes.sdmCircle}></div>
-                                    <div className={classes.sdmBottom}></div>
                                 </div>
-                                <div className={classes.sdRightArea}></div>
+                                <div className={classes.sdRightArea}>
+                                    <span>{ele.stations[0].displayName || ""}</span>
+                                    <label>({ele.stations[0].displayCode || ""})</label>
+                                </div>
                             </div>
-                        )
-                    }
+                            <div className={classes.sdDetailArriveBox}>
+                                <div className={classes.sdLeftArea}>
+                                    <div className={classes.sdlBox}><span>하차</span></div>
+                                </div>
+                                <div className={classes.sdMiddleArea}>
+                                    <div className={classes.sdmLine}></div>
+                                    <div className={classes.sdmCircle}></div>
+                                </div>
+                                <div className={classes.sdRightArea}>
+                                    <span>{ele.stations[0].displayName || ""}</span>
+                                    <label>({ele.stations[0].displayCode || ""})</label>
+                                </div>
+                            </div>
+                        </>
+                    )
                 })}
                 <div className={classes.sdLastBox}>
                     <span>자세히 보기</span>
