@@ -110,10 +110,6 @@ function Login(props) {
 
             <SubmitBtn text="로그인" flag={false} eventBtn={loginBtn} />
 
-            <div style={{marginTop :"20px"}}>
-                <SubmitBtn text="테스트 버튼" flag={false} eventBtn={testBtn} />
-            </div>
-
             <div className={classes.ccc}>
                 <div>비밀번호 찾기</div>
                 <div>|</div>
