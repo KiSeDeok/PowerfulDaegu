@@ -198,10 +198,12 @@
 
 .sdDetailArriveBox .sdLeftArea{
     display: flex;
-    align-items: center;
+    align-items: baseline;
     max-width: 65px;
     min-width: 65px;
     height: 20px;
+    padding-top: 4px;
+    box-sizing: border-box;
 }
 
 .sdDetailArriveBox .sdmLine{
@@ -236,3 +238,31 @@
     font-size: 14px;
     color: #FFFFFF;
 }
+
+.sdDetailArriveBox{
+    height: 40px;
+}
+
+.sdLastArriveBox{
+    height: 20px;
+}
+
+.sdDetailArriveBox .sdLeftArea{
+    height: 40px;
+    max-width: 66px;
+    min-width: 66px;
+    border-right: 1px dashed #303030;
+    box-sizing: border-box;
+}
+
+.sdDetailArriveBox.sdLastArriveBox .sdLeftArea{
+    padding-top: 0;
+    height: fit-content;
+    border-right: none;
+}
+
+.sdDetailArriveBox.sdLastArriveBox .sdRightArea{
+    height: fit-content;
+    padding-top: 3px;
+}
+

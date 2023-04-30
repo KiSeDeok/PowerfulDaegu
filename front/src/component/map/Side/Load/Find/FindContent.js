@@ -62,12 +62,13 @@ function FindContent(props){
                                     <label>({ele.stations[0].displayCode || ""})</label>
                                 </div>
                             </div>
-                            <div className={classes.sdDetailArriveBox}>
+                            <div className={`${classes.sdDetailArriveBox} ${index === busSubwaySet.length-1 ? classes.sdLastArriveBox : ""}`}>
                                 <div className={classes.sdLeftArea}>
                                     <div className={classes.sdlBox}><span>하차</span></div>
                                 </div>
                                 <div className={classes.sdMiddleArea}>
-                                    <div className={classes.sdmLine}></div>
+                                    {index === busSubwaySet.length-1 ? <div className={classes.sdmLine}></div> : ""}
+
                                     <div className={classes.sdmCircle}></div>
                                 </div>
                                 <div className={classes.sdRightArea}>
