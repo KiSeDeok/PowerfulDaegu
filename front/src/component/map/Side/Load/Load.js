@@ -13,7 +13,7 @@ function Load(){
     const handleEnter = (e) => {
         if(e.key === "Enter"){
             const opt = {
-                url: "https://map.naver.com/v5/api/transit/directions/point-to-point?start=128.576747,35.86287963&goal=128.4928316,35.85892304&mode=TIME&lang=ko&includeDetailOperation=true",
+                url: "https://map.naver.com/v5/api/transit/directions/point-to-point?start=128.582351,35.8642161&goal=128.560192,35.9303298&mode=TIME&lang=ko&includeDetailOperation=true",
                 method: "post",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json"
@@ -21,7 +21,8 @@ function Load(){
 
             axios(opt)
                 .then(function a(response) {
-                    dispatch(mapActions.handleSearch({data : response.data.staticPaths}))
+                    // console.log("response= ", response)
+                    dispatch(mapActions.handleSearch({data : response.data.paths}))
                 })
                 .catch(function (error) {
                     console.log(error);
