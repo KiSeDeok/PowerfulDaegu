@@ -1,11 +1,25 @@
 import classes from "./FindContent.module.css"
+import ContentDetail from "./ContentDetail";
+import {v4 as uuidv4} from "uuid";
+import {useState} from "react";
 
 function FindContent(props){
-    const data = props.data
+    const [type, setType] = useState("short")
 
+    const data = props.data
     const busSubwaySet = props.data?.legs[0]?.steps.filter(ele => ele.type === "BUS" || ele.type === "SUBWAY")
 
     console.log("data= ", data)
+
+    const handleDetail = (ele) => {
+        if(type === "short"){
+            setType("detail")
+        }
+
+        else if(type === "detail"){
+            setType("short")
+        }
+    }
 
     return (
         <div className={classes.box}>
@@ -49,40 +63,75 @@ function FindContent(props){
                 <div className={classes.sdFirstBox}>
                     <div className={classes.sdLeftArea}></div>
                 </div>
-                {busSubwaySet.map((ele, index) => {
-                    return (
-                        <>
-                            <div className={`${ele.type === "BUS" ? classes.sdDetailBusBox : classes.sdDetailBusBox} ${index === busSubwaySet.length-1 ? classes.sdLastIndexBox : ""}`}>
-                                <div className={classes.sdLeftArea}>
-                                    <img src={ele.type === "BUS" ? "/images/map/bus_large.svg" : "/images/map/subway_large.svg"} />
-                                    <span>{ele.routes[0].name}</span>
-                                </div>
-                                <div className={`${classes.sdMiddleArea} ${ele.type === "BUS" ? classes.sdMiddleAreaBus : classes.sdMiddleAreaSubway}`}>
-                                    <div className={classes.sdmCircle}></div>
-                                </div>
-                                <div className={classes.sdRightArea}>
-                                    <span>{ele.stations[0].displayName || ""}</span>
-                                    <label>({ele.stations[0].displayCode || ""})</label>
-                                </div>
-                            </div>
-                            <div className={`${classes.sdDetailArriveBox} ${index === busSubwaySet.length-1 ? classes.sdLastArriveBox : ""}`}>
-                                <div className={classes.sdLeftArea}>
-                                    <div className={classes.sdlBox}><span>하차</span></div>
-                                </div>
-                                <div className={classes.sdMiddleArea}>
-                                    {index === busSubwaySet.length-1 ? <div className={classes.sdmLine}></div> : ""}
+                {type === "short" ?
 
+                    busSubwaySet.map((ele, index) => {
+                        return (
+                            <>
+                                <div
+                                    className={`${ele.type === "BUS" ? classes.sdDetailBusBox : classes.sdDetailBusBox} ${index === busSubwaySet.length - 1 ? classes.sdLastIndexBox : ""}`}>
+                                    <div className={classes.sdLeftArea}>
+                                        <img
+                                            src={ele.type === "BUS" ? "/images/map/bus_large.svg" : "/images/map/subway_large.svg"}/>
+                                        <span>{ele.routes[0].name}</span>
+                                    </div>
+                                    <div
+                                        className={`${classes.sdMiddleArea} ${ele.type === "BUS" ? classes.sdMiddleAreaBus : classes.sdMiddleAreaSubway}`}>
+                                        <div className={classes.sdmCircle}></div>
+                                    </div>
+                                    <div className={classes.sdRightArea}>
+                                        <span>{ele.stations[0].displayName || ""}</span>
+                                        <label>({ele.stations[0].displayCode || ""})</label>
+                                    </div>
+                                </div>
+                                <div
+                                    className={`${classes.sdDetailArriveBox} ${index === busSubwaySet.length - 1 ? classes.sdLastArriveBox : ""}`}>
+                                    <div className={classes.sdLeftArea}>
+                                        <div className={classes.sdlBox}><span>하차</span></div>
+                                    </div>
+                                    <div className={classes.sdMiddleArea}>
+                                        {index === busSubwaySet.length - 1 ?
+                                            <div className={classes.sdmLine}></div> : ""}
+
+                                        <div className={classes.sdmCircle}></div>
+                                    </div>
+                                    <div className={classes.sdRightArea}>
+                                        <span>{ele.stations[0].displayName || ""}</span>
+                                        <label>({ele.stations[0].displayCode || ""})</label>
+                                    </div>
+                                </div>
+                            </>
+                        )
+                    })
+
+                    :
+
+                    props.data?.legs[0]?.steps.map((ele,index) => {
+                        console.log("ele =", ele)
+
+                        return (
+                            <div
+                                className={`${ele.type === "BUS" ? classes.sdDetailBusBox : classes.sdDetailBusBox} ${index === busSubwaySet.length - 1 ? classes.sdLastIndexBox : ""}`}>
+                                <div className={classes.sdLeftArea}>
+                                    <img
+                                        src={ele.type === "BUS" ? "/images/map/bus_large.svg" : "/images/map/subway_large.svg"}/>
+                                    <span>{ele.routes[0]?.name}</span>
+                                </div>
+                                <div
+                                    className={`${classes.sdMiddleArea} ${ele.type === "BUS" ? classes.sdMiddleAreaBus : classes.sdMiddleAreaSubway}`}>
                                     <div className={classes.sdmCircle}></div>
                                 </div>
                                 <div className={classes.sdRightArea}>
-                                    <span>{ele.stations[0].displayName || ""}</span>
-                                    <label>({ele.stations[0].displayCode || ""})</label>
+                                    <span>{ele.stations[0]?.displayName || ""}</span>
+                                    <label>({ele.stations[0]?.displayCode || ""})</label>
                                 </div>
                             </div>
-                        </>
-                    )
-                })}
-                <div className={classes.sdLastBox}>
+                        )
+                    })
+
+
+                }
+                <div className={classes.sdLastBox} onClick={handleDetail}>
                     <span>자세히 보기</span>
                 </div>
             </div>
