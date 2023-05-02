@@ -11,19 +11,22 @@ function FindContent(props){
         <div className={classes.box}>
             <div className={classes.head}>
                 <div className={classes.headLeft}>
-                    <span>11분</span>
+                    <div className={classes.hlTimeBox}>
+                        <span>{data.duration}</span>
+                        <label>분</label>
+                    </div>
                     <div className={classes.hlPriceBox}>
-                        <span>어린이 800원</span>
+                        <span>어린이 {data.fare === 1250 ? 400 : data.fare === 1650 ? 650 : 400}원</span>
                         <span>|</span>
-                        <span>청소년 1300원</span>
+                        <span>청소년 {data.fare === 1250 ? 850 : data.fare === 1650 ? 1100 : 400}원</span>
                         <span>|</span>
-                        <span>일반 1800원</span>
-                        <img />
+                        <span>일반 {data.fare}원</span>
+                        <img src={"/images/map/help.svg"}/>
                     </div>
                 </div>
                 <div className={classes.headRight}>
                     <div className={classes.hrBox}>
-                        <img/>
+                        <img src={"/images/map/star.svg"}/>
                     </div>
                 </div>
             </div>
@@ -33,7 +36,7 @@ function FindContent(props){
                         <div className={`${classes.shortFormDiv} ${index === 0 ? classes.firstForm : index === data.legs[0]?.steps.length-1 ?  classes.lastForm : ""}`}>
                             <div className={`${classes.leftCircle} ${ele.type === "WALKING" ? classes.walkCircle : classes.busCircle}`}></div>
                             <div className={`${ele.type === "WALKING" ? classes.walkLine : classes.busLine}`}></div>
-                            <img src={ele.type === "WALKING" ? "/images/map/walk.svg" : ele.type === "BUS" ? "/images/map/bus.svg" : "/images/map/walk.svg"} />
+                            <img src={ele.type === "WALKING" ? "/images/map/walk_small.svg" : ele.type === "BUS" ? "/images/map/bus_small.svg" : "/images/map/subway_small.svg"} />
                             {
                                 index === data.legs[0]?.steps.length-1 ? <div className={`${classes.lastCircle}`}></div> : ""
                             }
@@ -49,9 +52,9 @@ function FindContent(props){
                 {busSubwaySet.map((ele, index) => {
                     return (
                         <>
-                            <div className={`${ele.type === "BUS" ? classes.sdDetailBusBox : classes.sdDetailSubwayBox} ${index === busSubwaySet.length-1 ? classes.sdLastIndexBox : ""}`}>
+                            <div className={`${ele.type === "BUS" ? classes.sdDetailBusBox : classes.sdDetailBusBox} ${index === busSubwaySet.length-1 ? classes.sdLastIndexBox : ""}`}>
                                 <div className={classes.sdLeftArea}>
-                                    <img src={ele.type === "BUS" ? "/images/map/bus.svg" : "/images/map/bus.svg"} />
+                                    <img src={ele.type === "BUS" ? "/images/map/bus_large.svg" : "/images/map/subway_large.svg"} />
                                     <span>{ele.routes[0].name}</span>
                                 </div>
                                 <div className={`${classes.sdMiddleArea} ${ele.type === "BUS" ? classes.sdMiddleAreaBus : classes.sdMiddleAreaSubway}`}>

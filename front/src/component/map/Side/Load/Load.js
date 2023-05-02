@@ -11,6 +11,7 @@ function Load(){
     const dispatch = useDispatch()
 
     const handleEnter = (e) => {
+        console.log("e.key = ", e.key)
         if(e.key === "Enter"){
             const opt = {
                 url: "https://map.naver.com/v5/api/transit/directions/point-to-point?start=128.582351,35.8642161&goal=128.560192,35.9303298&mode=TIME&lang=ko&includeDetailOperation=true",
@@ -21,7 +22,7 @@ function Load(){
 
             axios(opt)
                 .then(function a(response) {
-                    // console.log("response= ", response)
+                    console.log("response= ", response)
                     dispatch(mapActions.handleSearch({data : response.data.paths}))
                 })
                 .catch(function (error) {
