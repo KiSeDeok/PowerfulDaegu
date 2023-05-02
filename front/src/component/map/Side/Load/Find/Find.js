@@ -7,6 +7,7 @@ function Find(){
     const [index, setIndex] = useState(0)
     const searchData = useSelector(state => state.map.searchData)
 
+    console.log("searchData = ", searchData)
 
     const handleIndex= (index) => {
         setIndex(index)

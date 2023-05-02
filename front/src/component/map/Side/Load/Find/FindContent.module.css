@@ -93,6 +93,7 @@
 }
 
 .shortDetailBox{
+    position: relative;
     border-top: 1px solid #EAEAEA;
 }
 
@@ -109,13 +110,22 @@
     height: 100px;
 }
 
-.sdDetailBusBox, .sdDetailSubwayBox{
+.sdDetailBusBox,
+.sdDetailWalkBox{
     display: flex;
     min-height: 100px;
     position: relative;
 }
 
-.sdDetailBusBox .sdLeftArea{
+.detailBox .sdDetailBusBox,
+.detailBox .sdDetailWalkBox{
+    display: flex;
+    min-height: 64px;
+    position: relative;
+}
+
+.sdDetailBusBox .sdLeftArea,
+.sdDetailWalkBox .sdLeftArea{
     display: flex;
     align-items: flex-start;
     padding-top: 4px;
@@ -127,25 +137,50 @@
     gap: 7px;
 }
 
-.sdDetailBusBox .sdLeftArea span{
+.sdDetailWalkBox .sdLeftArea{
+    color: #969696;
+    border-right: 1px dashed #DDDDDD;
+}
+
+.detailBox .sdDetailBusBox .sdLeftArea{
+    border-right: none;
+    min-height: 64px;
+    height: 64px;
+}
+
+.detailBox .sdDetailBusBox .sdRightArea{
+    border-left: 1px dashed #FF7D00;
+    min-height: 64px;
+    height: fit-content;
+}
+
+.detailBox .sdDetailWalkBox .sdLeftArea{
+    border-right: none;
+    height: 64px;
+    min-height: 64px;
+}
+
+.detailBox .sdDetailWalkBox .sdRightArea{
+    color: #969696;
+    border-left: 1px dashed #DDDDDD;
+    height: 64px;
+    min-height: 64px;
+}
+
+.sdDetailBusBox .sdLeftArea span,
+.sdDetailWalkBox .sdLeftArea span{
     max-width: 40px;
 }
 
-.sdDetailBusBox .sdLeftArea img{
+.sdDetailBusBox .sdLeftArea img,
+.sdDetailWalkBox .sdLeftArea img{
     margin-top: 2px;
 }
 
-.sdDetailSubwayBox .sdLeftArea{
-    font-weight: 400;
-    font-size: 14px;
-    color: #FF7D00;
-    border-right: 1px dashed #0098fe;
-}
-
 .sdDetailBusBox.sdLastIndexBox,
-.sdDetailSubwayBox.sdLastIndexBox{
+.sdDetailWalkBox.sdLastIndexBox{
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     min-height: fit-content;
 }
 
@@ -165,7 +200,7 @@
 
 .sdMiddleArea{
     position: absolute;
-    left: 65.5px;
+    left: 66px;
     top: 0;
 }
 
@@ -188,32 +223,32 @@
     top: 9px;
 }
 
-.sdMiddleAreaSubway > .sdmLine{
-    border-left: 1px dashed #FF7D00;
-    height: 100%;
-    width: 1px;
+.sdMiddleAreaWalk > .sdmCircle{
+    background: #DDDDDD;
+    left: -3px;
+    top: 9px;
 }
 
-.sdMiddleAreaSubway > .sdmCircle{
-    background: #FF7D00;
+.detailBox .sdMiddleAreaWalk > .sdmCircle{
     left: -2.5px;
-    top: 9px;
 }
 
 .sdRightArea{
     display: flex;
+    flex-direction: column;
     align-items: baseline;
-    height: 100px;
+    min-height: 100px;
+    height: fit-content;
     padding-top: 4px;
     padding-left: 9px;
     font-weight: 400;
     font-size: 14px;
     color: #575757;
-    gap: 4px;
+    gap: 6px;
     box-sizing: border-box;
 }
 
-.sdRightArea > label{
+.sdRightArea label{
     font-size: 12px;
     color: rgba(150, 150, 150, 1);
 }
@@ -221,6 +256,13 @@
 .sdDetailArriveBox{
     position: relative;
     display: flex;
+}
+
+.sdTransfortBox{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    gap: 4px;
 }
 
 .sdDetailArriveBox .sdLeftArea{
@@ -249,7 +291,25 @@
     background: #303030;
     position: absolute;
     left: -3px;
-    top: 8px;
+    top: 9px;
+}
+
+.detailBox .sdDetailArriveBox .sdLeftArea{
+    max-width: 66px;
+    min-width: 66px;
+    border-right: none;
+}
+
+.detailBox .sdDetailArriveBox .sdRightArea{
+    border-left: 1px dashed #DDDDDD;
+}
+
+.detailBox .sdDetailArriveBox .sdmLine{
+    border-right: none;
+}
+
+.detailBox .sdDetailArriveBox .sdmCircle{
+    left: -2.5px;
 }
 
 .sdlBox{
@@ -268,6 +328,10 @@
 
 .sdDetailArriveBox{
     height: 40px;
+}
+
+.detailBox .sdDetailArriveBox{
+    min-height: 46px;
 }
 
 .sdLastArriveBox{
@@ -320,4 +384,50 @@
 
 .hlPriceBox > img{
     cursor: pointer;
+}
+
+
+.detailBoxArrive{
+    bottom: 38px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+}
+
+.dbLeftArea{
+    min-width: 66px;
+    max-width: 66px;
+}
+
+.dblBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 20px;
+    background: #FF7D00;
+    border-radius: 10px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #FFFFFF;
+}
+
+.dbmCircle{
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #FF7D00;
+}
+
+.dbMiddleArea{
+    position: absolute;
+    top: 10px;
+    left: 64px;
+}
+
+.dbRightArea{
+    margin-left: 12px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #575757;
 }

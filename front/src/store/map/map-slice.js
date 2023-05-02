@@ -4,7 +4,8 @@ const mapSlice = createSlice({
     name: "map",
     initialState:{
         index:0,
-        searchData:[]
+        searchData:[],
+        destination:""
     },
     reducers:{
         handleIndex(state, action){
@@ -12,6 +13,9 @@ const mapSlice = createSlice({
         },
         handleSearch(state, action){
             state.searchData = action.payload.data
+        },
+        handleDestination(state, action){
+            state.destination = action.payload.data
         }
     }
 })

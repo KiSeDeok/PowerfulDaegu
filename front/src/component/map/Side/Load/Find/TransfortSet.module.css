@@ -1,0 +1,42 @@
+.box{
+    display: flex;
+    flex-direction: column;
+}
+
+.selectedBox, .noSelectedBox{
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+    font-size: 14px;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.noSelectedBox{
+    color: #969696;
+}
+
+.selectedBox{
+    color: #303030;
+    margin-bottom: 10px;
+}
+
+.selectedStation{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.noSelectedStation{
+    display: none;
+}
+
+.stationBox{
+    font-weight: 400;
+    font-size: 14px;
+    color: #969696;
+}
+
+.emptyBox{
+    height: 33px;
+}

@@ -1,10 +1,12 @@
 import classes from "./FindContent.module.css"
-import ContentDetail from "./ContentDetail";
 import {v4 as uuidv4} from "uuid";
 import {useState} from "react";
+import TransfortSet from "./TransfortSet";
+import {useSelector} from "react-redux";
 
 function FindContent(props){
     const [type, setType] = useState("short")
+    const destination = useSelector(state => state.map.destination)
 
     const data = props.data
     const busSubwaySet = props.data?.legs[0]?.steps.filter(ele => ele.type === "BUS" || ele.type === "SUBWAY")
@@ -60,9 +62,12 @@ function FindContent(props){
                 })}
             </div>
             <div className={classes.shortDetailBox}>
-                <div className={classes.sdFirstBox}>
-                    <div className={classes.sdLeftArea}></div>
-                </div>
+                {type === "short" ?
+                    <div className={classes.sdFirstBox}>
+                        <div className={classes.sdLeftArea}></div>
+                    </div> : ""
+                }
+
                 {type === "short" ?
 
                     busSubwaySet.map((ele, index) => {
@@ -80,8 +85,10 @@ function FindContent(props){
                                         <div className={classes.sdmCircle}></div>
                                     </div>
                                     <div className={classes.sdRightArea}>
-                                        <span>{ele.stations[0].displayName || ""}</span>
-                                        <label>({ele.stations[0].displayCode || ""})</label>
+                                        <div className={classes.sdTransfortBox}>
+                                            <span>{ele.stations[0].displayName || ""}</span>
+                                            <label>({ele.stations[0].displayCode || ""})</label>
+                                        </div>
                                     </div>
                                 </div>
                                 <div
@@ -90,8 +97,12 @@ function FindContent(props){
                                         <div className={classes.sdlBox}><span>하차</span></div>
                                     </div>
                                     <div className={classes.sdMiddleArea}>
-                                        {index === busSubwaySet.length - 1 ?
-                                            <div className={classes.sdmLine}></div> : ""}
+                                        {
+                                            index === busSubwaySet.length - 1 ?
+                                            <div className={classes.sdmLine}></div>
+                                                :
+                                            ""
+                                        }
 
                                         <div className={classes.sdmCircle}></div>
                                     </div>
@@ -105,29 +116,76 @@ function FindContent(props){
                     })
 
                     :
+                    <>
+                        {
+                            props.data?.legs[0]?.steps.map((ele, index) => {
+                            console.log("ele =", ele)
 
-                    props.data?.legs[0]?.steps.map((ele,index) => {
-                        console.log("ele =", ele)
+                            return (
+                                <div className={classes.detailBox}>
+                                    <div
+                                        className={`${ele.type === "WALKING" ? classes.sdDetailWalkBox : classes.sdDetailBusBox} ${index === busSubwaySet.length - 1 ? classes.sdLastIndexBox : ""}`}>
+                                        <div className={classes.sdLeftArea}>
+                                            <img
+                                                src={ele.type === "WALKING" ? "/images/map/walk_large.svg" : ele.type === "BUS" ? "/images/map/bus_large.svg" : "/images/map/subway_large.svg"}/>
+                                            <span>{ele.routes[0]?.name || "걷기"}</span>
+                                        </div>
+                                        <div
+                                            className={`${classes.sdMiddleArea} ${ele.type === "WALKING" ? classes.sdMiddleAreaWalk : classes.sdMiddleAreaBus}`}>
+                                            <div className={classes.sdmCircle}></div>
+                                        </div>
+                                        <div className={classes.sdRightArea}>
+                                            <div className={classes.sdTransfortBox}>
+                                                <span>{ele.stations[0]?.displayName || ele.walkpath?.summary?.ways[0]?.name}</span>
+                                                <label>{ele.stations[0]?.displayCode ? "(" + ele.stations[0]?.displayCode + ")" : ""}</label>
+                                            </div>
+                                            <div>
+                                                {ele.type === "WALKING" ?
+                                                    <label>{ele.duration}분</label>
+                                                    :
+                                                    <TransfortSet station={ele.stations}/>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
 
-                        return (
-                            <div
-                                className={`${ele.type === "BUS" ? classes.sdDetailBusBox : classes.sdDetailBusBox} ${index === busSubwaySet.length - 1 ? classes.sdLastIndexBox : ""}`}>
-                                <div className={classes.sdLeftArea}>
-                                    <img
-                                        src={ele.type === "BUS" ? "/images/map/bus_large.svg" : "/images/map/subway_large.svg"}/>
-                                    <span>{ele.routes[0]?.name}</span>
+                                    {ele.type !== "WALKING" ?
+                                        <div className={classes.sdDetailArriveBox}>
+                                            <div className={classes.sdLeftArea}>
+                                                <div className={classes.sdlBox}><span>하차</span></div>
+                                            </div>
+                                            <div className={classes.sdMiddleArea}>
+                                                {/*{index === busSubwaySet.length - 1 ?*/}
+                                                {/*    <div className={classes.sdmLine}></div> : ""}*/}
+
+                                                <div className={classes.sdmCircle}></div>
+                                            </div>
+                                            <div className={classes.sdRightArea}>
+                                                <div className={classes.sdTransfortBox}>
+                                                    <span>{ele.stations[ele.stations.length - 1].displayName || ""}</span>
+                                                    <label>({ele.stations[ele.stations.length - 1].displayCode || ""})</label>
+                                                </div>
+                                            </div>
+                                        </div> : ""
+                                    }
                                 </div>
-                                <div
-                                    className={`${classes.sdMiddleArea} ${ele.type === "BUS" ? classes.sdMiddleAreaBus : classes.sdMiddleAreaSubway}`}>
-                                    <div className={classes.sdmCircle}></div>
-                                </div>
-                                <div className={classes.sdRightArea}>
-                                    <span>{ele.stations[0]?.displayName || ""}</span>
-                                    <label>({ele.stations[0]?.displayCode || ""})</label>
+                            )
+                        })}
+
+                        <div className={classes.detailBoxArrive}>
+                            <div className={classes.dbLeftArea}>
+                                <div className={classes.dblBox}><span>도착</span></div>
+                            </div>
+                            <div className={classes.dbMiddleArea}>
+                                <div className={classes.dbmCircle}></div>
+                            </div>
+                            <div className={classes.dbRightArea}>
+                                <div className={classes.dbTransfortBox}>
+                                    <span>{destination}</span>
                                 </div>
                             </div>
-                        )
-                    })
+                        </div>
+                    </>
 
 
                 }
