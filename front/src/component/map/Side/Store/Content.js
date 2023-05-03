@@ -82,7 +82,6 @@ function Content(props){
             }, 400)
         }
         else{
-            console.log("asdas")
             addContentRef.current.querySelectorAll('*').forEach(element => {
                 element.style.maxHeight = '100vh';
             });

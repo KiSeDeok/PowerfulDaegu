@@ -1,3 +1,451 @@
+.box{
+    margin:0 41px
+}
+
+.head{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
 .headLeft{
     display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.hrBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #EAEAEA;
+    box-sizing: border-box;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.shortSummary{
+    display: flex;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.shortSummary > div{
+    width: 100%;
+}
+
+.shortFormDiv{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #FAFAFA;
+    height: 9px;
+}
+
+.firstForm{
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.lastForm{
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.leftCircle, .lastCircle{
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+}
+
+.leftCircle{
+    left: 0;
+}
+
+.lastCircle{
+    right: 0;
+    background: #F06E6E;
+}
+
+.leftCircle.walkCircle{
+    background: #DDDDDD;
+}
+
+.leftCircle.busCircle{
+    background: #FF7D00;
+}
+
+.walkLine, .busLine{
+    position: absolute;
+    width: 100%;
+}
+
+.walkLine{
+    border: 1px dashed #DDDDDD;
+}
+
+.busLine{
+    border: 1px dashed rgba(255, 125, 0, 0.45);
+}
+
+.shortDetailBox{
+    position: relative;
+    border-top: 1px solid #EAEAEA;
+}
+
+.sdFirstBox{
+    width: 65px;
+    height: 15px;
+    min-height: 15px;
+    border-right: 1px dashed #DDDDDD;
+}
+
+.sdLeftArea{
+    max-width: 66px;
+    min-width: 66px;
+    height: 100px;
+}
+
+.sdDetailBusBox,
+.sdDetailWalkBox{
+    display: flex;
+    min-height: 100px;
+    position: relative;
+}
+
+.detailBox .sdDetailBusBox,
+.detailBox .sdDetailWalkBox{
+    display: flex;
+    min-height: 64px;
+    position: relative;
+}
+
+.sdDetailBusBox .sdLeftArea,
+.sdDetailWalkBox .sdLeftArea{
+    display: flex;
+    align-items: flex-start;
+    padding-top: 4px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #FF7D00;
+    border-right: 1px dashed #FF7D00;
+    box-sizing: border-box;
+    gap: 7px;
+}
+
+.sdDetailWalkBox .sdLeftArea{
+    color: #969696;
+    border-right: 1px dashed #DDDDDD;
+}
+
+.detailBox .sdDetailBusBox .sdLeftArea{
+    border-right: none;
+    min-height: 64px;
+    height: 64px;
+}
+
+.detailBox .sdDetailBusBox .sdRightArea{
+    border-left: 1px dashed #FF7D00;
+    min-height: 64px;
+    height: fit-content;
+}
+
+.detailBox .sdDetailWalkBox .sdLeftArea{
+    border-right: none;
+    height: 64px;
+    min-height: 64px;
+}
+
+.detailBox .sdDetailWalkBox .sdRightArea{
+    color: #969696;
+    border-left: 1px dashed #DDDDDD;
+    height: 64px;
+    min-height: 64px;
+}
+
+.sdDetailBusBox .sdLeftArea span,
+.sdDetailWalkBox .sdLeftArea span{
+    max-width: 40px;
+}
+
+.sdDetailBusBox .sdLeftArea img,
+.sdDetailWalkBox .sdLeftArea img{
+    margin-top: 2px;
+}
+
+.sdDetailBusBox.sdLastIndexBox,
+.sdDetailWalkBox.sdLastIndexBox{
+    display: flex;
+    align-items: flex-start;
+    min-height: fit-content;
+}
+
+.sdLastBox{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    margin: 28px 0;
+    font-weight: 400;
+    font-size: 14px;
+    color: #FF7D00;
+}
+
+.sdLastBox > span{
+    cursor: pointer;
+}
+
+.sdMiddleArea{
+    position: absolute;
+    left: 66px;
+    top: 0;
+}
+
+.sdmCircle{
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+}
+
+.sdMiddleAreaBus > .sdmLine{
+    height: 100%;
+    width: 1px;
+}
+
+.sdMiddleAreaBus > .sdmCircle{
+    background: #FF7D00;
+    left: -3px;
+    top: 9px;
+}
+
+.sdMiddleAreaWalk > .sdmCircle{
+    background: #DDDDDD;
+    left: -3px;
+    top: 9px;
+}
+
+.detailBox .sdMiddleAreaWalk > .sdmCircle{
+    left: -2.5px;
+}
+
+.sdRightArea{
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    min-height: 100px;
+    height: fit-content;
+    padding-top: 4px;
+    padding-left: 9px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #575757;
+    gap: 6px;
+    box-sizing: border-box;
+}
+
+.sdRightArea label{
+    font-size: 12px;
+    color: rgba(150, 150, 150, 1);
+}
+
+.sdDetailArriveBox{
+    position: relative;
+    display: flex;
+}
+
+.sdTransfortBox{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    gap: 4px;
+}
+
+.sdDetailArriveBox .sdLeftArea{
+    display: flex;
+    align-items: baseline;
+    max-width: 65px;
+    min-width: 65px;
+    height: 20px;
+    padding-top: 4px;
+    box-sizing: border-box;
+}
+
+.sdDetailArriveBox .sdmLine{
+    height: 10px;
+    border-left: 1px dashed #303030;
+    box-sizing: border-box;
+    position: absolute;
+    left: -1px;
+    top: 2px;
+}
+
+.sdDetailArriveBox .sdmCircle{
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #303030;
+    position: absolute;
+    left: -3px;
+    top: 9px;
+}
+
+.detailBox .sdDetailArriveBox .sdLeftArea{
+    max-width: 66px;
+    min-width: 66px;
+    border-right: none;
+}
+
+.detailBox .sdDetailArriveBox .sdRightArea{
+    border-left: 1px dashed #DDDDDD;
+}
+
+.detailBox .sdDetailArriveBox .sdmLine{
+    border-right: none;
+}
+
+.detailBox .sdDetailArriveBox .sdmCircle{
+    left: -2.5px;
+}
+
+.sdlBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 45px;
+    min-width: 45px;
+    height: 20px;
+    background: #303030;
+    border-radius: 10px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #FFFFFF;
+}
+
+.sdDetailArriveBox{
+    height: 40px;
+}
+
+.detailBox .sdDetailArriveBox{
+    min-height: 46px;
+}
+
+.sdLastArriveBox{
+    height: 20px;
+}
+
+.sdDetailArriveBox .sdLeftArea{
+    height: 40px;
+    max-width: 66px;
+    min-width: 66px;
+    border-right: 1px dashed #303030;
+    box-sizing: border-box;
+}
+
+.sdDetailArriveBox.sdLastArriveBox .sdLeftArea{
+    padding-top: 0;
+    height: fit-content;
+    border-right: none;
+}
+
+.sdDetailArriveBox.sdLastArriveBox .sdRightArea{
+    height: fit-content;
+    padding-top: 3px;
+}
+
+.hlTimeBox{
+    display: flex;
+    align-items: flex-end;
+}
+
+.hlTimeBox > span{
+    font-size: 18px;
+    font-weight: 600;
+    color: #303030;
+}
+
+.hlTimeBox > label{
+    font-size: 14px;
+    font-weight: 600;
+    color: #303030;
+}
+
+.hlPriceBox{
+    display: flex;
+    font-weight: 400;
+    font-size: 14px;
+    color: #969696;
+    gap: 4px ;
+}
+
+.hlPriceBox > img{
+    cursor: pointer;
+}
+
+
+.detailBoxArrive{
+    bottom: 38px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+}
+
+.dbLeftArea{
+    min-width: 66px;
+    max-width: 66px;
+}
+
+.dblBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 20px;
+    background: #FF7D00;
+    border-radius: 10px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #FFFFFF;
+}
+
+.dbmCircle{
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #FF7D00;
+}
+
+.dbMiddleArea{
+    position: absolute;
+    top: 10px;
+    left: 104px;
+}
+
+.dbRightArea{
+    margin-left: 12px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #575757;
+}
+
+.detailBox, .detailBoxArrive{
+    padding: 0 40px;
+}
+
+.firstCircle {
+    border-left: 1px solid #ffffff;
+    position: absolute;
+    background: #ffffff;
+    width: 8px;
+    height: 9px;
+    left: -7px;
+    top: 0;
+}
+
+.detailBorder{
+    border-top: 1px solid #ffffff;
 }

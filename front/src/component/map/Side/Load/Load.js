@@ -12,8 +12,11 @@ function Load(){
 
     const handleEnter = (e) => {
         if(e.key === "Enter"){
+            // 도착지 설정
+
+            // 맵 데이터 가져오기
             const opt = {
-                url: "https://map.naver.com/v5/api/transit/directions/point-to-point?start=128.576747,35.86287963&goal=128.4928316,35.85892304&mode=TIME&lang=ko&includeDetailOperation=true",
+                url: "https://map.naver.com/v5/api/transit/directions/point-to-point?start=128.582351,35.8642161&goal=128.560192,35.9303298&mode=TIME&lang=ko&includeDetailOperation=true",
                 method: "post",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json"
@@ -21,14 +24,19 @@ function Load(){
 
             axios(opt)
                 .then(function a(response) {
-                    console.log("asdas")
-                    dispatch(mapActions.handleSearch({data : response.data.staticPaths}))
+                    console.log("response =", response)
+                    // 맵 목적지 설정
+                    dispatch(mapActions.handleDestination({data : e.target.value}))
+
+                    // 맵 데이터 설정
+                    dispatch(mapActions.handleSearch({data : response.data.paths.length !== 0 ? response.data.paths : response.data.staticPaths}))
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
         }
     }
+
 
     return (
         <div className={classes.box}>
