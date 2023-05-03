@@ -422,7 +422,7 @@
 .dbMiddleArea{
     position: absolute;
     top: 10px;
-    left: 64px;
+    left: 104px;
 }
 
 .dbRightArea{
@@ -430,4 +430,22 @@
     font-weight: 400;
     font-size: 14px;
     color: #575757;
+}
+
+.detailBox, .detailBoxArrive{
+    padding: 0 40px;
+}
+
+.firstCircle {
+    border-left: 1px solid #ffffff;
+    position: absolute;
+    background: #ffffff;
+    width: 8px;
+    height: 9px;
+    left: -7px;
+    top: 0;
+}
+
+.detailBorder{
+    border-top: 1px solid #ffffff;
 }

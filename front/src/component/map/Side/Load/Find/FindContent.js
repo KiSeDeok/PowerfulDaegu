@@ -46,22 +46,24 @@ function FindContent(props){
                     </div>
                 </div>
             </div>
-            <div className={classes.shortSummary}>
-                {data.legs[0]?.steps.map((ele, index) => {
-                    return (
-                        <div className={`${classes.shortFormDiv} ${index === 0 ? classes.firstForm : index === data.legs[0]?.steps.length-1 ?  classes.lastForm : ""}`}>
-                            <div className={`${classes.leftCircle} ${ele.type === "WALKING" ? classes.walkCircle : classes.busCircle}`}></div>
-                            <div className={`${ele.type === "WALKING" ? classes.walkLine : classes.busLine}`}></div>
-                            <img src={ele.type === "WALKING" ? "/images/map/walk_small.svg" : ele.type === "BUS" ? "/images/map/bus_small.svg" : "/images/map/subway_small.svg"} />
-                            {
-                                index === data.legs[0]?.steps.length-1 ? <div className={`${classes.lastCircle}`}></div> : ""
-                            }
-                        </div>
-                    )
+            {type === "short" ?
+                <div className={classes.shortSummary}>
+                    {data.legs[0]?.steps.map((ele, index) => {
+                        return (
+                            <div className={`${classes.shortFormDiv} ${index === 0 ? classes.firstForm : index === data.legs[0]?.steps.length-1 ?  classes.lastForm : ""}`}>
+                                <div className={`${classes.leftCircle} ${ele.type === "WALKING" ? classes.walkCircle : classes.busCircle}`}></div>
+                                <div className={`${ele.type === "WALKING" ? classes.walkLine : classes.busLine}`}></div>
+                                <img src={ele.type === "WALKING" ? "/images/map/walk_small.svg" : ele.type === "BUS" ? "/images/map/bus_small.svg" : "/images/map/subway_small.svg"} />
+                                {
+                                    index === data.legs[0]?.steps.length-1 ? <div className={`${classes.lastCircle}`}></div> : ""
+                                }
+                            </div>
+                        )
 
-                })}
-            </div>
-            <div className={classes.shortDetailBox}>
+                    })}
+                </div> : ""
+            }
+            <div className={type === "short" ? classes.shortDetailBox : `${classes.shortDetailBox} ${classes.detailBorder}`}>
                 {type === "short" ?
                     <div className={classes.sdFirstBox}>
                         <div className={classes.sdLeftArea}></div>
@@ -80,8 +82,7 @@ function FindContent(props){
                                             src={ele.type === "BUS" ? "/images/map/bus_large.svg" : "/images/map/subway_large.svg"}/>
                                         <span>{ele.routes[0].name}</span>
                                     </div>
-                                    <div
-                                        className={`${classes.sdMiddleArea} ${ele.type === "BUS" ? classes.sdMiddleAreaBus : classes.sdMiddleAreaSubway}`}>
+                                    <div className={`${classes.sdMiddleArea} ${ele.type === "BUS" ? classes.sdMiddleAreaBus : classes.sdMiddleAreaBus}`}>
                                         <div className={classes.sdmCircle}></div>
                                     </div>
                                     <div className={classes.sdRightArea}>
@@ -107,8 +108,10 @@ function FindContent(props){
                                         <div className={classes.sdmCircle}></div>
                                     </div>
                                     <div className={classes.sdRightArea}>
-                                        <span>{ele.stations[0].displayName || ""}</span>
-                                        <label>({ele.stations[0].displayCode || ""})</label>
+                                        <div className={classes.sdTransfortBox}>
+                                            <span>{ele.stations[0].displayName || ""}</span>
+                                            <label>({ele.stations[0].displayCode || ""})</label>
+                                        </div>
                                     </div>
                                 </div>
                             </>
@@ -130,9 +133,9 @@ function FindContent(props){
                                                 src={ele.type === "WALKING" ? "/images/map/walk_large.svg" : ele.type === "BUS" ? "/images/map/bus_large.svg" : "/images/map/subway_large.svg"}/>
                                             <span>{ele.routes[0]?.name || "걷기"}</span>
                                         </div>
-                                        <div
-                                            className={`${classes.sdMiddleArea} ${ele.type === "WALKING" ? classes.sdMiddleAreaWalk : classes.sdMiddleAreaBus}`}>
+                                        <div className={`${classes.sdMiddleArea} ${ele.type === "WALKING" ? classes.sdMiddleAreaWalk : classes.sdMiddleAreaBus}`}>
                                             <div className={classes.sdmCircle}></div>
+                                            {index === 0 ? <div className={classes.firstCircle}></div> : ""}
                                         </div>
                                         <div className={classes.sdRightArea}>
                                             <div className={classes.sdTransfortBox}>
