@@ -16,7 +16,10 @@ function FindContent(props){
 
     console.log("data= ", data)
 
-    const handleDetail = (ele) => {
+    const handleDetail = (e) => {
+        e.stopPropagation()
+        e.preventDefault()
+
         if(type === "short"){
             setType("detail")
         }
@@ -33,9 +36,11 @@ function FindContent(props){
         const position = []
 
         data.legs[0]?.steps?.map((ele) => {
-            ele.points?.map((p) => {
-                position.push(p)
-            })
+            // ele.points?.map((p) => {
+            //     position.push(p)
+            // })
+
+            position.push(ele)
         })
 
         dispatch(mapActions.handlePolyline({polyline:position}))

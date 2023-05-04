@@ -32,21 +32,50 @@ const MainMap = () => {
         if(loading) {
 
             // 기존 폴리라인 제거
-            if(polylineData){
-                polylineData.setMap(null);
+            if(polylineData && polylineData.length > 0){
+                polylineData.map((ele) => ele.setMap(null))
             }
 
-            // 좌표 데이터 형식 변경
-            const asd = polyline.map((ele) => {
-                return new window.naver.maps.LatLng(ele.y, ele.x)
+            const polyArray = []
+
+            console.log("polyline= ", polyline)
+
+            polyline.map((poly) => {
+                const asd = poly.points.map((ele) => {
+                    return new window.naver.maps.LatLng(ele.y, ele.x)
+                })
+
+                const ad = new window.naver.maps.Polyline({
+                    map: naverMap,
+                    path: asd,
+                    strokeColor: poly.type === "WALKING" ? '#303030' :'#FF7D00',
+                    strokeStyle:  poly.type === "WALKING" ? "shortdot" : "solid",
+                    strokeLineCap: "round",
+                    strokeWeight: 4
+                })
+
+                polyArray.push(ad)
             })
 
-            setPolylineData(new window.naver.maps.Polyline({
-                map: naverMap,
-                path: asd,
-                strokeColor: '#5347AA',
-                strokeWeight: 6
-            }))
+            setPolylineData(polyArray)
+
+            // 좌표 데이터 형식 변경
+            // const asd = polyline.map((ele) => {
+            //     return new window.naver.maps.LatLng(ele.y, ele.x)
+            // })
+
+            // setPolylineData(new window.naver.maps.Polyline({
+            //     map: naverMap,
+            //     path: asd,
+            //     strokeColor: '#FF7D00',
+            //     strokeWeight: 4
+            // }))
+            //
+            // // 중심좌표 이동
+            // if(asd[(asd.length-1)/2]) {
+            //     naverMap.panTo(asd[(asd.length - 1) / 2])
+            // }
+
         }
 
     }, [polyline])
