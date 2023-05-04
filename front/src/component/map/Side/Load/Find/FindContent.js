@@ -2,9 +2,12 @@ import classes from "./FindContent.module.css"
 import {v4 as uuidv4} from "uuid";
 import {useState} from "react";
 import TransfortSet from "./TransfortSet";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {mapActions} from "../../../../../store/map/map-slice";
 
 function FindContent(props){
+    const dispatch = useDispatch()
+
     const [type, setType] = useState("short")
     const destination = useSelector(state => state.map.destination)
 
@@ -23,8 +26,23 @@ function FindContent(props){
         }
     }
 
+    const handleMapClick = (e) => {
+        e.stopPropagation()
+        e.preventDefault()
+
+        const position = []
+
+        data.legs[0]?.steps?.map((ele) => {
+            ele.points?.map((p) => {
+                position.push(p)
+            })
+        })
+
+        dispatch(mapActions.handlePolyline({polyline:position}))
+    }
+
     return (
-        <div className={classes.box}>
+        <div className={classes.box} onClick={handleMapClick}>
             <div className={classes.head}>
                 <div className={classes.headLeft}>
                     <div className={classes.hlTimeBox}>
