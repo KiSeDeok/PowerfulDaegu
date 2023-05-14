@@ -5,7 +5,8 @@ const mapSlice = createSlice({
     initialState:{
         index:0,
         searchData:[],
-        destination:""
+        destination:"",
+        polyline:""
     },
     reducers:{
         handleIndex(state, action){
@@ -13,6 +14,9 @@ const mapSlice = createSlice({
         },
         handleSearch(state, action){
             state.searchData = action.payload.data
+        },
+        handlePolyline(state, action){
+            state.polyline = action.payload.polyline
         },
         handleDestination(state, action){
             state.destination = action.payload.data

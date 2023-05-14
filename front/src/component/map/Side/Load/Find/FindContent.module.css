@@ -1,5 +1,12 @@
 .box{
-    margin:0 41px
+    padding: 26px 41px 0 41px;
+    cursor: pointer;
+    transition: all 0.1s linear;
+    border-bottom: 1px solid #EAEAEA;
+}
+
+.box:hover{
+    background: #FFFBF1;
 }
 
 .head{
