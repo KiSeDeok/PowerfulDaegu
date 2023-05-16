@@ -31,7 +31,7 @@ function Community() {
     return (
         <>
             <Header/>
-            <div className={classes.aaa}>
+            <div className={classes.content}>
                 <CommunityHeader selector={selector} setSelector={setSelector}/>
 
                 <Routes>

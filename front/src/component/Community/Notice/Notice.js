@@ -1,16 +1,11 @@
 import {useState} from "react";
 
-import Header from "../../Main/header/Header";
-import Footer from "../../Main/footer/Footer";
-
-import CommunityHeader from "../CommunityHeader";
-import Content from "./Content";
 import Pagination from "../Pagination";
+import Content from "./Content";
 
 import classes from "./Notice.module.css";
 
 function Notice() {
-
     const contents = [
         {
             id: 1,
@@ -75,27 +70,15 @@ function Notice() {
     ];
     const [category, setCategory] = useState(0)
 
-    function changeCategory(division) {
-        setCategory(division)
-    }
-
     return (
         <>
             <div>
-                <div className={classes.bbb}>
-                    <div className={classes.ddd}>
-                        공지
-                    </div>
-                    <div className={classes.ccc}>
-                        <div className={category === 0 ? classes.eee : classes.fff} onClick={changeCategory.bind(this, 0)}>
-                            전체
-                        </div>
-                        <div className={category === 1 ? classes.eee : classes.fff} onClick={changeCategory.bind(this, 1)}>
-                            안내
-                        </div>
-                        <div className={category === 2 ? classes.eee : classes.fff} onClick={changeCategory.bind(this, 2)}>
-                            점검
-                        </div>
+                <div className={classes.noticeHeader}>
+                    <div className={classes.noticeHeaderText}>공지</div>
+                    <div className={classes.categoryArea}>
+                        <div className={category === 0 ? classes.categoryTextActive : classes.categoryTextDisable} onClick={setCategory.bind(this, 0)}>전체</div>
+                        <div className={category === 1 ? classes.categoryTextActive : classes.categoryTextDisable} onClick={setCategory.bind(this, 1)}>안내</div>
+                        <div className={category === 2 ? classes.categoryTextActive : classes.categoryTextDisable} onClick={setCategory.bind(this, 2)}>점검</div>
                     </div>
                 </div>
             </div>

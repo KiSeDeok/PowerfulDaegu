@@ -1,9 +1,4 @@
-.aaa {
-    display: flex;
-    width: 100%;
-}
-
-.bbb {
+.content {
     height: 85px;
     width: 100%;
     border-bottom: 1px solid #DDDDDD;
@@ -14,11 +9,17 @@
     text-decoration: none;
 }
 
-.bbb:hover > .aaa > div {
+.detail {
+    display: flex;
+    width: 100%;
+}
+
+.content:hover > .detail > div {
     color: #FF7D00;
 }
 
-.ccc {
+.category {
+    font-family: 'Pretendard';
     font-style: normal;
     font-weight: 600;
     font-size: 18px;
@@ -29,7 +30,8 @@
     color: #303030;
 }
 
-.ddd {
+.title {
+    font-family: 'Pretendard';
     font-style: normal;
     font-weight: 600;
     font-size: 18px;
@@ -38,7 +40,8 @@
     color: #303030;
 }
 
-.eee {
+.date {
+    font-family: 'Pretendard';
     font-style: normal;
     font-weight: 400;
     font-size: 18px;

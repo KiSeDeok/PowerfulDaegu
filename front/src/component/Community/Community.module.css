@@ -1,9 +1,9 @@
-.aaa {
+.content {
     display: flex;
     flex-direction: column;
 }
 
-.aaa > div {
+.content > div {
     padding: 0 20vw;
     min-width: 700px;
 }

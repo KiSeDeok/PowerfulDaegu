@@ -1,10 +1,5 @@
-import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-
-import Header from "../../Main/header/Header";
-import Footer from "../../Main/footer/Footer";
-
-import CommunityHeader from "../CommunityHeader";
+import {useEffect, useState} from "react";
 
 import classes from "./DetailContent.module.css";
 
@@ -29,38 +24,26 @@ function DetailContent() {
     }, [])
 
     return (
-        <div className={classes.kkk}>
-            <div className={classes.bbb}>
-                <div className={classes.ccc}>
-                    공지
-                </div>
+        <div className={classes.content}>
+            <div className={classes.communityHeader}>
+                <div className={classes.communityHeaderTitle}>공지</div>
 
-                <Link to={"/community/notice"} className={classes.ddd}>
-                    <div className={classes.eee}/>
-                    <div className={classes.fff}>
-                        목록으로
-                    </div>
+                <Link to={"/community/notice"} className={classes.removeLine}>
+                    <div className={classes.backArrowDefault}/>
+                    <div className={classes.backArrowText}>목록으로</div>
                 </Link>
             </div>
 
-            <div className={classes.lll}>
-                <div className={classes.ddd}>
-                    <div className={classes.ggg}>
-                        {category}
-                    </div>
-                    <div className={classes.hhh}>
-                        {title}
-                    </div>
+            <div className={classes.noticeHeader}>
+                <div className={classes.removeLine}>
+                    <div className={classes.category}>{category}</div>
+                    <div className={classes.title}>{title}</div>
                 </div>
 
-                <div className={classes.iii}>
-                    {date}
-                </div>
+                <div className={classes.date}>{date}</div>
             </div>
 
-            <div className={classes.jjj}>
-                {detail}
-            </div>
+            <div className={classes.detail}>{detail}</div>
         </div>
     );
 }
