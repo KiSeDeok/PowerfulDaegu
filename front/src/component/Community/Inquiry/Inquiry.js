@@ -64,7 +64,7 @@ function Inquiry() {
                     <div className={classes.fff}>*</div>
                 </div>
 
-                <div className={classes.mmm} onClick={onClickFileUpload}>
+                <div className={classes.mmm}>
                     클릭하여 파일추가
                 </div>
             </div>
