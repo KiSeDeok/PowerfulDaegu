@@ -1,0 +1,51 @@
+.content {
+    height: 85px;
+    width: 100%;
+    border-bottom: 1px solid #DDDDDD;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+}
+
+.detail {
+    display: flex;
+    width: 100%;
+}
+
+.content:hover > .detail > div {
+    color: #FF7D00;
+}
+
+.category {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: -0.01em;
+    margin-right: 21px;
+
+    color: #303030;
+}
+
+.title {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: -0.01em;
+    color: #303030;
+}
+
+.date {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    color: #969696;
+}

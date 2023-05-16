@@ -1,0 +1,54 @@
+.content {
+    height: 40px;
+    margin-top: 58px;
+    margin-bottom: 101px;
+    display: flex;
+    justify-content: center;
+
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+
+    color: #303030;
+}
+
+.content > div {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.leftArrowActive {
+    background-image: url("/public/icon/leftArrow_active.png");
+    background-size: cover;
+}
+
+.leftArrowDisable {
+    background-image: url("/public/icon/leftArrow_disable.png");
+    background-size: cover;
+}
+
+.rightArrowActive {
+    background-image: url("/public/icon/rightArrow_active.png");
+    background-size: cover;
+}
+
+.rightArrowDisable {
+    background-image: url("/public/icon/rightArrow_disable.png");
+    background-size: cover;
+}
+
+.pageActive {
+    color: #F8F8F8;
+    background: #FF7D00;
+    border-radius: 20px;
+}
+
+.pageDisable {
+}

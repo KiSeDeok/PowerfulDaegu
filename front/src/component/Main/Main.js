@@ -10,12 +10,12 @@ function Main() {
     return (
         <>
             <div className={classes.bbb}>
-                <Notification/>
                 <Header/>
-                <div className={classes.aaa}>
+                <div className={classes.ccc}>
                     <Banner/>
-                    <Contents/>
                 </div>
+                <Contents/>
+
             </div>
             <Footer/>
         </>

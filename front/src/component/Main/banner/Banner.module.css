@@ -1,21 +1,21 @@
 .aaa {
-    width: 1132px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    margin-top: 75px;
 
-    margin-top: 124px;
 }
 
 .bbb {
     font-style: normal;
-    font-weight: 700;
-    font-size: 44px;
-    line-height: 53px;
+    font-weight: 800;
+    font-size: 36px;
+    line-height: 42px;
     text-align: center;
+    letter-spacing: -0.01em;
+    color: #303030;
 
-    margin-bottom: 38px;
+    margin-bottom: 12px;
 }
 
 .ccc {
@@ -24,4 +24,15 @@
 
 .ccc > *:nth-child(n+2) {
     margin-left: 8px;
+}
+
+.ddd {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+
+    margin-bottom: 29px;
+    color: #303030;
 }

@@ -1,0 +1,9 @@
+.content {
+    display: flex;
+    flex-direction: column;
+}
+
+.content > div {
+    padding: 0 20vw;
+    min-width: 700px;
+}

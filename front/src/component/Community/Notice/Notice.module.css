@@ -1,0 +1,46 @@
+.noticeHeader {
+    height: 75px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #DDDDDD;
+    margin-top: 49px;
+}
+
+.noticeHeaderText {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    color: #303030;
+}
+
+.categoryArea {
+    display: flex;
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+
+    color: #303030;
+}
+
+.categoryArea > div:not(:last-child) {
+    padding-right: 16px;
+    border-right: 1px solid #C2C2C2;
+}
+
+.categoryArea > div:not(:first-child) {
+    padding-left: 16px;
+}
+
+.categoryTextActive {
+    color: #FF7D00;
+}
+
+.categoryTextDisable {
+
+}

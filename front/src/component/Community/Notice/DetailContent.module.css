@@ -1,0 +1,101 @@
+.content {
+    margin-top: 49px;
+}
+
+.communityHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 75px;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.communityHeaderTitle {
+    display: flex;
+    flex-direction: column;
+}
+
+.communityHeaderTitle > div {
+    padding: 0 20vw;
+    min-width: 700px;
+}
+
+.noticeHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 85px;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.removeLine {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.backArrowDefault {
+    background-image: url("/public/icon/backArrow_default.png");
+    background-size: cover;
+    width: 40px;
+    height: 40px;
+}
+
+.backArrowDefault:hover {
+    background-image: url("/public/icon/backArrow_active.png");
+}
+
+.backArrowText {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    color: #303030;
+    margin-left: 12px;
+}
+
+.category {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    color: #303030;
+    margin-right: 21px;
+}
+
+.title {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    color: #303030;
+}
+
+.date {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    color: #303030;
+}
+
+.detail {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    color: #303030;
+    white-space:pre-wrap;
+    margin: 36px 0;
+    min-height: 40vh;
+}

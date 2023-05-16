@@ -1,4 +1,5 @@
 import classes from './Header.module.css';
+import {Link} from "react-router-dom";
 
 function Header() {
     return (
@@ -11,9 +12,9 @@ function Header() {
                 <div>커뮤니티</div>
                 <div><span>맵</span></div>
             </div>
-            <div className={classes.bbb}>
+            <Link to={"/login"} className={classes.bbb}>
                 로그인
-            </div>
+            </Link>
         </div>
     );
 }
