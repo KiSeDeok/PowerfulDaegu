@@ -69,6 +69,7 @@ function FrequentlyAsk() {
         }
     ];
     const [category, setCategory] = useState(0)
+    const [active, setActive] = useState(0)
 
     function changeCategory(division) {
         setCategory(division)
@@ -98,13 +99,13 @@ function FrequentlyAsk() {
                 </div>
             </div>
 
-            {/*<div>*/}
-            {/*    {contents.map(content => (*/}
-            {/*        <Content content={content} />*/}
-            {/*    ))}*/}
-            {/*</div>*/}
+            <div>
+                {contents.map(content => (
+                    <Content key={content.id} content={content} active={active} setActive={setActive} />
+                ))}
+            </div>
 
-            <Pagination nowPage={1} totalPage={4} />
+            <Pagination nowPage={1} totalPage={2} />
         </>
     );
 }

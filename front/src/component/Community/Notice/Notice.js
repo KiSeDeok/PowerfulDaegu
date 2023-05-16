@@ -102,7 +102,7 @@ function Notice() {
 
             <div>
                 {contents.map(content => (
-                    <Content content={content} />
+                    <Content key={content.id} content={content} />
                 ))}
             </div>
 

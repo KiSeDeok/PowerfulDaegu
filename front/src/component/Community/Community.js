@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 import Header from "../Main/header/Header";
 import Footer from "../Main/footer/Footer";
@@ -8,20 +8,37 @@ import CommunityHeader from "./CommunityHeader";
 import Notice from "./Notice/Notice";
 import DetailContent from "./Notice/DetailContent";
 import FrequentlyAsk from "./FrequentlyAsk/FrequentlyAsk";
+import Inquiry from "./Inquiry/Inquiry";
 
 import classes from "./Community.module.css";
 
 function Community() {
+    const [selector, setSelector] = useState("")
+
+
+    useEffect(() => {
+        const pathName = window.location.pathname
+        if (pathName.includes("notice")) {
+            setSelector("notice")
+        }else if(pathName.includes("feq")) {
+            setSelector("feq")
+        }else if(pathName.includes("inquiry")) {
+            setSelector("inquiry")
+        }
+    }, []);
+
+
     return (
         <>
             <Header/>
             <div className={classes.aaa}>
-                <CommunityHeader selector="notice"/>
+                <CommunityHeader selector={selector} setSelector={setSelector}/>
 
                 <Routes>
                     <Route path="notice" element={<Notice />} />
                     <Route path="notice/:id" element={<DetailContent />}/>
                     <Route path="feq" element={<FrequentlyAsk />} />
+                    <Route path="inquiry" element={<Inquiry />} />
                 </Routes>
 
             </div>

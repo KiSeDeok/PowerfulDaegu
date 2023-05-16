@@ -1,0 +1,212 @@
+.aaa {
+    margin: 72px 0 36px 0;
+}
+
+.bbb {
+    font-style: normal;
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 29px;
+
+    color: #303030;
+    margin-bottom: 8px;
+}
+
+.ccc {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+
+    color: #666666;
+}
+
+.ddd {
+    margin-bottom: 28px;
+}
+
+.eee {
+    display: flex;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+
+    color: #303030;
+    margin-bottom: 8px;
+}
+
+.fff {
+    color: #FF7D00;
+}
+
+.ggg {
+    display: flex;
+}
+
+.ggg > div:not(:last-child) {
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+.hhh {
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 20px;
+    padding: 10px 16px;
+
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.01em;
+
+    color: #969696;
+}
+
+.iii {
+    background: #FFEEDD;
+    border: 1px solid #FF7D00;
+    border-radius: 20px;
+    padding: 10px 16px;
+
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.01em;
+
+    color: #FF7D00;
+}
+
+.jjj {
+    height: 44px;
+    width: 100%;
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+    box-sizing: border-box;
+
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.01em;
+    padding: 0 16px;
+
+    color: #303030;
+}
+
+.jjj::placeholder {
+    color: #969696;
+}
+
+.jjj:focus {
+    outline: 1px solid #303030;
+}
+
+.kkk {
+    height: 248px;
+    width: 100%;
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+    box-sizing: border-box;
+
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.01em;
+    padding: 13px 16px;
+
+    color: #303030;
+}
+
+.kkk::placeholder {
+    color: #969696;
+}
+
+.kkk:focus {
+    outline: 1px solid #303030;
+}
+
+.lll {
+    margin-bottom: 28px;
+}
+
+.nnn {
+
+}
+
+.mmm {
+    height: 44px;
+
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.01em;
+
+    color: #666666;
+}
+
+.ooo {
+    display: flex;
+    justify-content: center;
+
+    margin: 28px 0 108px 0
+}
+
+.ppp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 105px;
+    height: 41px;
+
+    background: #EEEEEE;
+    border-radius: 30px;
+
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+
+    color: #969696;
+}
+
+.qqq {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 105px;
+    height: 41px;
+
+    background: #FF7D00;
+    border-radius: 30px;
+
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+
+    color: #FFFFFF;
+}
+
+.qqq:hover {
+    background-color: #C36000;
+}
