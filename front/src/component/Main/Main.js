@@ -10,7 +10,7 @@ function Main() {
     return (
         <>
             <div>
-                <Header/>
+                <Header flag ="main"/>
 
                 <div className={classes.bannerArea}>
                     <Banner/>
