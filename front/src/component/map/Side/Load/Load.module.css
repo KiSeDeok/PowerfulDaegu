@@ -16,8 +16,16 @@
     border-radius: 12px;
 }
 
+.searchBox:hover{
+    border: 1px solid #FF7D00;
+}
+
+.searchBox:active{
+    border: 1px solid #FF7D00;
+}
+
 .searchBox input{
-    min-width: 343px;
+    min-width: 325px;
     height: 90%;
     outline: none;
     border: none;
@@ -30,12 +38,37 @@
 .startDiv, .endDiv{
     display: flex;
     align-items: center;
-    padding-left: 18px;
+    padding-left: 0px;
     margin-right: 58px;
     height: 46px;
     font-weight: 400;
     font-size: 16px;
     box-sizing: border-box;
+    gap: 14px;
+}
+
+.startDiv.startFocus,
+.endDiv.startFocus{
+    padding-left: 10px;
+}
+
+.startDiv.startFocus input,
+.endDiv.startFocus input{
+    min-width: 300px;
+}
+
+.startDiv.startFocus img,
+.endDiv.startFocus img{
+    display: block;
+}
+
+.startDiv img,
+.endDiv img{
+    display: none;
+}
+
+.onFocus{
+    border: 1.5px solid #FF7D00;
 }
 
 .startDiv{
