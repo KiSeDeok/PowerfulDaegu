@@ -13,8 +13,8 @@ function Banner() {
                 대구 급식카드 가맹점 조회 서비스
             </div>
             <div className={classes.ccc}>
-                <PagingBtn name="가맹점 조회하기" color="black" link="https://www.naver.com/"/>
-                <PagingBtn name="카드 신청하기" color="white" link="https://www.youtube.com/"/>
+                <PagingBtn name="가맹점 조회하기" color="black" link="/map"/>
+                <PagingBtn name="카드 신청하기" color="white" link="https://www.dgbupay.com/dgtcs/hps/pages/intro/card_type_05.jsp"/>
             </div>
         </div>
     );

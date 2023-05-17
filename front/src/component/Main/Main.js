@@ -9,13 +9,14 @@ import classes from "./Main.module.css";
 function Main() {
     return (
         <>
-            <div className={classes.bbb}>
+            <div>
                 <Header/>
-                <div className={classes.ccc}>
+
+                <div className={classes.bannerArea}>
                     <Banner/>
                 </div>
-                <Contents/>
 
+                <Contents/>
             </div>
             <Footer/>
         </>
