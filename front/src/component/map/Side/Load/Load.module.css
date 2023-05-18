@@ -36,6 +36,7 @@
 }
 
 .startDiv, .endDiv{
+    /*position: relative;*/
     display: flex;
     align-items: center;
     padding-left: 0px;
@@ -62,8 +63,8 @@
     display: block;
 }
 
-.startDiv img,
-.endDiv img{
+.startDiv > img,
+.endDiv > img{
     display: none;
 }
 
@@ -80,3 +81,4 @@
     right: 13px;
     cursor: pointer;
 }
+
