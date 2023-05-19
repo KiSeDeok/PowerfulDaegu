@@ -1,8 +1,11 @@
 import classes from "./Content.module.css";
 import {useRef, useState} from "react";
+import {useDispatch} from "react-redux";
+import {mapModalActions} from "../../../../store/map/modal-slice";
 
 function Content(props){
     const data = props.data
+    const dispatch = useDispatch()
 
     // 목적지 이벤트
     const [isDn, setDn] = useState(false)
@@ -64,6 +67,14 @@ function Content(props){
         else {
             setEnd(data.endP)
         }
+    }
+
+    // 현장토크 글쓰기
+    const handleTalkWriteModal = (e) => {
+        e.stopPropagation()
+        e.preventDefault()
+
+        dispatch(mapModalActions.handleTalkWrite({open:true, id:props.data.id}))
     }
 
     const handleIsActive = (e) => {
@@ -210,7 +221,7 @@ function Content(props){
                                 </div>
                         }
                         <div className={classes.talkWriteDiv}>
-                            <div className={classes.writeDiv}>
+                            <div className={classes.writeDiv} onClick={(e) => handleTalkWriteModal(e)}>
                                 <img src={"/images/map/writePencil.svg"}/>
                                 <span>현장토크 글쓰기</span>
                             </div>

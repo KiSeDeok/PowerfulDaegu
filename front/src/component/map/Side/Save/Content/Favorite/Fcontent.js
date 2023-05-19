@@ -1,16 +1,26 @@
 import classes from "./Fcontent.module.css"
 import {useState} from "react";
+import {useDispatch} from "react-redux";
+import {mapActions} from "../../../../../../store/map/map-slice";
+import {saveLocationActions} from "../../../../../../store/map/saveLoaction-slice";
 function Fcontent(props){
+    const dispatch = useDispatch()
     const [check, setCheck] = useState(false)
 
+    const handleCheck = () => {
+        setCheck(!check)
+
+        dispatch(saveLocationActions.handleSelectDelete({id:props.data.id}))
+    }
+
     return (
-        <div className={classes.fbContent}>
+        <div className={classes.fbContent} onClick={handleCheck}>
             <div className={check ? classes.activeCheckbox : classes.defaultCheckbox}>
-                {check ?? <img src={"/images/map/saveType/check.svg"} />}
+                {check && <img src={"/images/map/saveType/check.svg"} />}
             </div>
             <div className={classes.fbSpan}>
-                <span className={classes.fbName}>세븐일레븐 대구대봉점</span>
-                <span className={classes.fbType}>편의점</span>
+                <span className={classes.fbName}>{props.data.name}</span>
+                <span className={classes.fbType}>{props.data.type}</span>
             </div>
             <div className={classes.fbFunction}>
                 <div className={classes.fbShare}>

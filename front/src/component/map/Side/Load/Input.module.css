@@ -8,8 +8,12 @@
      background: #ffffff;
     border: 1px solid #FF7D00;
     box-sizing: border-box;
-    padding: 26px 0;
+    padding: 18px 0;
     box-sizing: border-box;
+}
+
+.hasBox.endHasBox{
+    top: 83px;
 }
 
 .eleBox{

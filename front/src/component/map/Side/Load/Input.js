@@ -90,7 +90,7 @@ function Input(props){
 
     const handleKeyDown = (e) =>{
 
-        console.log("e = ", e.keyCode)
+        console.log("e = ", e)
 
 
 
@@ -99,7 +99,7 @@ function Input(props){
         console.log("isKorean= ", isKorean)
 
 
-        if (isKorean){
+        if (isKorean || e.nativeEvent.inputType === "deleteContentBackward"){
             const filteredData = tempData.filter(data => data.name.includes(e.target.value));
             setIsData(filteredData)
             setInput(e.target.value)
@@ -116,7 +116,7 @@ function Input(props){
             />
             <div className={classes.box}>
                 {data && data.length > 0 ?
-                    <div className={classes.hasBox}>
+                    <div className={props.type === "start" ? classes.hasBox : `${classes.hasBox} ${classes.endHasBox}`}>
                         {
                             data.map((ele) => {
                                 return (

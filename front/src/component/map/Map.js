@@ -5,6 +5,7 @@ import SideMain from "./Side/SideMain";
 import MapInterface from "./MapInterface";
 import useHttp from "../../hooks/use-http";
 import {useEffect} from "react";
+import ModalSet from "./Side/ModalSet";
 
 
 function Map(){
@@ -29,6 +30,7 @@ function Map(){
             <MainMap/>
             <SideMain/>
             <MapInterface />
+            <ModalSet />
         </div>
     )
 }

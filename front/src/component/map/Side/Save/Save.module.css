@@ -1,6 +1,9 @@
 .box{
+    position: relative;
     display: flex;
     flex-direction: column;
+    height: 100%;
+    overflow: hidden;
 }
 
 .head{
@@ -9,6 +12,10 @@
     align-items: center;
     width: 100%;
     margin: 34px 0 24px 0;
+}
+
+.body{
+    height: calc(100% - 37px);
 }
 
 .hBody{

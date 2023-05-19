@@ -69,33 +69,13 @@ function Load(){
                     <img className={startFocus ? classes.startImg : ""} src={"/images/map/load/startFlag.svg"}/>
 
                     <Input keyDown={handleStartFocus} type={"start"}/>
-                    {/*<input*/}
-                    {/*    onKeyDown={(e) => handleStartKeyDown(e)}*/}
-                    {/*    placeholder={"출발지를 입력하세요."}*/}
-                    {/*    onFocus={handleStartFocus}*/}
-                    {/*    onBlur={handleStartBlur}*/}
-                    {/*/>*/}
                 </div>
                 <div className={endFocus ? `${classes.endDiv} ${classes.startFocus}` : classes.endDiv}>
                     <img className={endFocus ? classes.endImg : ""} src={"/images/map/load/endFlag.svg"}/>
                     <Input keyDown={handleStartFocus} type={"end"}/>
-
-                    {/*<input*/}
-                    {/*    onKeyDown={(e) => handleEndKeyDown(e)}*/}
-                    {/*    placeholder={"도착지를 입력하세요."}*/}
-                    {/*    onFocus={handleEndFocus}*/}
-                    {/*    onBlur={handleEndBlur}*/}
-                    {/*/>*/}
                 </div>
                 <img className={classes.changeDiv} src={"/images/map/changeBtn.svg"}/>
             </div>
-
-            {/*<div className={classes.funcBox}>*/}
-            {/*    <Recently/>*/}
-            {/*    <Store />*/}
-            {/*    <Path />*/}
-            {/*</div>*/}
-
             <div className={classes.loadBox}>
                 <Find />
             </div>
