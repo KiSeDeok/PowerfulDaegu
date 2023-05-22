@@ -18,8 +18,6 @@ function Talk(props){
         e.stopPropagation()
         e.preventDefault()
 
-        console.log("Asdas")
-
         dispatch(mapModalActions.handleTalk({open:true, id: ele.id}))
     }
 

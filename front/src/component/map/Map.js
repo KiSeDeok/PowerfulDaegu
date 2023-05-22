@@ -5,7 +5,7 @@ import SideMain from "./Side/SideMain";
 import MapInterface from "./MapInterface";
 import useHttp from "../../hooks/use-http";
 import {useEffect} from "react";
-import ModalSet from "./Side/ModalSet";
+import ModalSet from "./ModalSet";
 
 
 function Map(){

@@ -10,7 +10,8 @@ const mapModalSlice = createSlice({
         talkModal:{
             open:false,
             id:""
-        }
+        },
+        warningModal: false
     },
     reducers:{
         handleTalkWrite(state, action){
@@ -19,6 +20,9 @@ const mapModalSlice = createSlice({
         handleTalk(state, action){
             state.talkModal = {id: action.payload.id, open: action.payload.open}
         },
+        handleWarning(state, action){
+            state.warningModal = action.payload.open
+        }
     }
 })
 

@@ -1,19 +1,27 @@
 import classes from "./MapInterface.module.css"
 import {useState} from "react";
+import {mapModalActions} from "../../store/map/modal-slice";
+import {useDispatch} from "react-redux";
 
 function MapInterface() {
+    const dispatch = useDispatch()
     const [profileModal, setProfileModal] = useState(false)
 
+    // 프로필 모달 생성
     const handleProfileModal = () => {
         const temp = profileModal
-
         setProfileModal(!temp)
+    }
+
+    // 컬러풀 카드 이건 안돼요 모달 생성
+    const handleWarningModal = () => {
+        dispatch(mapModalActions.handleWarning({open:true}))
     }
 
     return (
         <div className={classes.box}>
             <div className={classes.topLeftBox}>
-                <div className={classes.tlBox}>
+                <div className={classes.tlBox} onClick={handleWarningModal}>
                     <span>컬러풀 카드, 이건 안돼요! 😭</span>
                 </div>
                 <div className={classes.tlBox}>
