@@ -1,9 +1,9 @@
 import classes from "./TalkWriteModal.module.css";
 import {useState} from "react";
-import {mapModalActions} from "../../../../store/map/modal-slice";
+import {mapModalActions} from "../../../../../store/map/modal-slice";
 import {useDispatch} from "react-redux";
 
-function TalkWriteModal(){
+function TalkModal(){
     const dispatch = useDispatch()
     const [picArr, setPicArr] = useState([])
 
@@ -12,7 +12,7 @@ function TalkWriteModal(){
         e.stopPropagation()
         e.preventDefault()
 
-        dispatch(mapModalActions.handleTalkWrite({open:false, id:""}))
+        dispatch(mapModalActions.handleTalk({open:false, id:""}))
     }
 
     return (
@@ -53,4 +53,4 @@ function TalkWriteModal(){
     )
 }
 
-export default TalkWriteModal
+export default TalkModal

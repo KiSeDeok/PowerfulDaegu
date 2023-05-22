@@ -6,12 +6,19 @@ const mapModalSlice = createSlice({
         talkWriteModal:{
             open:false,
             id:""
+        },
+        talkModal:{
+            open:false,
+            id:""
         }
     },
     reducers:{
         handleTalkWrite(state, action){
             state.talkWriteModal = {id: action.payload.id, open: action.payload.open}
-        }
+        },
+        handleTalk(state, action){
+            state.talkModal = {id: action.payload.id, open: action.payload.open}
+        },
     }
 })
 

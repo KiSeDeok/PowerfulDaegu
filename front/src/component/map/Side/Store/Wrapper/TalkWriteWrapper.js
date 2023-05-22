@@ -1,5 +1,5 @@
 import {useSelector} from "react-redux";
-import TalkWriteModal from "../TalkWriteModal";
+import TalkWriteModal from "../Modal/TalkWriteModal";
 
 function TalkWriteWrapper() {
     const modalOpen = useSelector((state) => state.mapModal.talkWriteModal);

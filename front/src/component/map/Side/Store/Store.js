@@ -1,5 +1,5 @@
 import classes from "./Store.module.css"
-import Content from "./Content";
+import Content from "./Content/Content";
 
 function Store(){
     const nowDate = new Date()
