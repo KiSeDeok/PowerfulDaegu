@@ -13,6 +13,9 @@ function SideMain(){
     const [isSearchSet, setSearchOpen] = useState(false)
     const [searchIndex, setSearchIndex] = useState([])
 
+    // 사이드바 활성화 여부
+    const [sideOpen, setSideOpen] = useState(true)
+
     const handleIndex = (index) => {
         dispatch(mapActions.handleIndex({index:index}))
     }
@@ -23,12 +26,15 @@ function SideMain(){
 
     const handleSearchOpt = () => {
         const state = isSearchSet
-
         setSearchOpen(!state)
     }
 
+    const handleOpen = () => {
+        setSideOpen(!sideOpen)
+    }
+
     return (
-        <div className={classes.box}>
+        <div className={sideOpen ? classes.box : classes.unOpenBox}>
             <div className={classes.logoBox}><span>Logo</span></div>
             <div className={classes.searchBox}>
                 <div className={classes.searchLeftBox}><img src={"/images/map/searchLeft.svg"}/></div>
@@ -47,6 +53,9 @@ function SideMain(){
                     <Load/> :
                     <Save />
                 }
+            </div>
+            <div className={sideOpen ? classes.foldBtn : classes.unFoldBtn} onClick={handleOpen}>
+                <img src={"/images/map/sideFoldArrow.svg"}/>
             </div>
         </div>
     )

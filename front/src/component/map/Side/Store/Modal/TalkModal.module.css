@@ -1,0 +1,181 @@
+.box{
+    position: absolute;
+    top: calc(50vh - 233px);
+    left: calc(50vw - 365px);
+    width: 731px;
+    height: 466px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 11px rgba(0, 0, 0, 0.08);
+    border-radius: 15px;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.head{
+    display: flex;
+    justify-content: space-between;
+    padding: 25px 24px 20px 24px;
+    box-sizing: border-box;
+    font-weight: 700;
+    font-size: 18px;
+    color: #303030;
+    gap: 4px;
+    box-sizing: border-box;
+}
+
+.hRight{
+    cursor: pointer;
+}
+
+.body{
+    display: flex;
+    padding: 0 24px;
+    gap: 42px;
+    margin-bottom: 22px;
+}
+
+.bLeft{
+    width: 333px;
+    height: 333px;
+    position: relative;
+    border-radius: 12px;
+
+}
+
+.blImgContent{
+    border-radius: 12px;
+}
+
+.blImgBox{
+    position: absolute;
+    top: 152px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 5px;
+    box-sizing: border-box;
+}
+
+.blILeft, .blIRight{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+    background: #000000;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 50%;
+    opacity: 55%;
+    cursor: pointer;
+}
+
+.blIRight{
+    transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.bRight{
+    display: flex;
+    flex-direction: column;
+    width: 290px;
+}
+
+.brHead{
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #FF7D00;
+    gap: 7px;
+}
+
+.brBody{
+    height: 240px;
+    margin-bottom: 28px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #303030;
+    overflow-y: scroll;
+}
+
+.brFoot{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.brfLike{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 134px;
+    height: 36px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #969696;
+    background: #FFFFFF;
+    border: 1px solid #969696;
+    border-radius: 12px;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.brfLike:hover{
+    border: 1px solid rgba(255, 125, 0, 0.3);
+    border-radius: 12px;
+    color: #FF7D00;
+}
+
+.brfLike:active{
+    background: #FF7D00;
+    border-radius: 12px;
+    color: #FFFFFF;
+}
+
+.brfImg{
+    width: 14px;
+    height: 14px;
+    background-image: url("../../../../../../public/images/map/thumbs_default.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    /*background-size: 14px 14px;*/
+}
+
+.brfLike:hover .brfImg{
+    background-image: url("../../../../../../public/images/map/thumbs_hover.svg");
+}
+
+.brfLike:active .brfImg{
+    background-image: url("../../../../../../public/images/map/thumbs_active.svg");
+}
+
+.foot{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.fBox{
+    display: flex;
+    justify-content: space-between;
+    width: 144px;
+    box-sizing: border-box;
+}
+
+.fbPrev, .fbNext{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 50%;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.fbNext{
+    transform: rotate(180deg);
+}

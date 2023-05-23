@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
     padding: 9px 41px;
+    cursor: pointer;
     gap: 9px;
 }
 
@@ -16,6 +17,11 @@
     border: 1px solid #DDDDDD;
     border-radius: 5px;
     box-sizing: border-box;
+}
+
+.activeCheckbox{
+    background: #FFEEDD;
+    border: 1px solid #FF7D00;
 }
 
 .fbSpan{

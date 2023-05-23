@@ -1,5 +1,8 @@
 import classes from "./Content.module.css";
 import {useRef, useState} from "react";
+import {useDispatch} from "react-redux";
+import {mapModalActions} from "../../../../../store/map/modal-slice";
+import Talk from "./Talk";
 
 function Content(props){
     const data = props.data
@@ -66,6 +69,7 @@ function Content(props){
         }
     }
 
+
     const handleIsActive = (e) => {
         e.preventDefault()
         e.stopPropagation()
@@ -83,7 +87,7 @@ function Content(props){
         }
         else{
             addContentRef.current.querySelectorAll('*').forEach(element => {
-                element.style.maxHeight = '100vh';
+                element.style.maxHeight = '100%';
             });
         }
     }
@@ -182,40 +186,7 @@ function Content(props){
                         }
 
                     </div>
-                    <div className={classes.talk}>
-                        <div className={classes.talkTop}><span>현장 토크</span></div>
-                        {
-                            !data.menu ?
-                                <div className={classes.talkContents}>
-                                    <div className={classes.talkContent}>
-                                        <img/>
-                                    </div>
-                                    <div className={classes.talkContent}>
-                                        <span>돈까스 먹고싶어용가리 치킨도 먹고싶어용가리 치킨도 먹고싶어용가리 치킨도 먹고싶어용가리</span>
-                                    </div>
-                                    <div className={classes.talkContent}>
-                                        <span>돈까스 먹고싶어용가리 치킨도 먹고싶어용가리 치킨도 먹고싶어용가리 치킨도 먹고싶어용가리</span>
-                                    </div>
-                                    <div className={classes.talkContent}>
-                                        <span>돈까스 먹고싶어용가리 치킨도 먹고싶어용가리 치킨도 먹고싶어용가리 치킨도 먹고싶어용가리</span>
-                                    </div>
-                                    <div className={classes.talkContent}>
-                                        <span>돈까스 먹고싶어용가리 치킨도 먹고싶어용가리 치킨도 먹고싶어용가리 치킨도 먹고싶어용가리</span>
-                                    </div>
-
-                                </div> :
-                                <div className={classes.noTalkDiv}>
-                                    <img src={"/images/map/noMenu.svg"}/>
-                                    <span>등록된 현장토크가 없어요</span>
-                                </div>
-                        }
-                        <div className={classes.talkWriteDiv}>
-                            <div className={classes.writeDiv}>
-                                <img src={"/images/map/writePencil.svg"}/>
-                                <span>현장토크 글쓰기</span>
-                            </div>
-                        </div>
-                    </div>
+                    <Talk data={props.data}/>
                     <div className={classes.functionSet}>
                         <div className={classes.functionDiv}>
                             <img src={"/images/map/share_default.svg"}/>

@@ -1,6 +1,8 @@
 .box{
+    /*position: relative;*/
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 
 .fHead{
@@ -8,12 +10,16 @@
     display: flex;
     align-items: center;
     width: 100%;
-    height: 42px;
+    min-height: 42px;
     max-height: 42px;
     margin-bottom: 25px;
     border-top: 1px solid #EEEEEE;
     border-bottom: 1px solid #EEEEEE;
 
+}
+
+.fBody{
+    overflow-y:scroll;
 }
 
 .fhContent{
@@ -28,3 +34,4 @@
     gap: 3px;
     cursor: pointer;
 }
+

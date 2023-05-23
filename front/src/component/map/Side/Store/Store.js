@@ -1,11 +1,11 @@
 import classes from "./Store.module.css"
-import Content from "./Content";
+import Content from "./Content/Content";
 
 function Store(){
     const nowDate = new Date()
 
     const items = [{
-        title:"세븐일레븐 대구대봉점",
+        id:0,title:"세븐일레븐 대구대봉점",
         type:"편의점",
         point:[ {type:"delivery", has:true}, {type:"nice", has:true}],
         address:{
@@ -19,7 +19,7 @@ function Store(){
         },
         phone:"053-475-1121", startP:{x:123,y:123}, endP:{x:456,y:566}
     },{
-        title:"세븐일레븐 대구대봉점",
+        id:1,title:"세븐일레븐 대구대봉점2",
         type:"편의점",
         point:[ {type:"delivery", has:true}, {type:"nice", has:true}],
         address:{
@@ -33,7 +33,7 @@ function Store(){
         },
         phone:"053-475-1121", startP:{x:123,y:123}, endP:{x:456,y:566}
     },{
-        title:"세븐일레븐 대구대봉점",
+        id:2,title:"세븐일레븐 대구대봉점3",
         type:"편의점",
         point:[ {type:"delivery", has:true}, {type:"nice", has:true}],
         address:{
@@ -47,7 +47,7 @@ function Store(){
         },
         phone:"053-475-1121", startP:{x:123,y:123}, endP:{x:456,y:566}
     },{
-        title:"세븐일레븐 대구대봉점",
+        id:0,title:"세븐일레븐 대구대봉점4",
         type:"편의점",
         point:[ {type:"delivery", has:true}, {type:"nice", has:true}],
         address:{
@@ -61,7 +61,7 @@ function Store(){
         },
         phone:"053-475-1121", startP:{x:123,y:123}, endP:{x:456,y:566}
     },{
-        title:"세븐일레븐 대구대봉점",
+        id:0,title:"세븐일레븐 대구대봉점5",
         type:"편의점",
         point:[ {type:"delivery", has:true}, {type:"nice", has:true}],
         address:{
@@ -75,7 +75,7 @@ function Store(){
         },
         phone:"053-475-1121", startP:{x:123,y:123}, endP:{x:456,y:566}
     },{
-        title:"세븐일레븐 대구대봉점",
+        id:0,title:"세븐일레븐 대구대봉점6",
         type:"편의점",
         point:[ {type:"delivery", has:true}, {type:"nice", has:true}],
         address:{
@@ -89,7 +89,7 @@ function Store(){
         },
         phone:"053-475-1121", startP:{x:123,y:123}, endP:{x:456,y:566}
     },{
-        title:"세븐일레븐 대구대봉점",
+        id:0,title:"세븐일레븐 대구대봉점7",
         type:"편의점",
         point:[ {type:"delivery", has:true}, {type:"nice", has:true}],
         address:{
