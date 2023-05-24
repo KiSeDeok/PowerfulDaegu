@@ -3,6 +3,7 @@ import ContentsQuestion from "./ContentsQuestion"
 import PublicView from "./PublicView";
 
 import classes from "./Contents.module.css";
+import {Link} from "react-router-dom";
 
 function Contents() {
     const notification = [
@@ -79,15 +80,15 @@ function Contents() {
                             놓치지 말고 확인해요
                             <img className={classes.lll} src='/icon/check_icon.png' />
                         </div>
-                        <div className={classes.jjj}>
+                        <Link to={"/community/notice"} className={classes.jjj}>
                             전체보기 >
-                        </div>
+                        </Link>
                     </div>
                 </div>
 
                 <div className={classes.kkk}>
                     {notification.map(notification => (
-                        <ContentsNotification notification={notification} />
+                        <ContentsNotification key={notification.id} notification={notification} />
                     ))}
                 </div>
             </div>
@@ -101,14 +102,14 @@ function Contents() {
                     <div className={classes.ooo}>
                         <div> </div>
                         <div className={classes.qqq}>자주 묻는 질문</div>
-                        <div className={classes.ppp}>전체 보기 ></div>
+                        <Link to={"/community/feq"} className={classes.ppp}>전체 보기 ></Link>
                     </div>
                 </div>
 
 
                 <div className={classes.bbb}>
                     {question.map(question => (
-                        <ContentsQuestion question={question} />
+                        <ContentsQuestion key={question.id} question={question} />
                     ))}
                 </div>
 

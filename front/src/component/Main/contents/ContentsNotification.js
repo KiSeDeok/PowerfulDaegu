@@ -1,14 +1,16 @@
+import {Link} from "react-router-dom";
+
 import classes from "./ContentsNotification.module.css";
 
 function ContentsNotification(props) {
     return (
-        <div className={classes.aaa}>
+        <Link to={"/community/notice/" + props.notification.id} className={classes.aaa}>
             <div  className={classes.bbb}>
                 <div>[{props.notification.category}]</div>
                 <div>{props.notification.title}</div>
             </div>
             <div className={classes.ddd}>{props.notification.date}</div>
-        </div>
+        </Link>
 
     );
 }

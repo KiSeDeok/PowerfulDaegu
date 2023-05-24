@@ -1,20 +1,17 @@
-import classes from './Header.module.css';
 import {Link} from "react-router-dom";
 
-function Header() {
+import classes from './Header.module.css';
+
+function Header(props) {
     return (
-        <div className={classes.aaa}>
+        <div className={props.flag === "main" ? classes.content : classes.content2}>
+            <Link to={"/home"}><img className={classes.logo} src="/img/main_logo.png"/></Link>
 
-            <img className={classes.ddd} src="https://yt3.googleusercontent.com/ytc/AL5GRJUrIuGxebPH-XBtKhDDu3V2w0se-lotwsKFFLY7tg=s176-c-k-c0x00ffffff-no-rj"/>
-
-            <div className={classes.ccc}>
-                <div>가맹점 조회</div>
-                <div>커뮤니티</div>
-                <div><span>맵</span></div>
+            <div className={classes.topBar}>
+                <Link to={"/map"}>가맹점 조회</Link>
+                <Link to={"/community/notice"}>커뮤니티</Link>
             </div>
-            <Link to={"/login"} className={classes.bbb}>
-                로그인
-            </Link>
+            <Link to={"/login"} className={classes.loginBtn}>로그인</Link>
         </div>
     );
 }

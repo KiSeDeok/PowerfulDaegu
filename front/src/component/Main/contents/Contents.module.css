@@ -73,6 +73,7 @@
     line-height: 21px;
     letter-spacing: -0.01em;
     color: #303030;
+    text-decoration: none;
 }
 
 .kkk {
@@ -118,7 +119,7 @@
     color: #FFFFFF;
 }
 
-.ooo > div {
+.ooo > * {
     width: 300px;
 }
 
@@ -132,6 +133,7 @@
     justify-content: flex-end;
 
     color: #FFFFFF;
+    text-decoration: none;
 }
 
 .qqq {
