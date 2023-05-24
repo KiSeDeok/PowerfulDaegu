@@ -1,20 +1,19 @@
 import React, { useEffect, useRef } from 'react';
+import classes from "./CustomOverlay.module.css"
 
-const CustomOverlay = ({ position, map }) => {
+const CustomOverlay = ({ position, data, map }) => {
     const overlayRef = useRef(null);
+    const overlay = useRef(null);
 
     useEffect(() => {
-        const overlay = new window.naver.maps.OverlayView();
+        overlay.current = new window.naver.maps.OverlayView();
 
-        overlay.setPosition(position);
-        overlay.setMap(map);
-
-        overlay.onAdd = function() {
+        overlay.current.onAdd = function() {
             const pane = this.getPanes().overlayLayer;
             pane.appendChild(overlayRef.current);
         };
 
-        overlay.draw = function() {
+        overlay.current.draw = function() {
             const projection = this.getProjection();
             const pixelPosition = projection.fromCoordToOffset(position);
 
@@ -24,32 +23,36 @@ const CustomOverlay = ({ position, map }) => {
             }
         };
 
-        overlay.onRemove = function() {
-            const pane = this.getPanes().overlayLayer;
-            pane.removeChild(overlayRef.current);
+        overlay.current.onRemove = function() {
+            overlayRef.current.parentNode.removeChild(overlayRef.current);
         };
 
+        overlay.current.setMap(map);
+
         return () => {
-            overlay.setMap(null);
+            overlay.current.setMap(null);
         };
     }, [position, map]);
 
     return (
-        <div
-            ref={overlayRef}
-            style={{
-                position: 'absolute',
-                left: 0,
-                top: 0,
-                width: '120px',
-                height: '30px',
-                lineHeight: '30px',
-                textAlign: 'center',
-                backgroundColor: '#fff',
-                border: '2px solid #f00',
-            }}
-        >
-            커스텀 오버레이
+        <div className={classes.box} ref={overlayRef}>
+            <div className={classes.detailBox}>
+                <div className={classes.imgBox}>
+                    {data?.img ?
+                        <img />
+                        :
+                        <div className={classes.nonImgBox}>
+                            <img />
+                        </div>
+                    }
+                    <img/>
+                </div>
+                <div className={classes.content}>
+                    <span>CU 대구대봉점</span>
+                    <label>편의점</label>
+                </div>
+                <div className={classes.square}></div>
+            </div>
         </div>
     );
 };

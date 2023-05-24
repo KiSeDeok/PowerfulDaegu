@@ -3,60 +3,9 @@ import NaverMap, {Overlay} from 'react-naver-map';
 import React, {useEffect, useRef, useState} from "react";
 import axios from "axios";
 import {useSelector} from "react-redux";
+import CustomOverlay from "./CustomOverlay";
 
 
-const CustomOverlay = ({ position, map }) => {
-    const overlayRef = useRef(null);
-    const overlay = useRef(null);
-
-    useEffect(() => {
-        overlay.current = new window.naver.maps.OverlayView();
-
-        overlay.current.onAdd = function() {
-            const pane = this.getPanes().overlayLayer;
-            pane.appendChild(overlayRef.current);
-        };
-
-        overlay.current.draw = function() {
-            const projection = this.getProjection();
-            const pixelPosition = projection.fromCoordToOffset(position);
-
-            if (pixelPosition && overlayRef.current) {
-                overlayRef.current.style.left = `${pixelPosition.x}px`;
-                overlayRef.current.style.top = `${pixelPosition.y}px`;
-            }
-        };
-
-        overlay.current.onRemove = function() {
-            overlayRef.current.parentNode.removeChild(overlayRef.current);
-        };
-
-        overlay.current.setMap(map);
-
-        return () => {
-            overlay.current.setMap(null);
-        };
-    }, [position, map]);
-
-    return (
-        <div
-            ref={overlayRef}
-            style={{
-                position: 'absolute',
-                left: 0,
-                top: 0,
-                width: '120px',
-                height: '30px',
-                lineHeight: '30px',
-                textAlign: 'center',
-                backgroundColor: '#fff',
-                border: '2px solid #f00',
-            }}
-        >
-            커스텀 오버레이s
-        </div>
-    );
-};
 
 const MainMap = () => {
     const mapRef = useRef(null);
@@ -130,7 +79,9 @@ const MainMap = () => {
                 ref={mapRef}
             />
             {loading && naverMap && (
+                <>
                 <CustomOverlay position={new window.naver.maps.LatLng(35.8441357, 128.6208248)} map={naverMap} />
+                </>
             )}
         </div>
     );
