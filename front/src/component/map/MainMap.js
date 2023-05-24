@@ -17,6 +17,8 @@ const MainMap = () => {
     const [naverMap, setNaverMap] = useState("")
     const [polylineData, setPolylineData] = useState("")
 
+    console.log("11")
+
     useEffect(() => {
         const script = document.createElement('script');
         script.src = 'https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId="gmm1qrjlur"&submodules=geocoder';

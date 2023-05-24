@@ -2,27 +2,46 @@ import classes from "./SearchModal.module.css";
 import {useState} from "react";
 
 function SearchModal(props){
-    const [onIndex, setIndex] = useState(props.index)
+    const [onRegion, setRegion] = useState(props.region)
+    const [onType, setType] = useState(props.type)
 
-    const handleIndex = (ele) => {
-        const temp = [...onIndex]
+    const handleRegion = (ele) => {
+        const temp = [...onRegion]
 
-        if(onIndex.includes(ele)){
+        if(onRegion.includes(ele)){
             const index = temp.indexOf(ele)
 
             temp.splice(index,1)
-            setIndex(temp)
+            setRegion(temp)
         }
         else{
             temp.push(ele)
-            setIndex(temp)
+            setRegion(temp)
         }
 
-        props.setIndex(temp)
+        props.setRegion(temp)
+    }
+
+    const handleType = (ele) => {
+        const temp = [...onType]
+
+        if(onType.includes(ele)){
+            const index = temp.indexOf(ele)
+
+            temp.splice(index,1)
+            setType(temp)
+        }
+        else{
+            temp.push(ele)
+            setType(temp)
+        }
+
+        props.setType(temp)
     }
 
     const handleReset = () => {
-        setIndex([])
+        setRegion([])
+        setType([])
     }
 
     return (
@@ -35,43 +54,43 @@ function SearchModal(props){
                     <div className={classes.ssHead}><span>지역</span></div>
                     <div className={classes.ssBody}>
                         <div>
-                            <div className={onIndex.includes(0) ? classes.ssActiveItem : classes.ssItem}
-                                 onClick={() => handleIndex(0)}><span>중구</span></div>
-                            <div className={onIndex.includes(1) ? classes.ssActiveItem : classes.ssItem}
-                                 onClick={() => handleIndex(1)}><span>동구</span></div>
-                            <div className={onIndex.includes(2) ? classes.ssActiveItem : classes.ssItem}
-                                 onClick={() => handleIndex(2)}><span>북구</span></div>
-                            <div className={onIndex.includes(3) ? classes.ssActiveItem : classes.ssItem}
-                                 onClick={() => handleIndex(3)}><span>남구</span></div>
-                            <div className={onIndex.includes(4) ? classes.ssActiveItem : classes.ssItem}
-                                 onClick={() => handleIndex(4)}><span>서구</span></div>
+                            <div className={onRegion.includes("중구") ? classes.ssActiveItem : classes.ssItem}
+                                 onClick={() => handleRegion("중구")}><span>중구</span></div>
+                            <div className={onRegion.includes("동구") ? classes.ssActiveItem : classes.ssItem}
+                                 onClick={() => handleRegion("동구")}><span>동구</span></div>
+                            <div className={onRegion.includes("북구") ? classes.ssActiveItem : classes.ssItem}
+                                 onClick={() => handleRegion("북구")}><span>북구</span></div>
+                            <div className={onRegion.includes("남구") ? classes.ssActiveItem : classes.ssItem}
+                                 onClick={() => handleRegion("남구")}><span>남구</span></div>
+                            <div className={onRegion.includes("서구") ? classes.ssActiveItem : classes.ssItem}
+                                 onClick={() => handleRegion("사구")}><span>서구</span></div>
                         </div>
                         <div>
-                            <div className={onIndex.includes(5) ? classes.ssActiveItem : classes.ssItem}
-                                 onClick={() => handleIndex(5)}><span>수성구</span></div>
-                            <div className={onIndex.includes(6) ? classes.ssActiveItem : classes.ssItem}
-                                 onClick={() => handleIndex(6)}><span>달서구</span></div>
-                            <div className={onIndex.includes(7) ? classes.ssActiveItem : classes.ssItem}
-                                 onClick={() => handleIndex(7)}><span>달성군</span></div>
+                            <div className={onRegion.includes("수성구") ? classes.ssActiveItem : classes.ssItem}
+                                 onClick={() => handleRegion("수성구")}><span>수성구</span></div>
+                            <div className={onRegion.includes("달서구") ? classes.ssActiveItem : classes.ssItem}
+                                 onClick={() => handleRegion("달서구")}><span>달서구</span></div>
+                            <div className={onRegion.includes("달성군") ? classes.ssActiveItem : classes.ssItem}
+                                 onClick={() => handleRegion("달성군")}><span>달성군</span></div>
                         </div>
                     </div>
                     <div className={classes.ssHead}><span>장소</span></div>
                     <div className={classes.ssBody}>
                         <div>
-                            <div className={onIndex.includes(8) ? classes.ssActiveItem : classes.ssItem}
-                                 onClick={() => handleIndex(8)}><span>음식점</span></div>
-                            <div className={onIndex.includes(9) ? classes.ssActiveItem : classes.ssItem}
-                                 onClick={() => handleIndex(9)}><span>편의점</span></div>
-                            <div className={onIndex.includes(10) ? classes.ssActiveItem : classes.ssItem}
-                                 onClick={() => handleIndex(10)}><span>푸드 코트</span></div>
+                            <div className={onType.includes("음식점") ? classes.ssActiveItem : classes.ssItem}
+                                 onClick={() => handleType("음식점")}><span>음식점</span></div>
+                            <div className={onType.includes("편의점") ? classes.ssActiveItem : classes.ssItem}
+                                 onClick={() => handleType("편의점")}><span>편의점</span></div>
+                            <div className={onType.includes("푸드 코트") ? classes.ssActiveItem : classes.ssItem}
+                                 onClick={() => handleType("푸드 코트")}><span>푸드 코트</span></div>
                         </div>
                         <div>
-                            <div className={onIndex.includes(11) ? classes.ssActiveItem : classes.ssItem}
-                                 onClick={() => handleIndex(11)}><span>지역 아동센터</span></div>
-                            <div className={onIndex.includes(12) ? classes.ssActiveItem : classes.ssItem}
-                                 onClick={() => handleIndex(12)}><span>주민 센터</span></div>
-                            <div className={onIndex.includes(13) ? classes.ssActiveItem : classes.ssItem}
-                                 onClick={() => handleIndex(13)}><span>사회 복지관</span></div>
+                            <div className={onType.includes("지역 아동센터") ? classes.ssActiveItem : classes.ssItem}
+                                 onClick={() => handleType("지역 아동센터")}><span>지역 아동센터</span></div>
+                            <div className={onType.includes("주민 센터") ? classes.ssActiveItem : classes.ssItem}
+                                 onClick={() => handleType("주민 센터")}><span>주민 센터</span></div>
+                            <div className={onType.includes("사회 복지관") ? classes.ssActiveItem : classes.ssItem}
+                                 onClick={() => handleType("사회 복지관")}><span>사회 복지관</span></div>
                         </div>
                     </div>
                 </div>

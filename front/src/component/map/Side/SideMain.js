@@ -11,7 +11,8 @@ function SideMain(){
     const dispatch = useDispatch()
     const pageIndex = useSelector(state => state.map.index)
     const [isSearchSet, setSearchOpen] = useState(false)
-    const [searchIndex, setSearchIndex] = useState([])
+    const [searchRegion, setSearchRegion] = useState(["중구","동구","북구","남구","서구","수성구","달서구","달성군"])
+    const [type, setType] = useState(["음식점","편의점","푸드 코트","지역 아동센터","주민 센터","사회 복지관"])
 
     // 사이드바 활성화 여부
     const [sideOpen, setSideOpen] = useState(true)
@@ -20,8 +21,12 @@ function SideMain(){
         dispatch(mapActions.handleIndex({index:index}))
     }
 
-    const handleSearchIndex = (ele) => {
-        setSearchIndex(ele)
+    const handleSearchRegion = (ele) => {
+        setSearchRegion(ele)
+    }
+
+    const handleSearchType = (ele) => {
+        setType(ele)
     }
 
     const handleSearchOpt = () => {
@@ -33,14 +38,23 @@ function SideMain(){
         setSideOpen(!sideOpen)
     }
 
+    const handleSearch = (e) => {
+        if(e.key === "Enter" || e.keyCode === 13){
+            dispatch(mapActions.handleIndex({index:0}))
+            dispatch(mapActions.handleSearch({value:e.target.value, region:searchRegion, type:type}))
+        }
+    }
+
     return (
         <div className={sideOpen ? classes.box : classes.unOpenBox}>
             <div className={classes.logoBox}><span>Logo</span></div>
             <div className={classes.searchBox}>
                 <div className={classes.searchLeftBox}><img src={"/images/map/searchLeft.svg"}/></div>
-                <div className={classes.inputBox}><input/></div>
+                <div className={classes.inputBox}>
+                    <input onKeyDown={(e) => handleSearch(e)}/>
+                </div>
                 <div className={isSearchSet ? classes.searchOptActiveBox : classes.searchOptBox} onClick={handleSearchOpt}><img src={isSearchSet ? "/images/map/searchOpt_active.svg" : "/images/map/searchOpt.svg"}/></div>
-                <SearchModal isSearchSet={isSearchSet} index={searchIndex} setIndex={handleSearchIndex} setOpen={handleSearchOpt}/>
+                <SearchModal isSearchSet={isSearchSet} region={searchRegion} type={type} setRegion={handleSearchRegion} setType={handleSearchType} setOpen={handleSearchOpt}/>
             </div>
             <div className={classes.categoryBox}>
                 <div className={pageIndex === 0 ? classes.activeCategory : ""} onClick={() => handleIndex(0)}><span>스토어 검색</span></div>
