@@ -1,8 +1,11 @@
 import classes from "./MainMap.module.css"
-import NaverMap from 'react-naver-map';
-import {useEffect, useRef, useState} from "react";
+import NaverMap, {Overlay} from 'react-naver-map';
+import React, {useEffect, useRef, useState} from "react";
 import axios from "axios";
 import {useSelector} from "react-redux";
+import CustomOverlay from "./CustomOverlay";
+
+
 
 const MainMap = () => {
     const mapRef = useRef(null);
@@ -13,6 +16,8 @@ const MainMap = () => {
 
     const [naverMap, setNaverMap] = useState("")
     const [polylineData, setPolylineData] = useState("")
+
+    console.log("11")
 
     useEffect(() => {
         const script = document.createElement('script');
@@ -25,11 +30,12 @@ const MainMap = () => {
             }))
 
             setLoading(true)
+
         };
     }, [])
 
     useEffect(()=>{
-        if(loading) {
+        if(loading && polyline) {
             // 기존 폴리라인 제거
             if(polylineData && polylineData.length > 0){
                 polylineData.map((ele) => ele.setMap(null))
@@ -64,7 +70,8 @@ const MainMap = () => {
             }
         }
 
-    }, [polyline])
+    }, [polyline, naverMap])
+
 
     return (
         <div>
@@ -73,6 +80,11 @@ const MainMap = () => {
                 style={{ width: '100%', height: '100vh' }}
                 ref={mapRef}
             />
+            {loading && naverMap && (
+                <>
+                <CustomOverlay position={new window.naver.maps.LatLng(35.8441357, 128.6208248)} map={naverMap} />
+                </>
+            )}
         </div>
     );
 };

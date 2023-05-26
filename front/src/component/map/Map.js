@@ -12,8 +12,8 @@ function Map(){
     const { isLoading, error, sendRequest: fetchData } = useHttp();
 
     useEffect(() => {
-        fetchData({url: `http://43.200.14.40/store/all`}, (obj) => {
-        // fetchData({url: `http://localhost:3001/store/all`}, (obj) => {
+        // fetchData({url: `http://43.200.14.40/store/all`}, (obj) => {
+        fetchData({url: `http://localhost:3001/store/all`}, (obj) => {
             console.log("obj = ", obj)
         })
         // fetch("http://localhost:3001/store/all", {

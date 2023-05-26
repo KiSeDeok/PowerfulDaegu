@@ -148,3 +148,31 @@
 .activeSpan{
     color: #FFFFFF;
 }
+
+.fBox{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.fbContent{
+    display: flex;
+    flex-direction: column;
+    padding: 28% 133px 0 133px;
+    gap: 14px;
+}
+
+.fbContent > span{
+    font-weight: 500;
+    font-size: 18px;
+    color: #303030;
+    letter-spacing: -0.02em;
+    text-align: center;
+}
+
+.fbContent > label{
+    font-weight: 500;
+    font-size: 14px;
+    color: #969696;
+}

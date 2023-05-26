@@ -30,7 +30,7 @@ function Find(){
                 </div>
             </div>
             <div className={classes.body}>
-                {searchData.map((ele) => (
+                {searchData && searchData.map((ele) => (
                     <FindContent data={ele}/>
                 ))}
             </div>
