@@ -6,7 +6,7 @@ import Find from "./Find/Find";
 import axios from "axios";
 import {useDispatch} from "react-redux";
 import {mapActions} from "../../../../store/map/map-slice";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import useHttp from "../../../../hooks/use-http";
 import Input from "./Input";
 
@@ -28,36 +28,44 @@ function Load(){
         }
     }
 
-    const handleOrientat = () => {
-        console.log("window.DeviceOrientationEvent= ", window.DeviceOrientationEvent)
+    useEffect(() => {
 
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                // 위치 정보 가져오기 성공
-                const { latitude, longitude } = position.coords;
-                console.log('위치:', latitude, longitude);
-                alert(22)
-            },
-            (error) => {
-                // 위치 정보 가져오기 실패
-                console.error('위치 정보를 가져오는데 실패했습니다:', error);
-                alert(error)
-            }
-        );
+        /** Safari가 13+ 버전 이상인지 체크 **/
+        const isSafariOver13 = window.DeviceOrientationEvent !== undefined &&  typeof window.DeviceOrientationEvent.requestPermission === 'function'
+        if (isSafariOver13) {
+            window.DeviceMotionEvent.requestPermission()
+                .then((state) => {
+                    if (state === 'granted') {
+                        /** 모션 이벤트 권한 허용을 눌렀을때 **/
 
-        // 방향 권한 요청
-        if (window.DeviceOrientationEvent) {
-            window.addEventListener('deviceorientation', handleOrientation, false);
+                        window.addEventListener('deviceorientation', handleOrientationChange);
+                    } else if (state === 'denied'){
+                        /** 모션 이벤트 권한 취소를 눌렀을때 **/
+                        /** Safari 브라우저를 종료하고 다시 접속하도록 유도하는 UX 화면 필요 **/
+                    }
+                })
+                .catch(e => {
+                    console.error(e)
+                })
+        } else {
+            window.addEventListener('devicemotion', handleOrientationChange);
         }
-    }
+        const handleOrientationChange = event => {
+            const { alpha, beta, gamma } = event;
+            // 방향 정보 처리
+        };
 
-    const handleOrientation = (event) => {
-        const { alpha, beta, gamma } = event;
-        alert(alpha)
-        alert(beta)
-        alert(gamma)
-        console.log('방향:', alpha, beta, gamma);
-    };
+        // if (window.DeviceOrientationEvent) {
+        //     alert("hi")
+        //     window.addEventListener('deviceorientation', handleOrientationChange);
+        // } else {
+        //     console.error('Device orientation is not supported');
+        // }
+        //
+        // return () => {
+        //     window.removeEventListener('deviceorientation', handleOrientationChange);
+        // };
+    }, []);
 
     return (
         <div className={classes.box}>
@@ -70,7 +78,7 @@ function Load(){
                     <img className={endFocus ? classes.endImg : ""} src={"/images/map/load/endFlag.svg"}/>
                     <Input keyDown={handleStartFocus} type={"end"}/>
                 </div>
-                <img onClick={handleOrientat} className={classes.changeDiv} src={"/images/map/changeBtn.svg"}/>
+                <img className={classes.changeDiv} src={"/images/map/changeBtn.svg"}/>
             </div>
             <div className={classes.loadBox}>
                 <Find />
