@@ -11,15 +11,12 @@ import {mapActions} from "../../store/map/map-slice";
 const MainMap = () => {
     const dispatch = useDispatch()
     const mapRef = useRef(null);
-    const [directions, setDirections] = useState(null);
     const [loading, setLoading] = useState(false)
 
     const polyline = useSelector(state => state.map.polyline)
 
     const [naverMap, setNaverMap] = useState("")
     const [polylineData, setPolylineData] = useState("")
-
-    console.log("11")
 
     useEffect(() => {
         const script = document.createElement('script');
