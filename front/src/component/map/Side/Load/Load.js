@@ -29,8 +29,14 @@ function Load(){
     }
 
     useEffect(() => {
-
+        // package.json에 저장
+        /*    "start": "HTTPS=true SSL_CRT_FILE=~/cert/cert.pem SSL_KEY_FILE=~/cert/key.pem react-scripts start",*/
         /** Safari가 13+ 버전 이상인지 체크 **/
+        const handleOrientationChange = event => {
+            const { alpha, beta, gamma } = event;
+            // 방향 정보 처리
+        };
+
         const isSafariOver13 = window.DeviceOrientationEvent !== undefined &&  typeof window.DeviceOrientationEvent.requestPermission === 'function'
         if (isSafariOver13) {
             window.DeviceMotionEvent.requestPermission()
@@ -48,12 +54,9 @@ function Load(){
                     console.error(e)
                 })
         } else {
-            window.addEventListener('devicemotion', handleOrientationChange);
+            window.addEventListener('deviceorientation', handleOrientationChange);
         }
-        const handleOrientationChange = event => {
-            const { alpha, beta, gamma } = event;
-            // 방향 정보 처리
-        };
+
 
         // if (window.DeviceOrientationEvent) {
         //     alert("hi")
