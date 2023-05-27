@@ -8,7 +8,7 @@ const mapSlice = createSlice({
         searchData:[],
         destination:"",
         polyline:"",
-        sideFold:true,
+        sideFold:false,
         location:{
             latitude:"",
             longitude:""

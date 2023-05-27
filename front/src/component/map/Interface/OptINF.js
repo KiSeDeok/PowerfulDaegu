@@ -37,6 +37,7 @@ function OptINF(){
         const { alpha, beta, gamma } = event;
         // alpha: 알파(Azimuth), beta: 베타(Pitch), gamma: 감마(Roll)
         // 방향 정보 처리
+        alert(alpha)
         console.log('User direction:', alpha);
     };
 

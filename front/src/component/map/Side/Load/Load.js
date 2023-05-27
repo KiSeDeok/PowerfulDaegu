@@ -17,6 +17,8 @@ function Load(){
     const [startFocus, setStartFocus] = useState(false)
     const [endFocus, setEndFocus] = useState(false)
 
+    const [test, setTest] = useState("")
+
     const handleStartFocus = (props) => {
         if(props.type === "start"){
             props.is === true ? setStartFocus(true) : setStartFocus(false)
@@ -26,55 +28,49 @@ function Load(){
         }
     }
 
-    const handleStartKeyDown = () => {
+    const handleOrientat = () => {
+        console.log("window.DeviceOrientationEvent= ", window.DeviceOrientationEvent)
 
-    }
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                // 위치 정보 가져오기 성공
+                const { latitude, longitude } = position.coords;
+                console.log('위치:', latitude, longitude);
+                alert(22)
+            },
+            (error) => {
+                // 위치 정보 가져오기 실패
+                console.error('위치 정보를 가져오는데 실패했습니다:', error);
+                alert(error)
+            }
+        );
 
-    const handleEndKeyDown = (e) => {
-        if(e.key === "Enter"){
-            // 도착지 설정
-
-            // 맵 데이터 가져오기
-            fetchData({url: `http://localhost:3001/store/search?storename="한나식빵"`}, (obj) => {
-                console.log("obj = ", obj)
-            })
-
-            // const opt = {
-            //     url: "https://map.naver.com/v5/api/transit/directions/point-to-point?start=128.582351,35.8642161&goal=128.560192,35.9303298&mode=TIME&lang=ko&includeDetailOperation=true",
-            //     method: "post",
-            //     contentType: "application/json; charset=utf-8",
-            //     dataType: "json"
-            // }
-            //
-            // axios(opt)
-            //     .then(function a(response) {
-            //         console.log("response =", response)
-            //         // 맵 목적지 설정
-            //         dispatch(mapActions.handleDestination({data : e.target.value}))
-            //
-            //         // 맵 데이터 설정
-            //         dispatch(mapActions.handleSearch({data : response.data.paths.length !== 0 ? response.data.paths : response.data.staticPaths}))
-            //     })
-            //     .catch(function (error) {
-            //         console.log(error);
-            //     });
+        // 방향 권한 요청
+        if (window.DeviceOrientationEvent) {
+            window.addEventListener('deviceorientation', handleOrientation, false);
         }
     }
 
+    const handleOrientation = (event) => {
+        const { alpha, beta, gamma } = event;
+        alert(alpha)
+        alert(beta)
+        alert(gamma)
+        console.log('방향:', alpha, beta, gamma);
+    };
 
     return (
         <div className={classes.box}>
             <div className={startFocus || endFocus ? `${classes.searchBox} ${classes.onFocus}` : classes.searchBox}>
                 <div className={startFocus ? `${classes.startDiv} ${classes.startFocus}` : classes.startDiv}>
                     <img className={startFocus ? classes.startImg : ""} src={"/images/map/load/startFlag.svg"}/>
-
                     <Input keyDown={handleStartFocus} type={"start"}/>
                 </div>
                 <div className={endFocus ? `${classes.endDiv} ${classes.startFocus}` : classes.endDiv}>
                     <img className={endFocus ? classes.endImg : ""} src={"/images/map/load/endFlag.svg"}/>
                     <Input keyDown={handleStartFocus} type={"end"}/>
                 </div>
-                <img className={classes.changeDiv} src={"/images/map/changeBtn.svg"}/>
+                <img onClick={handleOrientat} className={classes.changeDiv} src={"/images/map/changeBtn.svg"}/>
             </div>
             <div className={classes.loadBox}>
                 <Find />
