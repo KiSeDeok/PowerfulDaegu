@@ -2,12 +2,14 @@ import classes from "./MainMap.module.css"
 import NaverMap, {Overlay} from 'react-naver-map';
 import React, {useEffect, useRef, useState} from "react";
 import axios from "axios";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import CustomOverlay from "./CustomOverlay";
+import {mapActions} from "../../store/map/map-slice";
 
 
 
 const MainMap = () => {
+    const dispatch = useDispatch()
     const mapRef = useRef(null);
     const [directions, setDirections] = useState(null);
     const [loading, setLoading] = useState(false)
@@ -24,11 +26,13 @@ const MainMap = () => {
         script.src = 'https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId="gmm1qrjlur"&submodules=geocoder';
         document.head.appendChild(script);
         script.onload = () => {
-            setNaverMap(new window.naver.maps.Map(mapRef.current, {
+            const map = new window.naver.maps.Map(mapRef.current, {
                 center: new window.naver.maps.LatLng(35.8441357,128.6208248),
                 zoom: 13
-            }))
+            })
 
+            setNaverMap(map)
+            dispatch(mapActions.handleNaverMap({naverMap:map}))
             setLoading(true)
 
         };
@@ -82,7 +86,8 @@ const MainMap = () => {
             />
             {loading && naverMap && (
                 <>
-                <CustomOverlay position={new window.naver.maps.LatLng(35.8441357, 128.6208248)} map={naverMap} />
+                <CustomOverlay position={new window.naver.maps.LatLng(35.8441357, 128.6208248)}/>
+                {/*<CustomOverlay position={new window.naver.maps.LatLng(35.8441357, 128.6208248)} map={naverMap} />*/}
                 </>
             )}
         </div>

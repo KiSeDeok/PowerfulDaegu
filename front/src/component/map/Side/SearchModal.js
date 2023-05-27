@@ -63,7 +63,7 @@ function SearchModal(props){
                             <div className={onRegion.includes("남구") ? classes.ssActiveItem : classes.ssItem}
                                  onClick={() => handleRegion("남구")}><span>남구</span></div>
                             <div className={onRegion.includes("서구") ? classes.ssActiveItem : classes.ssItem}
-                                 onClick={() => handleRegion("사구")}><span>서구</span></div>
+                                 onClick={() => handleRegion("서구")}><span>서구</span></div>
                         </div>
                         <div>
                             <div className={onRegion.includes("수성구") ? classes.ssActiveItem : classes.ssItem}
