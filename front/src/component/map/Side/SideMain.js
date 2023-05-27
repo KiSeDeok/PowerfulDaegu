@@ -36,6 +36,7 @@ function SideMain(){
 
     const handleOpen = () => {
         setSideOpen(!sideOpen)
+        dispatch(mapActions.handleSide({sideFold:!sideOpen}))
     }
 
     const handleSearch = (e) => {

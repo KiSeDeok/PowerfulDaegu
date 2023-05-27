@@ -1,9 +1,16 @@
 import React, { useEffect, useRef } from 'react';
 import classes from "./CustomOverlay.module.css"
+import {useSelector} from "react-redux";
 
-const CustomOverlay = ({ position, data, map }) => {
+const CustomOverlay = ({ position, type, data }) => {
     const overlayRef = useRef(null);
     const overlay = useRef(null);
+    const map = useSelector(state => state.map.naverMap)
+
+    // 현재 내 위치로 이동
+    if(type === "myLocation"){
+        map.setCenter(position)
+    }
 
     useEffect(() => {
         overlay.current = new window.naver.maps.OverlayView();
@@ -36,6 +43,7 @@ const CustomOverlay = ({ position, data, map }) => {
 
     return (
         <div className={classes.box} ref={overlayRef}>
+            {data &&
             <div className={classes.detailBox}>
                 <div className={classes.imgBox}>
                     {data?.img ?
@@ -53,6 +61,7 @@ const CustomOverlay = ({ position, data, map }) => {
                 </div>
                 <div className={classes.square}></div>
             </div>
+            }
         </div>
     );
 };
