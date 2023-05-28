@@ -2,7 +2,7 @@ import classes from "./Map.module.css"
 
 import MainMap from "./MainMap";
 import SideMain from "./Side/SideMain";
-import MapInterface from "./MapInterface";
+import MapInterface from "./Interface/MapInterface";
 import useHttp from "../../hooks/use-http";
 import {useEffect} from "react";
 import ModalSet from "./ModalSet";

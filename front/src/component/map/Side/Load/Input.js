@@ -89,19 +89,19 @@ function Input(props){
     }
 
     const handleKeyDown = (e) =>{
-
-        console.log("e = ", e)
-
-
-
         const isKorean = /[가-힣]/.test(e.nativeEvent.data);
-
-        console.log("isKorean= ", isKorean)
-
 
         if (isKorean || e.nativeEvent.inputType === "deleteContentBackward"){
             const filteredData = tempData.filter(data => data.name.includes(e.target.value));
-            setIsData(filteredData)
+
+            console.log("filteredData =", filteredData)
+
+            if(filteredData.length > 0){
+                setIsData(filteredData)
+            }
+            else{
+                setIsData(["false"])
+            }
             setInput(e.target.value)
         }
     }
@@ -115,7 +115,7 @@ function Input(props){
                 onBlur={handleBlur}
             />
             <div className={classes.box}>
-                {data && data.length > 0 ?
+                {data && data.length > 0 && data[0] !== "false" ?
                     <div className={props.type === "start" ? classes.hasBox : `${classes.hasBox} ${classes.endHasBox}`}>
                         {
                             data.map((ele) => {
@@ -145,9 +145,13 @@ function Input(props){
                         }
                     </div>
                     :
-                    <div className={classes.nonHasBox}>
-
+                    data[0] === "false" ?
+                    <div className={props.type === "start" ? classes.hasBox : `${classes.hasBox} ${classes.endHasBox}`}>
+                        <span>'{input}'에 대한 검색 결과가 없어요</span>
                     </div>
+                    :
+
+                    ""
                 }
             </div>
         </>

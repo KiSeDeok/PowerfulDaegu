@@ -1,6 +1,7 @@
 .box{
 }
 
+
 .topLeftBox{
     position: absolute;
     display: flex;
@@ -25,6 +26,16 @@
     bottom: 76px;
     box-sizing: border-box;
 }
+
+.openBox .topLeftBox{
+    left: 33px;
+}
+
+.openBox .bottomCenter{
+    left: calc(50% - 99px);
+
+}
+
 
 .trModalBox{
     position: absolute;

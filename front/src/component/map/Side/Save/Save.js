@@ -28,7 +28,6 @@ function Save(){
             <div className={classes.body}>
                 {type === 0 ? <Favorite/> : <Path />}
             </div>
-
         </div>
     )
 }

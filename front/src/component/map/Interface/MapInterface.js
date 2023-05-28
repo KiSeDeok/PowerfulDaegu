@@ -1,11 +1,16 @@
 import classes from "./MapInterface.module.css"
-import {useState} from "react";
-import {mapModalActions} from "../../store/map/modal-slice";
-import {useDispatch} from "react-redux";
+import React, {useState} from "react";
+import {mapModalActions} from "../../../store/map/modal-slice";
+import {useDispatch, useSelector} from "react-redux";
+import login from "../../Login/Login";
+import CustomOverlay from "../CustomOverlay";
+import OptINF from "./OptINF";
+import LocationWrapper from "../Wrapper/LocationWrapper";
 
 function MapInterface() {
     const dispatch = useDispatch()
     const [profileModal, setProfileModal] = useState(false)
+    const sideFold = useSelector(state => state.map.sideFold)
 
     // 프로필 모달 생성
     const handleProfileModal = () => {
@@ -19,7 +24,7 @@ function MapInterface() {
     }
 
     return (
-        <div className={classes.box}>
+        <div className={sideFold ? classes.box : classes.openBox}>
             <div className={classes.topLeftBox}>
                 <div className={classes.tlBox} onClick={handleWarningModal}>
                     <span>컬러풀 카드, 이건 안돼요! 😭</span>
@@ -50,6 +55,10 @@ function MapInterface() {
                     <span>현 지도에서 검색</span>
                 </div>
             </div>
+            <OptINF/>
+
+            {/*현재 위치*/}
+            <LocationWrapper />
         </div>
     )
 }

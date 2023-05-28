@@ -6,7 +6,7 @@ import Find from "./Find/Find";
 import axios from "axios";
 import {useDispatch} from "react-redux";
 import {mapActions} from "../../../../store/map/map-slice";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import useHttp from "../../../../hooks/use-http";
 import Input from "./Input";
 
@@ -17,6 +17,8 @@ function Load(){
     const [startFocus, setStartFocus] = useState(false)
     const [endFocus, setEndFocus] = useState(false)
 
+    const [test, setTest] = useState("")
+
     const handleStartFocus = (props) => {
         if(props.type === "start"){
             props.is === true ? setStartFocus(true) : setStartFocus(false)
@@ -26,48 +28,53 @@ function Load(){
         }
     }
 
-    const handleStartKeyDown = () => {
+    useEffect(() => {
+        // package.json에 저장
+        /*    "start": "HTTPS=true SSL_CRT_FILE=~/cert/cert.pem SSL_KEY_FILE=~/cert/key.pem react-scripts start",*/
+        /** Safari가 13+ 버전 이상인지 체크 **/
+        const handleOrientationChange = event => {
+            const { alpha, beta, gamma } = event;
+            // 방향 정보 처리
+        };
 
-    }
+        const isSafariOver13 = window.DeviceOrientationEvent !== undefined &&  typeof window.DeviceOrientationEvent.requestPermission === 'function'
+        if (isSafariOver13) {
+            window.DeviceMotionEvent.requestPermission()
+                .then((state) => {
+                    if (state === 'granted') {
+                        /** 모션 이벤트 권한 허용을 눌렀을때 **/
 
-    const handleEndKeyDown = (e) => {
-        if(e.key === "Enter"){
-            // 도착지 설정
-
-            // 맵 데이터 가져오기
-            fetchData({url: `http://localhost:3001/store/search?storename="한나식빵"`}, (obj) => {
-                console.log("obj = ", obj)
-            })
-
-            // const opt = {
-            //     url: "https://map.naver.com/v5/api/transit/directions/point-to-point?start=128.582351,35.8642161&goal=128.560192,35.9303298&mode=TIME&lang=ko&includeDetailOperation=true",
-            //     method: "post",
-            //     contentType: "application/json; charset=utf-8",
-            //     dataType: "json"
-            // }
-            //
-            // axios(opt)
-            //     .then(function a(response) {
-            //         console.log("response =", response)
-            //         // 맵 목적지 설정
-            //         dispatch(mapActions.handleDestination({data : e.target.value}))
-            //
-            //         // 맵 데이터 설정
-            //         dispatch(mapActions.handleSearch({data : response.data.paths.length !== 0 ? response.data.paths : response.data.staticPaths}))
-            //     })
-            //     .catch(function (error) {
-            //         console.log(error);
-            //     });
+                        window.addEventListener('deviceorientation', handleOrientationChange);
+                    } else if (state === 'denied'){
+                        /** 모션 이벤트 권한 취소를 눌렀을때 **/
+                        /** Safari 브라우저를 종료하고 다시 접속하도록 유도하는 UX 화면 필요 **/
+                    }
+                })
+                .catch(e => {
+                    console.error(e)
+                })
+        } else {
+            window.addEventListener('deviceorientation', handleOrientationChange);
         }
-    }
 
+
+        // if (window.DeviceOrientationEvent) {
+        //     alert("hi")
+        //     window.addEventListener('deviceorientation', handleOrientationChange);
+        // } else {
+        //     console.error('Device orientation is not supported');
+        // }
+        //
+        // return () => {
+        //     window.removeEventListener('deviceorientation', handleOrientationChange);
+        // };
+    }, []);
 
     return (
         <div className={classes.box}>
             <div className={startFocus || endFocus ? `${classes.searchBox} ${classes.onFocus}` : classes.searchBox}>
                 <div className={startFocus ? `${classes.startDiv} ${classes.startFocus}` : classes.startDiv}>
                     <img className={startFocus ? classes.startImg : ""} src={"/images/map/load/startFlag.svg"}/>
-
                     <Input keyDown={handleStartFocus} type={"start"}/>
                 </div>
                 <div className={endFocus ? `${classes.endDiv} ${classes.startFocus}` : classes.endDiv}>

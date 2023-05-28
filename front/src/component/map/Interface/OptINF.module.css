@@ -1,0 +1,91 @@
+
+.optionSet{
+    position: absolute;
+    right: 35px;
+    bottom: 130px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.favoriteSet, .locationSet{
+    width: 40px;
+    height: 40px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+
+.favoriteSet:hover, .locationSet:hover{
+    background: #FF7D00;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.favoriteSet{
+    background-image: url("../../../../public/images/map/tile/mapStar_default.svg");
+}
+
+.favoriteSet:hover{
+    background-image: url("../../../../public/images/map/tile/mapStar_hover.svg");
+}
+
+.locationSet{
+    background-image: url("../../../../public/images/map/tile/location_default.svg");
+}
+
+.locationSet:hover{
+    background-image: url("../../../../public/images/map/tile/location_hover.svg");
+}
+
+.sizeSet{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 80px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+.plus, .minus{
+    width: 40px;
+    height: 40px;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+
+.plus:hover, .minus:hover{
+    background: #FF7D00;
+    border-radius: 5px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.plus{
+    background-image: url("../../../../public/images/map/tile/plus_default.svg");
+}
+
+.plus:hover{
+    background-image: url("../../../../public/images/map/tile/plus_hover.svg");
+}
+
+.minus:hover{
+    background-image: url("../../../../public/images/map/tile/minus_hover.svg");
+}
+
+.centerLine{
+    width: 25px;
+    border-bottom: 1px solid #EAEAEA;
+}
+
+.minus{
+    background-image: url("../../../../public/images/map/tile/minus_default.svg");
+}
