@@ -1,5 +1,5 @@
 import {useState} from "react";
-import { useCookies } from 'react-cookie'; // useCookies import
+import { useCookies } from 'react-cookie';
 import moment from 'moment';
 import axios from 'axios';
 
@@ -26,74 +26,49 @@ function Login(props) {
         setPw(event.target.value);
     };
 
-    const testBtn = () => {
-        // fetch("http://43.200.14.40/notice", {
-        //     method : "POST",
-        //     credentials: "same-origin",
-        //     headers : {
-        //         "Content-Type":"application/json; charset=utf-8",
-        //         "Authorization":"ejrwndejrwndejrwndejrnwd"
-        //     },
-        //     body: JSON.stringify({
-        //         "title": "공지사항 입니다.",
-        //         "content": "공지사항 입니다.",
-        //         "category": "inspection"
-        //     })
-        // })        // 리턴값이 있으면 리턴값에 맞는 req 지정
-        //     .then(res=> {
-        //         console.log(res)
-        //         // setCookie('access_token', res.access_token)
-        //     });
-
-        fetch("http://43.200.14.40/store/like", {
-            method : "GET",
-        }) .then(res=>res.json())       // 리턴값이 있으면 리턴값에 맞는 req 지정
-            .then(res=> {
-                console.log(res)
-                // setCookie('access_token', res.access_token)
-            });
-
-
+    const loginBtn = () => {
         // try {
-        //     // POST 요청은 body에 실어 보냄
-        //     axios.post('http://43.200.14.40/notice', {
-        //         "title": "공지사항 입니다.",
-        //         "content": "공지사항 입니다.",
-        //         "category": "inspection"
+        //     axios.post('http://localhost:3001/users/login', {
+        //         "email": id,
+        //         "password": pw
         //     },  { withCredentials : true }).then(data => {
-        //         console.log(data)
+        //         const expires =  moment().add('10','day').toDate()
+        //         const sameSite = "none"
+        //
+        //         setCookie('access_token', data.access_token,{expires})
+        //
+        //         window.location.replace("home")
         //     }).catch(error => {
         //         console.log(error)
         //     })
         // } catch (e) {
         //     console.error(e);
         // }
-    }
 
-    const loginBtn = () => {
-        try{
-            fetch("http://43.200.14.40/users/login", {
-                method : "POST",
-                headers : {
-                    "Content-Type":"application/json; charset=utf-8"
-                },
-                body: JSON.stringify({
-                    "email" : id,
-                    "password" : pw
-                })
-            }).then(res=>res.json())        // 리턴값이 있으면 리턴값에 맞는 req 지정
-                .then(res=> {
-                    const expires =  moment().add('10','day').toDate()
-                    const sameSite = "none"
+        try {
+            axios.post('http://localhost:3001/question', {
+                "question": "질문입니다.",
+                "category": "inspection",
+                "urls": [
+                    "qweqweq",
+                    "qweqweqweq"
+                ]
+            },  { withCredentials : true }).then(data => {
+                // const expires =  moment().add('10','day').toDate()
+                // const sameSite = "none"
+                //
+                // setCookie('access_token', data.access_token,{expires})
+                //
+                // window.location.replace("home")
 
-                    console.log(res)
+                console.log(data)
 
-                    setCookie('access_token', res.access_token,{expires})
-                });
-        }catch (e) {
-            console.log(e)
+            }).catch(error => {
+                console.log(error)
+            })
+        } catch (e) {
+            console.error(e);
         }
-
     }
 
     return (
