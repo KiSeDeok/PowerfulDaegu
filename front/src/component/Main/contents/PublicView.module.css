@@ -1,4 +1,4 @@
-.aaa {
+.content {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -6,14 +6,15 @@
     margin: 130px 0 35px 0;
 }
 
-.bbb {
+.title {
     font-style: normal;
     font-weight: 600;
     font-size: 24px;
     line-height: 29px;
+    background-color: red;
 }
 
-.ccc {
+.viewMore {
     font-style: normal;
     font-weight: 600;
     font-size: 18px;

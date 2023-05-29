@@ -72,28 +72,28 @@ function Login(props) {
     }
 
     return (
-        <div className={classes.aaa}>
+        <div className={classes.content}>
             <LoginHeader/>
-            <div className={classes.bbb}>
+            <div className={classes.header}>
                 로그인
             </div>
 
-            <div className={classes.fff}>
+            <div className={classes.inputArea}>
                 <InputTag title="이메일" type="text" value={id} onChange={saveUserId} />
                 <InputTag title="비밀번호" type="password" value={pw} onChange={saveUserPw} />
             </div>
 
             <SubmitBtn text="로그인" flag={false} eventBtn={loginBtn} />
 
-            <div className={classes.ccc}>
+            <div className={classes.funArea}>
                 <div>비밀번호 찾기</div>
                 <div>|</div>
                 <Link to={"/signup"}>회원가입</Link>
             </div>
 
-            <hr className={classes.ddd}/>
+            <hr className={classes.line}/>
 
-            <div className={classes.eee}>
+            <div className={classes.socialFunc}>
                 SNS계정으로 간편 로그인
             </div>
 

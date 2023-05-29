@@ -2,7 +2,7 @@ import classes from "./SocialBtn.module.css";
 
 function SocialBtn(props) {
     return (
-        <img className={props.round ? classes.bbb : classes.aaa} src={props.src}/>
+        <img className={props.round ? classes.roundArea : classes.defaultArea} src={props.src}/>
     );
 }
 

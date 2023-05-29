@@ -1,4 +1,4 @@
-.aaa {
+.blackBtn {
     background: #303030;
     border-radius: 50px;
     width: 128px;
@@ -16,7 +16,7 @@
     cursor: pointer;
 }
 
-.bbb {
+.disableBtn {
     background: #FFFFFF;
     border-radius: 50px;
     width: 128px;

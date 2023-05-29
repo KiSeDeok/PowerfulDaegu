@@ -2,19 +2,19 @@ import classes from "./ContentsQuestion.module.css";
 
 function ContentsQuestion(props) {
     return (
-        <div className={classes.aaa}>
-            <div className={classes.bbb}>
-                <div className={classes.ddd}>
+        <div className={classes.content}>
+            <div className={classes.iconArea}>
+                <div className={classes.viewIcon}>
                     🔍
                 </div>
             </div>
 
-            <div className={classes.ccc}>
-                <div className={classes.eee}>
-                    <div className={classes.fff}>Q.</div>
-                    <div className={classes.ggg}>{props.question.question}</div>
+            <div className={classes.detail}>
+                <div className={classes.questionArea}>
+                    <div className={classes.question}>Q.</div>
+                    <div className={classes.questionDetail}>{props.question.question}</div>
                 </div>
-                <div className={classes.hhh}>{props.question.answer}</div>
+                <div className={classes.answer}>{props.question.answer}</div>
             </div>
         </div>
     );
