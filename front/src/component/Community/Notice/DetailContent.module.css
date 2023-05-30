@@ -13,6 +13,14 @@
 .communityHeaderTitle {
     display: flex;
     flex-direction: column;
+
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+
+    color: #303030;
 }
 
 .communityHeaderTitle > div {

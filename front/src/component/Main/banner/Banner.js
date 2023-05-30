@@ -6,7 +6,9 @@ function Banner() {
     return (
         <div className={classes.content}>
             <div className={classes.searchArea}>
-                가맹점 찾기🔍<br/>
+                가맹점 찾기
+                <img className={classes.glassesIcon} src='/icon/glasses.png' />
+                <br/>
                 이제ㅇㅇㅇ로 편리하게
             </div>
             <div className={classes.textArea}>

@@ -120,11 +120,11 @@ function Contents() {
 
                     <div className={classes.faqPageNation}>
                         <div className={classes.faqPageNationLeft}>
-                            <div>{"<"}</div>
+                            <div><img className={classes.arrowIcon} src='/icon/leftArrow_mini.png'/></div>
                         </div>
                         <div className={classes.faqPageNationDetail}>1/3</div>
                         <div className={classes.faqPageNationRight}>
-                            <div>{">"}</div>
+                            <div><img className={classes.arrowIcon} src='/icon/rightArrow_mini.png'/></div>
                         </div>
                     </div>
                 </div>

@@ -36,3 +36,10 @@
     margin-bottom: 29px;
     color: #303030;
 }
+
+.glassesIcon {
+    width: 36px;
+    height: 36px;
+    margin-left: 8px;
+    position: absolute;
+}

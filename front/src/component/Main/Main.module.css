@@ -1,7 +1,15 @@
 .bannerArea {
-    background-image: url("/public/img/main_banner.png");
+    background-color: #FFDA68;
     background-size: cover;
     display: flex;
     justify-content: center;
     height: 656px;
+    position: relative;
+}
+
+.bannerImg {
+    position: absolute;
+    height: 424px;
+    width: 1200px;
+    bottom: 0;
 }

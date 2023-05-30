@@ -5,7 +5,7 @@ function ContentsQuestion(props) {
         <div className={classes.content}>
             <div className={classes.iconArea}>
                 <div className={classes.viewIcon}>
-                    🔍
+                    <img className={classes.glassesIcon} src='/icon/glasses.png' />
                 </div>
             </div>
 

@@ -13,6 +13,7 @@ function Main() {
                 <Header flag ="main"/>
 
                 <div className={classes.bannerArea}>
+                    <img className={classes.bannerImg} src='/img/main_banner.png' />
                     <Banner/>
                 </div>
 
