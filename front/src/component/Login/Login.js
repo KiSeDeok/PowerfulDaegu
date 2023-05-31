@@ -1,5 +1,6 @@
 import {useState} from "react";
 import { useCookies } from 'react-cookie';
+import {useSelector, useDispatch} from "react-redux";
 import moment from 'moment';
 import axios from 'axios';
 
@@ -10,8 +11,13 @@ import SocialGroup from "./socialGroup/SocialGroup";
 
 import classes from "./Login.module.css";
 import {Link} from "react-router-dom";
+import {authorityActions} from "../../store/user/authority-slice";
 
 function Login(props) {
+    const dispatch = useDispatch()
+    const authority = useSelector((state) => state.authority.mode)
+
+    console.log(authority)
 
     const [id, setId] = useState('');
     const [pw, setPw] = useState('');
@@ -27,22 +33,23 @@ function Login(props) {
     };
 
     const loginBtn = () => {
-        try {
-            axios.post('http://localhost:3001/users/login', {
-                "email": id,
-                "password": pw
-            }, {withCredentials: true}).then(data => {
-                const expires = moment().add('10', 'day').toDate()
-
-                setCookie('access_token', data.access_token, {expires})
-
-                window.location.replace("home")
-            }).catch(error => {
-                console.log(error)
-            })
-        } catch (e) {
-            console.error(e);
-        }
+        dispatch(authorityActions.handleMode({mode: 1}))
+        // try {
+        //     axios.post('http://localhost:3001/users/login', {
+        //         "email": id,
+        //         "password": pw
+        //     }, {withCredentials: true}).then(data => {
+        //         const expires = moment().add('10', 'day').toDate()
+        //
+        //         setCookie('access_token', data.access_token, {expires})
+        //
+        //         window.location.replace("home")
+        //     }).catch(error => {
+        //         console.log(error)
+        //     })
+        // } catch (e) {
+        //     console.error(e);
+        // }
     }
 
     return (
