@@ -58,6 +58,7 @@ const CustomOverlay = ({ position, type, data }) => {
                 <div className={classes.content}>
                     <span>CU 대구대봉점</span>
                     <label>편의점</label>
+                    <label>편의점</label>
                 </div>
                 <div className={classes.square}></div>
             </div>
