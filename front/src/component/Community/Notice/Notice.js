@@ -68,13 +68,40 @@ function Notice() {
             date: '2023.02.02'
         }
     ];
-    const [category, setCategory] = useState(0)
+    const [category, setCategory] = useState(0);
+    const [checkItems, setCheckItems] = useState([]);
+    const [allCheck, setAllCheck] = useState(false);
+
+    function handleSingleCheck(checked, id) {
+        console.log(checked, id)
+        console.log(checkItems)
+
+        if (!checked) {
+            setCheckItems(prev => [...prev, id]);
+        } else {
+            setCheckItems(checkItems.filter((el) => el !== id));
+        }
+    }
+
+    function handleAllCheck() {
+        if(!allCheck) {
+            const idArray = [];
+            contents.forEach((el) => idArray.push(el.id));
+            setCheckItems(idArray);
+            setAllCheck(true)
+        }
+        else {
+            setCheckItems([]);
+            setAllCheck(false)
+        }
+    }
 
     return (
         <>
             <div>
                 <div className={classes.noticeHeader}>
                     <div className={classes.noticeHeaderText}>공지</div>
+
                     <div className={classes.categoryArea}>
                         <div className={category === 0 ? classes.categoryTextActive : classes.categoryTextDisable} onClick={setCategory.bind(this, 0)}>전체</div>
                         <div className={category === 1 ? classes.categoryTextActive : classes.categoryTextDisable} onClick={setCategory.bind(this, 1)}>안내</div>
@@ -83,9 +110,30 @@ function Notice() {
                 </div>
             </div>
 
+            <div className={classes.adminContent}>
+                <div className={classes.checkBoxArea}>
+                    <div className={allCheck ? classes.checkBoxChecked : classes.checkBoxDefault} onClick={handleAllCheck}>
+                        <div/>
+                    </div>
+                    <div className={classes.checkBoxText}>
+                        전체선택
+                    </div>
+                </div>
+
+                <div className={classes.adminFuncArea}>
+                    <div className={classes.deleteElementBtn}>
+                        삭제
+                    </div>
+                    <div className={classes.addNoticeBtn}>
+                        <img className={classes.addNoticeIcon} src='/icon/pencil_icon.png' />
+                        글쓰기
+                    </div>
+                </div>
+            </div>
+
             <div>
                 {contents.map(content => (
-                    <Content key={content.id} content={content} />
+                    <Content key={content.id} content={content} checked={content.id in checkItems} checkHandler={handleSingleCheck} />
                 ))}
             </div>
 

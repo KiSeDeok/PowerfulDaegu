@@ -33,23 +33,22 @@ function Login(props) {
     };
 
     const loginBtn = () => {
-        dispatch(authorityActions.handleMode({mode: 1}))
-        // try {
-        //     axios.post('http://localhost:3001/users/login', {
-        //         "email": id,
-        //         "password": pw
-        //     }, {withCredentials: true}).then(data => {
-        //         const expires = moment().add('10', 'day').toDate()
-        //
-        //         setCookie('access_token', data.access_token, {expires})
-        //
-        //         window.location.replace("home")
-        //     }).catch(error => {
-        //         console.log(error)
-        //     })
-        // } catch (e) {
-        //     console.error(e);
-        // }
+        try {
+            axios.post('http://localhost:3001/users/login', {
+                "email": id,
+                "password": pw
+            }, {withCredentials: true}).then(data => {
+                const expires = moment().add('10', 'day').toDate()
+
+                setCookie('access_token', data.access_token, {expires})
+
+                window.location.replace("home")
+            }).catch(error => {
+                console.log(error)
+            })
+        } catch (e) {
+            console.error(e);
+        }
     }
 
     return (
