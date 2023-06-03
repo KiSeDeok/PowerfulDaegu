@@ -7,11 +7,11 @@ function Find(){
     const [index, setIndex] = useState(0)
     const searchData = useSelector(state => state.map.searchData)
 
-    console.log("searchData = ", searchData)
-
     const handleIndex= (index) => {
         setIndex(index)
     }
+
+    console.log("searchData= ", searchData)
 
     return (
         <div className={classes.box}>
@@ -30,7 +30,9 @@ function Find(){
                 </div>
             </div>
             <div className={classes.body}>
-                {searchData && searchData.map((ele) => (
+                {searchData && searchData.paths ? searchData.paths.map((ele) => (
+                    <FindContent data={ele}/>
+                )) : searchData.staticPaths && searchData.staticPaths.map((ele) => (
                     <FindContent data={ele}/>
                 ))}
             </div>

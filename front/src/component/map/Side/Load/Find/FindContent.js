@@ -14,8 +14,6 @@ function FindContent(props){
     const data = props.data
     const busSubwaySet = props.data?.legs[0]?.steps.filter(ele => ele.type === "BUS" || ele.type === "SUBWAY")
 
-    console.log("data= ", data)
-
     const handleDetail = (e) => {
         e.stopPropagation()
         e.preventDefault()
@@ -36,10 +34,6 @@ function FindContent(props){
         const position = []
 
         data.legs[0]?.steps?.map((ele) => {
-            // ele.points?.map((p) => {
-            //     position.push(p)
-            // })
-
             position.push(ele)
         })
 

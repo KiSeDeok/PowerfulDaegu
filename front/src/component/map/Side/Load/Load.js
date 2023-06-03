@@ -17,7 +17,7 @@ function Load(){
     const [startFocus, setStartFocus] = useState(false)
     const [endFocus, setEndFocus] = useState(false)
 
-    const [test, setTest] = useState("")
+    const [position, setPosition] = useState({start:{}, end:{}})
 
     const handleStartFocus = (props) => {
         if(props.type === "start"){
@@ -28,58 +28,50 @@ function Load(){
         }
     }
 
-    useEffect(() => {
-        // package.json에 저장
-        /*    "start": "HTTPS=true SSL_CRT_FILE=~/cert/cert.pem SSL_KEY_FILE=~/cert/key.pem react-scripts start",*/
-        /** Safari가 13+ 버전 이상인지 체크 **/
-        const handleOrientationChange = event => {
-            const { alpha, beta, gamma } = event;
-            // 방향 정보 처리
-        };
+    const handleSearchData = (type, point) => {
 
-        const isSafariOver13 = window.DeviceOrientationEvent !== undefined &&  typeof window.DeviceOrientationEvent.requestPermission === 'function'
-        if (isSafariOver13) {
-            window.DeviceMotionEvent.requestPermission()
-                .then((state) => {
-                    if (state === 'granted') {
-                        /** 모션 이벤트 권한 허용을 눌렀을때 **/
+        console.log(position)
 
-                        window.addEventListener('deviceorientation', handleOrientationChange);
-                    } else if (state === 'denied'){
-                        /** 모션 이벤트 권한 취소를 눌렀을때 **/
-                        /** Safari 브라우저를 종료하고 다시 접속하도록 유도하는 UX 화면 필요 **/
-                    }
+        if(type === "start"){
+
+            setPosition((prev) => ({
+                ...prev,
+                start: point
+            }))
+
+            if(!(position.end && Object.keys(position.end).length === 0 && position.end.constructor === Object)) {
+                fetchData({url: `http://localhost:3001/maps?start=${point}&goal=${position.end}`}, (obj) => {
+                    console.log("obj =", obj)
+                    dispatch(mapActions.handleSearch({data:obj}))
                 })
-                .catch(e => {
-                    console.error(e)
-                })
-        } else {
-            window.addEventListener('deviceorientation', handleOrientationChange);
+            }
         }
+        else{
+            setPosition((prev) => ({
+                ...prev,
+                end: point
+            }))
 
+            if(!(position.start && Object.keys(position.start).length === 0 && position.start.constructor === Object)){
+                fetchData({url: `http://localhost:3001/maps?start=${position.start}&goal=${point}`}, (obj) => {
+                    console.log("obj =", obj)
+                    dispatch(mapActions.handleSearch({data:obj}))
+                })
+            }
 
-        // if (window.DeviceOrientationEvent) {
-        //     alert("hi")
-        //     window.addEventListener('deviceorientation', handleOrientationChange);
-        // } else {
-        //     console.error('Device orientation is not supported');
-        // }
-        //
-        // return () => {
-        //     window.removeEventListener('deviceorientation', handleOrientationChange);
-        // };
-    }, []);
+        }
+    }
 
     return (
         <div className={classes.box}>
             <div className={startFocus || endFocus ? `${classes.searchBox} ${classes.onFocus}` : classes.searchBox}>
                 <div className={startFocus ? `${classes.startDiv} ${classes.startFocus}` : classes.startDiv}>
-                    <img className={startFocus ? classes.startImg : ""} src={"/images/map/load/startFlag.svg"}/>
-                    <Input keyDown={handleStartFocus} type={"start"}/>
+                    <img className={Object.keys(position.start).length !== 0 ? classes.startImg : classes.noImg} src={"/images/map/load/startFlag.svg"}/>
+                    <Input keyDown={handleStartFocus} select={handleSearchData} type={"start"}/>
                 </div>
                 <div className={endFocus ? `${classes.endDiv} ${classes.startFocus}` : classes.endDiv}>
-                    <img className={endFocus ? classes.endImg : ""} src={"/images/map/load/endFlag.svg"}/>
-                    <Input keyDown={handleStartFocus} type={"end"}/>
+                    <img className={Object.keys(position.end).length !== 0 ? classes.endImg : classes.noImg} src={"/images/map/load/endFlag.svg"}/>
+                    <Input keyDown={handleStartFocus} select={handleSearchData} type={"end"}/>
                 </div>
                 <img className={classes.changeDiv} src={"/images/map/changeBtn.svg"}/>
             </div>
