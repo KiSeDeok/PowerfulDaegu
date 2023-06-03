@@ -1,5 +1,6 @@
 import classes from "./TransfortSet.module.css";
 import {useState} from "react";
+import {v4 as uuidv4} from "uuid";
 
 function TransfortSet(props){
     const [selected, setSelect] = useState(false)
@@ -18,7 +19,7 @@ function TransfortSet(props){
             <div className={selected ? classes.selectedStation : classes.noSelectedStation}>
                 {station.map((ele) => {
                     return (
-                        <div className={classes.stationBox}>
+                        <div key={uuidv4()} className={classes.stationBox}>
                             <span>{ele.name}</span>
                         </div>
                     )

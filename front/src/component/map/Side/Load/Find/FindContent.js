@@ -41,7 +41,7 @@ function FindContent(props){
     }
 
     return (
-        <div className={classes.box} onClick={handleMapClick}>
+        <div key={uuidv4()} className={classes.box} onClick={handleMapClick}>
             <div className={classes.head}>
                 <div className={classes.headLeft}>
                     <div className={classes.hlTimeBox}>
@@ -67,7 +67,7 @@ function FindContent(props){
                 <div className={classes.shortSummary}>
                     {data.legs[0]?.steps.map((ele, index) => {
                         return (
-                            <div className={`${classes.shortFormDiv} ${index === 0 ? classes.firstForm : index === data.legs[0]?.steps.length-1 ?  classes.lastForm : ""}`}>
+                            <div key={uuidv4()} className={`${classes.shortFormDiv} ${index === 0 ? classes.firstForm : index === data.legs[0]?.steps.length-1 ?  classes.lastForm : ""}`}>
                                 <div className={`${classes.leftCircle} ${ele.type === "WALKING" ? classes.walkCircle : classes.busCircle}`}></div>
                                 <div className={`${ele.type === "WALKING" ? classes.walkLine : classes.busLine}`}></div>
                                 <img src={ele.type === "WALKING" ? "/images/map/walk_small.svg" : ele.type === "BUS" ? "/images/map/bus_small.svg" : "/images/map/subway_small.svg"} />
@@ -91,8 +91,8 @@ function FindContent(props){
 
                     busSubwaySet.map((ele, index) => {
                         return (
-                            <>
-                                <div
+                            <div key={uuidv4()}>
+                                <div key={uuidv4()}
                                     className={`${ele.type === "BUS" ? classes.sdDetailBusBox : classes.sdDetailBusBox} ${index === busSubwaySet.length - 1 ? classes.sdLastIndexBox : ""}`}>
                                     <div className={classes.sdLeftArea}>
                                         <img
@@ -109,7 +109,7 @@ function FindContent(props){
                                         </div>
                                     </div>
                                 </div>
-                                <div
+                                <div key={uuidv4()}
                                     className={`${classes.sdDetailArriveBox} ${index === busSubwaySet.length - 1 ? classes.sdLastArriveBox : ""}`}>
                                     <div className={classes.sdLeftArea}>
                                         <div className={classes.sdlBox}><span>하차</span></div>
@@ -131,7 +131,7 @@ function FindContent(props){
                                         </div>
                                     </div>
                                 </div>
-                            </>
+                            </div>
                         )
                     })
 
@@ -139,10 +139,9 @@ function FindContent(props){
                     <>
                         {
                             props.data?.legs[0]?.steps.map((ele, index) => {
-                            console.log("ele =", ele)
 
                             return (
-                                <div className={classes.detailBox}>
+                                <div key={uuidv4()} className={classes.detailBox}>
                                     <div
                                         className={`${ele.type === "WALKING" ? classes.sdDetailWalkBox : classes.sdDetailBusBox} ${index === busSubwaySet.length - 1 ? classes.sdLastIndexBox : ""}`}>
                                         <div className={classes.sdLeftArea}>
@@ -210,7 +209,7 @@ function FindContent(props){
 
                 }
                 <div className={classes.sdLastBox} onClick={handleDetail}>
-                    <span>자세히 보기</span>
+                    <span>{type !== "detail" ? "자세히 보기" : "접기"}</span>
                 </div>
             </div>
         </div>

@@ -10,7 +10,7 @@ const mapStoreSlice = createSlice({
         }
     },
     reducers:{
-        handleSearch(state, action){
+        handleStoreSearch(state, action){
             state.search = {value:action.payload.value, region:action.payload.region, type:action.payload.type}
         }
     }

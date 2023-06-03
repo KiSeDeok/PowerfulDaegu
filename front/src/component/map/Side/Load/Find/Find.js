@@ -2,6 +2,7 @@ import classes from "./Find.module.css"
 import {useState} from "react";
 import {useSelector} from "react-redux";
 import FindContent from "./FindContent";
+import {v4 as uuidv4} from "uuid";
 
 function Find(){
     const [index, setIndex] = useState(0)
@@ -10,8 +11,6 @@ function Find(){
     const handleIndex= (index) => {
         setIndex(index)
     }
-
-    console.log("searchData= ", searchData)
 
     return (
         <div className={classes.box}>
@@ -30,11 +29,11 @@ function Find(){
                 </div>
             </div>
             <div className={classes.body}>
-                {searchData && searchData.paths ? searchData.paths.map((ele) => (
-                    <FindContent data={ele}/>
+                {searchData ? searchData.paths ? searchData.paths.map((ele) => (
+                    <FindContent key={uuidv4()} data={ele}/>
                 )) : searchData.staticPaths && searchData.staticPaths.map((ele) => (
-                    <FindContent data={ele}/>
-                ))}
+                    <FindContent key={uuidv4()} data={ele}/>
+                )) : ""}
             </div>
         </div>
     )

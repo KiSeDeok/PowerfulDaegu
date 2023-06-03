@@ -6,10 +6,11 @@ import {useState} from "react";
 import SearchModal from "./SearchModal";
 import Load from "./Load/Load";
 import Save from "./Save/Save";
+import {mapStoreActions} from "../../../store/map/mapStore-slice";
 
 function SideMain(){
     const dispatch = useDispatch()
-    const pageIndex = useSelector(state => state.map.index)
+    const pageData = useSelector(state => state.map.index)
     const [isSearchSet, setSearchOpen] = useState(false)
     const [searchRegion, setSearchRegion] = useState(["중구","동구","북구","남구","서구","수성구","달서구","달성군"])
     const [type, setType] = useState(["음식점","편의점","푸드 코트","지역 아동센터","주민 센터","사회 복지관"])
@@ -17,8 +18,10 @@ function SideMain(){
     // 사이드바 활성화 여부
     const [sideOpen, setSideOpen] = useState(true)
 
+    console.log("pageData =" , pageData)
+
     const handleIndex = (index) => {
-        dispatch(mapActions.handleIndex({index:index}))
+        dispatch(mapActions.handleIndex({index: {num: index}}))
     }
 
     const handleSearchRegion = (ele) => {
@@ -41,8 +44,8 @@ function SideMain(){
 
     const handleSearch = (e) => {
         if(e.key === "Enter" || e.keyCode === 13){
-            dispatch(mapActions.handleIndex({index:0}))
-            dispatch(mapActions.handleSearch({value:e.target.value, region:searchRegion, type:type}))
+            dispatch(mapActions.handleIndex({index: {place: pageData.place, num: 0}}))
+            dispatch(mapStoreActions.handleStoreSearch({value:e.target.value, region:searchRegion, type:type}))
         }
     }
 
@@ -58,14 +61,14 @@ function SideMain(){
                 <SearchModal isSearchSet={isSearchSet} region={searchRegion} type={type} setRegion={handleSearchRegion} setType={handleSearchType} setOpen={handleSearchOpt}/>
             </div>
             <div className={classes.categoryBox}>
-                <div className={pageIndex === 0 ? classes.activeCategory : ""} onClick={() => handleIndex(0)}><span>스토어 검색</span></div>
-                <div className={pageIndex === 1 ? classes.activeCategory : ""} onClick={() => handleIndex(1)}><span>길찾기</span></div>
-                <div className={pageIndex === 2 ? classes.activeCategory : ""} onClick={() => handleIndex(2)}><span>저장</span></div>
+                <div className={pageData.num === 0 ? classes.activeCategory : ""} onClick={() => handleIndex(0)}><span>스토어 검색</span></div>
+                <div className={pageData.num === 1 ? classes.activeCategory : ""} onClick={() => handleIndex(1)}><span>길찾기</span></div>
+                <div className={pageData.num === 2 ? classes.activeCategory : ""} onClick={() => handleIndex(2)}><span>저장</span></div>
             </div>
             <div className={classes.contentBox}>
-                {pageIndex === 0 ?
-                    <Store /> : pageIndex === 1 ?
-                    <Load/> :
+                {pageData.num === 0 ?
+                    <Store /> : pageData.num === 1 ?
+                    <Load /> :
                     <Save />
                 }
             </div>

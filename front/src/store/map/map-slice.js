@@ -4,7 +4,19 @@ const mapSlice = createSlice({
     name: "map",
     initialState:{
         naverMap:"",
-        index:0,
+        index:{
+            num:0,
+            place:{
+                start:{
+                    name:"",
+                    point:""
+                },
+                end:{
+                    name:"",
+                    point:""
+                }
+            }
+        },
         searchData:[],
         destination:"",
         polyline:"",

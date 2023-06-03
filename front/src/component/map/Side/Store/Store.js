@@ -8,6 +8,7 @@ function Store(){
     const storeValue = useSelector(state => state.mapStore.search)
     const { isLoading, error, sendRequest: fetchData } = useHttp();
 
+    const [load, setLoad] = useState(false)
     const [items, setItems] = useState([])
     const items3 = [
         {
@@ -132,41 +133,58 @@ function Store(){
     }]
 
     useEffect(() => {
-        console.log("storeValue = ", storeValue)
         if(storeValue.value) {
             const region = storeValue.region.join(",");
             const type = storeValue.type.join(",")
 
-            console.log("region= ", region)
-            console.log("type= ", type)
+            console.log(region)
+            console.log(type)
 
-            fetchData({url: `http://localhost:3001/store/search?storename=${storeValue.value}&region=달서구&place=분식`}, (obj) => {
+            fetchData({url: `http://localhost:3001/store/search?storename=${storeValue.value}&region=${region}&place=`}, (obj) => {
                 console.log("obj =", obj)
-                setItems(obj)
+                if(obj.length > 0) {
+                    setItems(obj)
+                }
+                else if(obj.length === 0){
+                    setItems([false])
+                }
+                setLoad(true)
             })
+        }
+
+        else{
+            setLoad(true)
         }
     }, [storeValue])
 
 
     return (
-        <div className={classes.box}>
-            { items && items.length > 0 ?
-                items.map((ele) => (
-                <Content data={ele}/>
-                ))
-                :
-                <div className={classes.fBox}>
-                    <div className={classes.fbContent}>
-                        <span>맛있는 한끼식사! <br/>오늘은 어디로 떠나볼까요?</span>
-                        <label>장소, 주소, 키워드를 검색해 보세요</label>
-                    </div>
-                    <div className={classes.fbImg}>
-                        <img src={"/images/map/storeBackground.svg"}/>
-                    </div>
-                </div>
+        <>
+        {
+            load ?
+                <div className={classes.box}>
+                    {items && items.length > 0 && items[0] !== false ?
+                        items.map((ele) => (
+                            <Content data={ele}/>
+                        ))
+                    :
+                    items[0] === false ?
+                        <div>no contents</div>
+                    :
+                        <div className={classes.fBox}>
+                            <div className={classes.fbContent}>
+                                <span>맛있는 한끼식사! <br/>오늘은 어디로 떠나볼까요?</span>
+                                <label>장소, 주소, 키워드를 검색해 보세요</label>
+                            </div>
+                            <div className={classes.fbImg}>
+                                <img src={"/images/map/storeBackground.svg"}/>
+                            </div>
+                        </div>
 
-            }
-        </div>
+                    }
+                </div> : ""
+        }
+        </>
     )
 }
 

@@ -3,9 +3,11 @@ import {useRef, useState} from "react";
 import {useDispatch} from "react-redux";
 import {mapModalActions} from "../../../../../store/map/modal-slice";
 import Talk from "./Talk";
+import {mapActions} from "../../../../../store/map/map-slice";
 
 function Content(props){
     const data = props.data
+    const dispatch = useDispatch()
 
     // 목적지 이벤트
     const [isDn, setDn] = useState(false)
@@ -45,30 +47,20 @@ function Content(props){
         }
     }
 
-    const handleStartPoint = (e) =>{
+    const handlePoint = (e, type) =>{
         e.preventDefault()
         e.stopPropagation()
 
-        if(start) {
-            setStart("")
+        console.log("start= ", start)
+        console.log("data= ", data)
+
+        if(type === "start"){
+            dispatch(mapActions.handleIndex({index: {place: {start:{name:data.name, point:data.point}}, num: 1}}))
         }
         else{
-            setStart(data.startP)
+            dispatch(mapActions.handleIndex({index: {place: {end:{name:data.name, point:data.point}}, num: 1}}))
         }
     }
-
-    const handleEndPoint = (e) =>{
-        e.preventDefault()
-        e.stopPropagation()
-
-        if(end){
-            setEnd("")
-        }
-        else {
-            setEnd(data.endP)
-        }
-    }
-
 
     const handleIsActive = (e) => {
         e.preventDefault()
@@ -127,9 +119,9 @@ function Content(props){
                 <div className={classes.right}>
                     <div className={isDn ? classes.destinationActiveDiv : classes.destinationDiv} onClick={(e) => handleDestinationOpt(e)}>
                         <div className={isDn ? classes.destinationActive : classes.destinationDefault}>
-                           <span onClick={handleStartPoint} className={start ? classes.activeSpan : ""}>출발</span>
+                           <span onClick={(e) => handlePoint(e,"start")} className={start ? classes.activeSpan : ""}>출발</span>
                            <span>|</span>
-                           <span onClick={handleEndPoint} className={end ? classes.activeSpan : ""}>도착</span>
+                           <span onClick={(e) => handlePoint(e,"end")} className={end ? classes.activeSpan : ""}>도착</span>
                         </div>
                         <div className={isDn ? classes.destinationActiveDiv : classes.destinationDiv}>
                             <img src={isDn ? "/images/map/destination_active.svg" : "/images/map/destination_default.svg"}/>

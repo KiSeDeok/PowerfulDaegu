@@ -1,6 +1,7 @@
 import ContentsNotification from "./ContentsNotification"
 import ContentsQuestion from "./ContentsQuestion"
 import PublicView from "./PublicView";
+import {v4 as uuidv4} from "uuid";
 
 import classes from "./Contents.module.css";
 
@@ -87,7 +88,7 @@ function Contents() {
 
                 <div className={classes.kkk}>
                     {notification.map(notification => (
-                        <ContentsNotification notification={notification} />
+                        <ContentsNotification key={uuidv4()} notification={notification} />
                     ))}
                 </div>
             </div>
@@ -108,7 +109,7 @@ function Contents() {
 
                 <div className={classes.bbb}>
                     {question.map(question => (
-                        <ContentsQuestion question={question} />
+                        <ContentsQuestion key={uuidv4()} question={question} />
                     ))}
                 </div>
 
