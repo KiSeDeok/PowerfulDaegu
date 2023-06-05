@@ -142,8 +142,8 @@ function Store(){
 
             fetchData({url: `http://localhost:3001/store/search?storename=${storeValue.value}&region=${region}&place=`}, (obj) => {
                 console.log("obj =", obj)
-                if(obj.length > 0) {
-                    setItems(obj)
+                if(obj.stores.length > 0) {
+                    setItems(obj.stores)
                 }
                 else if(obj.length === 0){
                     setItems([false])

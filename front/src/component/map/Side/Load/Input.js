@@ -34,7 +34,7 @@ function Input(props){
 
             fetchData({url: `http://localhost:3001/store/search?storename=${e.target.value}&region=&place=`}, (obj) => {
 
-                const filteredData = obj.filter((item, index) => item.name.includes(e.target.value) && item.name.indexOf(e.target.value) === 0);
+                const filteredData = obj.stores?.filter((item, index) => item.name.includes(e.target.value) && item.name.indexOf(e.target.value) === 0);
                 console.log("filteredData = ", filteredData)
 
                 if(filteredData.length > 0){

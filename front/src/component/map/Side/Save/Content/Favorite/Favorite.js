@@ -1,21 +1,28 @@
 import classes from "./Favorite.module.css"
 import Fcontent from "./Fcontent";
 import TitleModal from "../Modal/TitleModal";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {v4 as uuidv4} from "uuid";
 import FDelete from "./FDelete";
+import {useDispatch, useSelector} from "react-redux";
+import useHttp from "../../../../../../hooks/use-http";
+import {userActions} from "../../../../../../store/map/user-slice";
 
 
 function Favorite(){
     const [sortModal, setSortModal] = useState({open:false, index:0, text:"최근 저장순"})
     const [placeModal, setPlaceModal] = useState({open:false, index:0, text:"장소 전체"})
     const [regionModal, setRegionModal] = useState({open:false, index:0, text:"지역 전체"})
+    const { isLoading, error, sendRequest: fetchData } = useHttp();
 
     // check된 컨텐츠 확인
     const [checkContents, setCheckContents] = useState([])
 
-    // temp 저장 데이터
+    // 컨텐츠 저장 및 관리
+    const favoriteData = useSelector(state => state.user.favorite)
+    const dispatch = useDispatch()
 
+    // temp 저장 데이터
     const tempArr = [
         {
             id:0,
@@ -104,6 +111,16 @@ function Favorite(){
         },
     ]
 
+    useEffect(() => {
+        getFetchData()
+    }, [])
+
+    const getFetchData = () => {
+        fetchData({url: `http://localhost:3001/store/like`}, (obj) => {
+            console.log("obj = ", obj)
+            // dispatch(userActions.handleFavorite({favorite:obj}))
+        })
+    }
     const handleModal = (index) => {
         if(index === 0){
             const temp = {...sortModal, open: !sortModal.open}
@@ -158,12 +175,15 @@ function Favorite(){
                 </div>
             </div>
             <div className={classes.fBody}>
-                {tempArr && tempArr.length > 0 ?
+                {favoriteData && favoriteData.length > 0 ?
                     tempArr.map((ele) => {
-
-
                         return <Fcontent key={uuidv4()} data={ele}/>
-                    }) : ""
+                    })
+                    :
+                    <div className={classes.nofBody}>
+                        <img src={"/images/map/noSearchImg.svg"}/>
+                        <span>저장된 스토어가 없어요</span>
+                    </div>
                 }
             </div>
             <FDelete/>
