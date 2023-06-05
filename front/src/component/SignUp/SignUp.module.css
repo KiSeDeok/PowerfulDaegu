@@ -1,15 +1,15 @@
-.aaa {
+.content {
     display: flex;
     width: 100%;
     flex-direction: column;
     align-items: center;
 }
 
-.aaa > * {
+.content > * {
     width: 300px;
 }
 
-.bbb {
+.title {
     font-weight: 700;
     font-size: 24px;
     line-height: 29px;
@@ -17,7 +17,7 @@
     margin-bottom: 54px;
 }
 
-.ccc {
+.signInArea {
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -29,7 +29,7 @@
     margin: 54px 0;
 }
 
-.ccc > div:nth-child(2){
+.signInArea > div:nth-child(2){
     font-weight: bold;
     text-decoration: underline;
 }

@@ -8,9 +8,9 @@ import {Link} from "react-router-dom";
 
 function SignUp(props) {
     return (
-        <div className={classes.aaa}>
+        <div className={classes.content}>
             <LoginHeader/>
-            <div className={classes.bbb}>
+            <div className={classes.title}>
                 회원가입
             </div>
             <div className={classes.eee}>
@@ -52,7 +52,7 @@ function SignUp(props) {
 
             <SubmitBtn text="다음" flag={true}/>
 
-            <div className={classes.ccc}>
+            <div className={classes.signInArea}>
                 <div>
                     이미 회원가입 하셨나요?
                 </div>
