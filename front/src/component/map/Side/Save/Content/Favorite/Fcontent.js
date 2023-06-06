@@ -9,7 +9,6 @@ function Fcontent(props){
 
     const handleCheck = () => {
         setCheck(!check)
-
         dispatch(saveLocationActions.handleSelectDelete({id:props.data.id}))
     }
 

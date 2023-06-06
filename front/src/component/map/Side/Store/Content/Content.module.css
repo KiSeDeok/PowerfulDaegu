@@ -172,6 +172,7 @@
     width: 0px;
     background: #ffffff;
     padding-left:0;
+    gap:0px;
 }
 
 .destinationDefault > span{

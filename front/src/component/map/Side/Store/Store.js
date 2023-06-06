@@ -2,6 +2,7 @@ import classes from "./Store.module.css"
 import Content from "./Content/Content";
 import {useSelector} from "react-redux";
 import useHttp from "../../../../hooks/use-http";
+import {v4 as uuidv4} from "uuid";
 import {useEffect, useState} from "react";
 
 function Store(){
@@ -176,7 +177,7 @@ function Store(){
                 <div className={classes.box}>
                     {items && items.length > 0 && items[0] !== false ?
                         items.map((ele) => (
-                            <Content data={ele}/>
+                            <Content key={uuidv4()} data={ele}/>
                         ))
                     :
                     items[0] === false ?

@@ -8,7 +8,6 @@ import {useDispatch, useSelector} from "react-redux";
 import useHttp from "../../../../../../hooks/use-http";
 import {userActions} from "../../../../../../store/map/user-slice";
 
-
 function Favorite(){
     const [sortModal, setSortModal] = useState({open:false, index:0, text:"최근 저장순"})
     const [placeModal, setPlaceModal] = useState({open:false, index:0, text:"장소 전체"})
@@ -118,7 +117,7 @@ function Favorite(){
     const getFetchData = () => {
         fetchData({url: `http://localhost:3001/store/like`}, (obj) => {
             console.log("obj = ", obj)
-            // dispatch(userActions.handleFavorite({favorite:obj}))
+            dispatch(userActions.handleFavorite({favorite:obj}))
         })
     }
     const handleModal = (index) => {
@@ -176,7 +175,7 @@ function Favorite(){
             </div>
             <div className={classes.fBody}>
                 {favoriteData && favoriteData.length > 0 ?
-                    tempArr.map((ele) => {
+                    favoriteData.map((ele) => {
                         return <Fcontent key={uuidv4()} data={ele}/>
                     })
                     :
