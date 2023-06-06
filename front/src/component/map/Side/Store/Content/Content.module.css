@@ -170,7 +170,13 @@
 
 .destinationDefault{
     width: 0px;
-    background: #ffffff
+    background: #ffffff;
+    padding-left:0;
+}
+
+.destinationDefault > span{
+    width: 0;
+    opacity: 0;
 }
 
 .activeSpan{

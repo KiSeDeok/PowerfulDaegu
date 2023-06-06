@@ -4,10 +4,12 @@ import {useDispatch} from "react-redux";
 import {mapModalActions} from "../../../../../store/map/modal-slice";
 import Talk from "./Talk";
 import {mapActions} from "../../../../../store/map/map-slice";
+import useHttp from "../../../../../hooks/use-http";
 
 function Content(props){
     const data = props.data
     const dispatch = useDispatch()
+    const { isLoading, error, sendRequest: fetchData } = useHttp();
 
     // 목적지 이벤트
     const [isDn, setDn] = useState(false)
@@ -41,9 +43,11 @@ function Content(props){
 
         if(isFavorite){
             setFavorite(false)
+            fetchData({url: `http://localhost:3001/store/like`, type:"delete", data:{id:data.id}})
         }
         else{
             setFavorite(true)
+            fetchData({url: `http://localhost:3001/store/like`, type:"post", data:{id:data.id}})
         }
     }
 
