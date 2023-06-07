@@ -17,8 +17,6 @@ function Login(props) {
     const dispatch = useDispatch()
     const authority = useSelector((state) => state.authority.mode)
 
-    console.log(authority)
-
     const [id, setId] = useState('');
     const [pw, setPw] = useState('');
 

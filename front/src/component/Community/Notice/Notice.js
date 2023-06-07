@@ -2,6 +2,7 @@ import {useState} from "react";
 
 import Pagination from "../Pagination";
 import Content from "./Content";
+import NoticeWriteModal from "../../Modal/NoticeWriteModal";
 
 import classes from "./Notice.module.css";
 
@@ -70,12 +71,9 @@ function Notice() {
     ];
     const [category, setCategory] = useState(0);
     const [checkItems, setCheckItems] = useState([]);
-    const [allCheck, setAllCheck] = useState(false);
+    const [writeModal, setWriteModal] = useState(false);
 
     function handleSingleCheck(checked, id) {
-        console.log(checked, id)
-        console.log(checkItems)
-
         if (!checked) {
             setCheckItems(prev => [...prev, id]);
         } else {
@@ -84,15 +82,13 @@ function Notice() {
     }
 
     function handleAllCheck() {
-        if(!allCheck) {
+        if(!(checkItems.length === contents.length)) {
             const idArray = [];
             contents.forEach((el) => idArray.push(el.id));
             setCheckItems(idArray);
-            setAllCheck(true)
         }
         else {
             setCheckItems([]);
-            setAllCheck(false)
         }
     }
 
@@ -112,7 +108,7 @@ function Notice() {
 
             <div className={classes.adminContent}>
                 <div className={classes.checkBoxArea}>
-                    <div className={allCheck ? classes.checkBoxChecked : classes.checkBoxDefault} onClick={handleAllCheck}>
+                    <div className={checkItems.length === contents.length ? classes.checkBoxChecked : classes.checkBoxDefault} onClick={handleAllCheck}>
                         <div/>
                     </div>
                     <div className={classes.checkBoxText}>
@@ -124,7 +120,7 @@ function Notice() {
                     <div className={classes.deleteElementBtn}>
                         삭제
                     </div>
-                    <div className={classes.addNoticeBtn}>
+                    <div className={classes.addNoticeBtn} onClick={setWriteModal.bind(this, true)}>
                         <img className={classes.addNoticeIcon} src='/icon/pencil_icon.png' />
                         글쓰기
                     </div>
@@ -133,11 +129,13 @@ function Notice() {
 
             <div>
                 {contents.map(content => (
-                    <Content key={content.id} content={content} checked={content.id in checkItems} checkHandler={handleSingleCheck} />
+                    <Content key={content.id} content={content} checked={checkItems.includes(content.id)} checkHandler={handleSingleCheck} />
                 ))}
             </div>
 
             <Pagination nowPage={1} totalPage={4} />
+
+            <NoticeWriteModal isOpen={writeModal} modalHandler={setWriteModal}/>
         </>
     );
 }

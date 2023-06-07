@@ -4,8 +4,6 @@ import {Link} from "react-router-dom";
 import classes from "./Content.module.css";
 
 function Content(props) {
-    const [checkBox, setCheckBox] = useState(false);
-
     function checkBoxHandler(event) {
         event.preventDefault();
         props.checkHandler(props.checked, props.content.id)
