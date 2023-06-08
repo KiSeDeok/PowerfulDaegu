@@ -1,10 +1,10 @@
-.aaa {
+.contentHeader {
     display: flex;
     flex-direction: column;
     margin-bottom: 36px;
 }
 
-.bbb {
+.faqContent {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -12,7 +12,7 @@
 }
 
 
-.ddd {
+.topArea {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -22,7 +22,7 @@
     padding: 128px 0 148px 0;
 }
 
-.eee {
+.bottomArea {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -31,16 +31,12 @@
     padding: 128px 0 197px 0;
 }
 
-.ddd > * ,.eee > * {
+.topArea > * ,.bottomArea > * {
     width: 1200px;
     min-width: 1200px;
 }
 
-.fff {
-    display: flex;
-}
-
-.ggg {
+.contentTitle {
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
@@ -48,14 +44,14 @@
     color: #969696;
 }
 
-.hhh {
+.contentViewMore {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 8px;
 }
 
-.iii {
+.contentText {
     font-style: normal;
     font-weight: 800;
     font-size: 30px;
@@ -66,7 +62,7 @@
     align-items: center;
 }
 
-.jjj {
+.viewMore {
     font-style: normal;
     font-weight: 600;
     font-size: 18px;
@@ -76,25 +72,25 @@
     text-decoration: none;
 }
 
-.kkk {
+.notificationContent {
     background: #FFFFFF;
     border-radius: 20px;
 }
 
-.lll {
+.checkIcon {
     width: 21px;
     height: 15px;
     margin-left: 12px;
 }
 
-.nnn {
+.faqHeader {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 93px;
 }
 
-.mmm {
+.faqTitle {
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
@@ -104,7 +100,7 @@
     color: #969696;
 }
 
-.ooo {
+.faqViewMore {
     width: 100%;
     display: flex;
     align-items: center;
@@ -119,11 +115,11 @@
     color: #FFFFFF;
 }
 
-.ooo > * {
+.faqViewMore > * {
     width: 300px;
 }
 
-.ppp {
+.faqViewMoreArea {
     font-style: normal;
     font-weight: 600;
     font-size: 18px;
@@ -136,13 +132,13 @@
     text-decoration: none;
 }
 
-.qqq {
+.faqText {
     display: flex;
     justify-content: center;
 }
 
 
-.www {
+.gaugeBarBack {
     width: 100%;
     height: 6px;
     background-color: #616161;
@@ -150,20 +146,20 @@
     margin-bottom: 44px;
 }
 
-.rrr {
+.gaugeBarFront {
     width: 33%;
     height: 6px;
     background-color: #FF7D00;
     border-radius: 50px;
 }
 
-.sss {
+.faqPageNation {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.ttt {
+.faqPageNationLeft {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -173,7 +169,7 @@
     background: #767676;
 }
 
-.uuu {
+.faqPageNationRight {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -183,12 +179,12 @@
     background: #FFFFFF;
 }
 
-.ttt > div, .uuu > div {
+.faqPageNationLeft > div, .faqPageNationRight > div {
     margin-bottom: 4px;
     font-size: 20px;
 }
 
-.vvv {
+.faqPageNationDetail {
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
@@ -199,3 +195,8 @@
     color: #DDDDDD;
 }
 
+.arrowIcon {
+    width: 7px;
+    height: 14px;
+    margin-top: 7px;
+}

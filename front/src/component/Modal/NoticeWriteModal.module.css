@@ -1,0 +1,230 @@
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 99;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal > section {
+    width: 682px;
+    height: 735px;
+    margin: 0 auto;
+    background-color: #FFFFFF;
+    border-radius: 15px;
+    animation: modal-show 0.3s;
+    overflow: hidden;
+    padding: 32px;
+    box-sizing: border-box;
+}
+
+.modal.openModal {
+    display: flex;
+    align-items: center;
+    animation: modal-bg-show 0.3s;
+}
+@keyframes modal-show {
+    from {
+        opacity: 0;
+        margin-top: -50px;
+    }
+    to {
+        opacity: 1;
+        margin-top: 0;
+    }
+}
+@keyframes modal-bg-show {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+}
+
+.title {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 29px;
+    color: #303030;
+}
+
+.deleteBtn {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+}
+
+.locationArea > div:nth-child(1) {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    color: #303030;
+    margin-bottom: 12px;
+}
+
+.locationArea > div:nth-child(2) {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #303030;
+    margin-bottom: 28px;
+}
+
+.contentTitle {
+    display: flex;
+    margin-bottom: 8px;
+}
+
+.contentTitle > div {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    color: #303030;
+}
+
+.contentTitle > div:nth-child(2) {
+    color: #FF7D00;
+}
+
+.categoryBtnArea {
+    display: flex;
+    margin-bottom: 28px;
+}
+
+.categoryBtnArea > div:nth-child(1) {
+    margin-right: 8px;
+}
+
+.categoryBtnActive {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 57px;
+    height: 37px;
+    background-color: #FFEEDD;
+    border: 1px solid #FF7D00;
+    border-radius: 20px;
+
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FF7D00;
+    cursor: pointer;
+}
+
+.categoryBtnDisable {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 57px;
+    height: 37px;
+    background-color: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 20px;
+
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    color: #969696;
+    cursor: pointer;
+}
+
+.inputBox {
+    width: 100%;
+    height: 44px;
+    background-color: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+    box-sizing: border-box;
+    padding: 0 16px;
+    margin-bottom: 28px;
+}
+
+.textAreaBox {
+    width: 100%;
+    height: 248px;
+    background-color: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+    box-sizing: border-box;
+    padding: 16px 13px;
+    margin-bottom: 28px;
+}
+
+.inputBox::placeholder, .textAreaBox::placeholder {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+
+    color: #969696;
+}
+
+.inputBox:focus, .textAreaBox:focus {
+    background-color: #FFFFFF;
+    outline: 1px solid #303030;
+}
+
+.disableBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 48px;
+    background-color: #EEEEEE;
+    border-radius: 6px;
+
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    color: #969696;
+    cursor: default;
+}
+
+.activeBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 48px;
+    background-color: #FF7D00;
+    border-radius: 6px;
+
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.mmm:hover {
+    background-color: #C36000;
+}

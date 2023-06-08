@@ -18,6 +18,16 @@
     font-size: 15px;
 }
 
+.content2 > div > * {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+
+    color: #F8F8F8;
+}
+
 .logo {
     width: 90px;
     height: 19px;

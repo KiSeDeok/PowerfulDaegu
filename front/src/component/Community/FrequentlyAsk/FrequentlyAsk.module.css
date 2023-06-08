@@ -32,10 +32,12 @@
 .ccc > div:not(:last-child) {
     padding-right: 16px;
     border-right: 1px solid #C2C2C2;
+    cursor: pointer;
 }
 
 .ccc > div:not(:first-child) {
     padding-left: 16px;
+    cursor: pointer;
 }
 
 .ddd {
