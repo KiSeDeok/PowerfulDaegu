@@ -2,7 +2,6 @@ import {useEffect, useState} from "react";
 import axios from 'axios';
 
 import classes from "./NoticeWriteModal.module.css";
-import moment from "moment";
 
 function NoticeWriteModal(props) {
     const [title, setTitle] = useState('');
@@ -33,11 +32,11 @@ function NoticeWriteModal(props) {
                 "category": category === 0 ? "guide" : "inspection"
             }, {withCredentials: true}).then(data => {
                 props.modalHandler(false)
-            }).catch(error => {
-                console.error(error)
+            }).catch(e => {
+                alert("권한이 부족합니다 : error code : " + e)
             })
         } catch (e) {
-            console.log(e)
+            alert("권한이 부족합니다 : error code : " + e)
         }
     }
 
