@@ -8,13 +8,13 @@
     justify-content: space-between;
     padding: 22px 44px 8px 44px;
     box-sizing: border-box;
-    transition: all 0.15s linear;
+    /*transition: all 0.15s linear;*/
     cursor: pointer;
 }
 
 .content, .contentActive{
     transition: background-color 0.15s linear;
-    transition: max-height 0.5s ease;
+    /*transition: max-height 0.5s ease;*/
     border-bottom: 1px solid #EAEAEA;
     max-height: 240px;
 }
@@ -134,7 +134,7 @@
     cursor: pointer;
     z-index: 2;
     box-sizing: border-box;
-    transition: all 0.3s linear;
+    /*transition: all 0.3s linear;*/
 }
 
 .right > .destinationDiv,
@@ -185,7 +185,7 @@
 }
 
 .contentActiveSet, .contentSet{
-    transition: all 0.5s ease;
+    /*transition: all 0.5s ease;*/
     opacity: 1;
     /*max-height: 100%;*/
 }
@@ -200,7 +200,7 @@
     /*height: 0;*/
     /*max-height: 0;*/
     opacity: 0;
-    transition: opacity 0.5s linear;
+    /*transition: opacity 0.5s linear;*/
 }
 
 .addActiveContent, .addContent{
@@ -213,7 +213,11 @@
 }
 
 .addContent *{
-    max-height: 0;
+    max-height: 0 !important;
+    /*max-width: 0 !important;*/
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 0 !important;
 }
 
 .menu{

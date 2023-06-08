@@ -30,12 +30,10 @@ function Input(props){
 
         if (isKorean || e.nativeEvent.inputType === "deleteContentBackward" && e.target.value !== ""){
             setInput(e.target.value)
-            console.log("e.targh = ", e.target.value)
 
             fetchData({url: `http://localhost:3001/store/search?storename=${e.target.value}&region=&place=`}, (obj) => {
 
                 const filteredData = obj.stores?.filter((item, index) => item.name.includes(e.target.value) && item.name.indexOf(e.target.value) === 0);
-                console.log("filteredData = ", filteredData)
 
                 if(filteredData.length > 0){
                     setSearchData(filteredData)
@@ -77,7 +75,6 @@ function Input(props){
         }
     }, [props.value])
 
-    console.log("searchData= ", searchData)
     return (
         <>
             <input

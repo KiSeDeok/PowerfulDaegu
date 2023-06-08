@@ -117,7 +117,9 @@ function Favorite(){
     const getFetchData = () => {
         fetchData({url: `http://localhost:3001/store/like`}, (obj) => {
             console.log("obj = ", obj)
-            dispatch(userActions.handleFavorite({favorite:obj}))
+            if(obj.store) {
+                dispatch(userActions.handleFavorite({favorite: obj.store}))
+            }
         })
     }
     const handleModal = (index) => {

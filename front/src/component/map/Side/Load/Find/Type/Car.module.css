@@ -1,0 +1,107 @@
+.box{
+    display: flex;
+    flex-direction: column;
+    padding: 26px 41px;
+
+}
+
+.top{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-bottom: 9px;
+    border-bottom: 1px solid #EAEAEA;
+}
+
+.tlTop{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.tlTop > span{
+    font-weight: 500;
+    font-size: 12px;
+    color: #969696;
+}
+
+.tlTop > label{
+    font-weight: 600;
+    font-size: 14px;
+    color: #303030;
+}
+
+.tLeft{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.tRight{
+    display: flex;
+}
+
+.trBox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tltTime{
+    display: flex;
+    align-items: center;
+}
+
+.tltTime > span{
+    font-weight: 600;
+    font-size: 18px;
+    color: #303030;
+}
+
+.tltTime > label{
+    font-weight: 600;
+    font-size: 14px;
+    color: #303030;
+}
+
+.tlBottom{
+    display: flex;
+    gap: 4px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #969696;
+}
+
+.tlbSpan{
+    display: flex;
+    gap: 4px;
+}
+
+.bottom{
+    display: flex;
+}
+
+.bLoad{
+    display: flex;
+    flex-flow: wrap;
+    gap: 10px;
+}
+
+.blLoad{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.blLoad > span{
+    font-weight: 400;
+    font-size: 14px;
+    color: #575757;
+}
+
+.blLoad > label{
+    font-weight: 400;
+    font-size: 12px;
+    color: #969696;
+}

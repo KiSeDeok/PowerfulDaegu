@@ -1,11 +1,11 @@
-import classes from "./FindContent.module.css"
+import classes from "./Transfort.module.css"
 import {v4 as uuidv4} from "uuid";
 import {useState} from "react";
-import TransfortSet from "./TransfortSet";
+import TransfortSet from "../TransfortSet";
 import {useDispatch, useSelector} from "react-redux";
-import {mapActions} from "../../../../../store/map/map-slice";
+import {mapActions} from "../../../../../../store/map/map-slice";
 
-function FindContent(props){
+function Transfort(props){
     const dispatch = useDispatch()
 
     const [type, setType] = useState("short")
@@ -216,4 +216,4 @@ function FindContent(props){
     )
 }
 
-export default FindContent
+export default Transfort

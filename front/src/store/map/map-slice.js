@@ -17,7 +17,13 @@ const mapSlice = createSlice({
                 }
             }
         },
-        searchData:[],
+        searchData:{
+            point:{
+                start:"",
+                end:""
+            },
+            data:[]
+        },
         destination:"",
         polyline:"",
         sideFold:false,

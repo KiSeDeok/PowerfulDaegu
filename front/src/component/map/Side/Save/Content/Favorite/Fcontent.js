@@ -12,14 +12,16 @@ function Fcontent(props){
         dispatch(saveLocationActions.handleSelectDelete({id:props.data.id}))
     }
 
+    console.log("props = ", props)
+
     return (
         <div className={classes.fbContent} onClick={handleCheck}>
             <div className={check ? classes.activeCheckbox : classes.defaultCheckbox}>
                 {check && <img src={"/images/map/saveType/check.svg"} />}
             </div>
             <div className={classes.fbSpan}>
-                <span className={classes.fbName}>{props.data.name}</span>
-                <span className={classes.fbType}>{props.data.type}</span>
+                <span className={classes.fbName}>{props.data.store.name}</span>
+                <span className={classes.fbType}>{props.data.store.store_type.category}</span>
             </div>
             <div className={classes.fbFunction}>
                 <div className={classes.fbShare}>
