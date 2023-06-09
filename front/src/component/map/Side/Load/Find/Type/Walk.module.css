@@ -1,0 +1,94 @@
+.box{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 74px;
+    padding: 0 41px;
+    border-top: 1px solid #ffffff;
+    border-bottom: 1px solid #EEEEEE;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.box:hover{
+    background: #FFFBF1;
+    border-top: 1px solid #FFBE1B;
+    border-bottom: 1px solid #FFBE1B;
+}
+
+.left{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.blReco, .blWide, .blShort{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    width: 68px;
+    height: 20px;
+    box-sizing: border-box;
+    font-weight: 400;
+    font-size: 14px;
+    color: #FFFFFF;
+}
+
+.blShort, .blReco {
+    background: #FF7D00;
+}
+
+.blWide {
+    background: #FFBE1B;
+}
+
+.lrTime > span{
+    font-weight: 600;
+    font-size: 18px;
+    color: #303030;
+}
+
+.lrTime > label{
+    font-weight: 600;
+    font-size: 14px;
+    color: #303030;
+}
+
+.lRight{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+}
+
+.lRight > span{
+    font-weight: 500;
+    font-size: 12px;
+    color: #969696;
+}
+
+.lrDistnace > span{
+    font-weight: 400;
+    font-size: 14px;
+    color: #969696;
+}
+
+.right{
+    display: flex;
+}
+
+.rBox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #EAEAEA;
+    border-radius: 50%;
+    background: #FFFFFF;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("../../../../../../../public/images/map/favorite_default.svg");
+    cursor: pointer;
+}

@@ -1,18 +1,25 @@
 import classes from "./Fcontent.module.css"
-import {useState} from "react";
-import {useDispatch} from "react-redux";
-import {mapActions} from "../../../../../../store/map/map-slice";
-import {saveLocationActions} from "../../../../../../store/map/saveLoaction-slice";
-function Fcontent(props){
+import {useEffect, useState} from "react";
+import React from "react";
+import {useDispatch, useSelector} from "react-redux";
+function Fcontent({ checks, data, handleItem }){
+// const Fcontent = React.memo(({ data, handleItem }) => {
     const dispatch = useDispatch()
     const [check, setCheck] = useState(false)
 
     const handleCheck = () => {
-        setCheck(!check)
-        dispatch(saveLocationActions.handleSelectDelete({id:props.data.id}))
+        handleItem(data.id)
     }
 
-    console.log("props = ", props)
+    useEffect(()=> {
+        if(checks.includes(data.id)){
+            setCheck(true)
+        }
+        else{
+            setCheck(false)
+        }
+
+    }, [checks])
 
     return (
         <div className={classes.fbContent} onClick={handleCheck}>
@@ -20,8 +27,8 @@ function Fcontent(props){
                 {check && <img src={"/images/map/saveType/check.svg"} />}
             </div>
             <div className={classes.fbSpan}>
-                <span className={classes.fbName}>{props.data.store.name}</span>
-                <span className={classes.fbType}>{props.data.store.store_type.category}</span>
+                <span className={classes.fbName}>{data.name}</span>
+                <span className={classes.fbType}>{data.store_type.category}</span>
             </div>
             <div className={classes.fbFunction}>
                 <div className={classes.fbShare}>

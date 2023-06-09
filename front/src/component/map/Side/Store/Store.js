@@ -8,142 +8,16 @@ import {useEffect, useState} from "react";
 function Store(){
     const storeValue = useSelector(state => state.mapStore.search)
     const { isLoading, error, sendRequest: fetchData } = useHttp();
-
     const [load, setLoad] = useState(false)
     const [items, setItems] = useState([])
-    const items3 = [
-        {
-        id:0,name:"세븐일레븐 대구대봉점",
-        store_type:{category:"편의점"},
-        point:[ {type:"delivery", has:true}, {type:"nice", has:true}],
-        street_address:"대구 수성구 신천동로 294",
-        city_code:"(우)42135",
-        detail_address:"수성동1가 679-71",
-        address:{
-            doro:"대구 수성구 신천동로 294",
-            jibun:"수성동1가 679-71",
-            upyen:"(우)42135"
-        },
-        time:{
-            start:"11:00",
-            end:"19:00"
-        },
-        phone_number:"053-475-1121", startP:{x:123,y:123}, endP:{x:456,y:566}
-    },{
-            id:0,name:"세븐일레븐 대구대봉점",
-            store_type:{category:"편의점"},
-            point:[ {type:"delivery", has:true}, {type:"nice", has:true}],
-            street_address:"대구 수성구 신천동로 294",
-            city_code:"(우)42135",
-            detail_address:"수성동1가 679-71",
-            address:{
-                doro:"대구 수성구 신천동로 294",
-                jibun:"수성동1가 679-71",
-                upyen:"(우)42135"
-            },
-            time:{
-                start:"11:00",
-                end:"19:00"
-            },
-            phone_number:"053-475-1121", startP:{x:123,y:123}, endP:{x:456,y:566}
-    },{
-            id:0,name:"세븐일레븐 대구대봉점",
-            store_type:{category:"편의점"},
-            point:[ {type:"delivery", has:true}, {type:"nice", has:true}],
-            street_address:"대구 수성구 신천동로 294",
-            city_code:"(우)42135",
-            detail_address:"수성동1가 679-71",
-            address:{
-                doro:"대구 수성구 신천동로 294",
-                jibun:"수성동1가 679-71",
-                upyen:"(우)42135"
-            },
-            time:{
-                start:"11:00",
-                end:"19:00"
-            },
-            phone_number:"053-475-1121", startP:{x:123,y:123}, endP:{x:456,y:566}
-    },{
-            id:0,name:"세븐일레븐 대구대봉점",
-            store_type:{category:"편의점"},
-            point:[ {type:"delivery", has:true}, {type:"nice", has:true}],
-            street_address:"대구 수성구 신천동로 294",
-            city_code:"(우)42135",
-            detail_address:"수성동1가 679-71",
-            address:{
-                doro:"대구 수성구 신천동로 294",
-                jibun:"수성동1가 679-71",
-                upyen:"(우)42135"
-            },
-            time:{
-                start:"11:00",
-                end:"19:00"
-            },
-            phone_number:"053-475-1121", startP:{x:123,y:123}, endP:{x:456,y:566}
-    },{
-            id:0,name:"세븐일레븐 대구대봉점",
-            store_type:{category:"편의점"},
-            point:[ {type:"delivery", has:true}, {type:"nice", has:true}],
-            street_address:"대구 수성구 신천동로 294",
-            city_code:"(우)42135",
-            detail_address:"수성동1가 679-71",
-            address:{
-                doro:"대구 수성구 신천동로 294",
-                jibun:"수성동1가 679-71",
-                upyen:"(우)42135"
-            },
-            time:{
-                start:"11:00",
-                end:"19:00"
-            },
-            phone_number:"053-475-1121", startP:{x:123,y:123}, endP:{x:456,y:566}
-    },{
-            id:0,name:"세븐일레븐 대구대봉점",
-            store_type:{category:"편의점"},
-            point:[ {type:"delivery", has:true}, {type:"nice", has:true}],
-            street_address:"대구 수성구 신천동로 294",
-            city_code:"(우)42135",
-            detail_address:"수성동1가 679-71",
-            address:{
-                doro:"대구 수성구 신천동로 294",
-                jibun:"수성동1가 679-71",
-                upyen:"(우)42135"
-            },
-            time:{
-                start:"11:00",
-                end:"19:00"
-            },
-            phone_number:"053-475-1121", startP:{x:123,y:123}, endP:{x:456,y:566}
-    },{
-            id:0,name:"세븐일레븐 대구대봉점",
-            store_type:{category:"편의점"},
-            point:[ {type:"delivery", has:true}, {type:"nice", has:true}],
-            street_address:"대구 수성구 신천동로 294",
-            city_code:"(우)42135",
-            detail_address:"수성동1가 679-71",
-            address:{
-                doro:"대구 수성구 신천동로 294",
-                jibun:"수성동1가 679-71",
-                upyen:"(우)42135"
-            },
-            time:{
-                start:"11:00",
-                end:"19:00"
-            },
-            phone_number:"053-475-1121", startP:{x:123,y:123}, endP:{x:456,y:566}
-    }]
 
     useEffect(() => {
         if(storeValue.value) {
             const region = storeValue.region.join(",");
             const type = storeValue.type.join(",")
 
-            console.log(region)
-            console.log(type)
 
             fetchData({url: `http://localhost:3001/store/search?storename=${storeValue.value}&region=${region}&place=`}, (obj) => {
-                console.log("obj =", obj)
-
                 if(obj.stores.length > 0) {
                     const updatedStore = obj.stores?.map((item) => {
                         const foundLike = obj.like?.find((likeItem) => likeItem.id === item.id);
@@ -153,7 +27,6 @@ function Store(){
                         };
                     });
 
-                    console.log("updatedStore =" , updatedStore)
 
                     setItems(updatedStore)
                 }

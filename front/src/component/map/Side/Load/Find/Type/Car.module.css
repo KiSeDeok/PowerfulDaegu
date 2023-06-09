@@ -1,8 +1,19 @@
 .box{
     display: flex;
+    justify-content: center;
     flex-direction: column;
+    min-height: 171px;
     padding: 26px 41px;
+    box-sizing: border-box;
+    border-top: 1px solid #ffffff;
+    border-bottom: 1px solid #EEEEEE;
+    cursor: pointer;
+}
 
+.box:hover{
+    background: #FFFBF1;
+    border-top: 1px solid #FFBE1B;
+    border-bottom: 1px solid #FFBE1B;
 }
 
 .top{
@@ -46,6 +57,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #EAEAEA;
+    border-radius: 50%;
+    background: #FFFFFF;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("../../../../../../../public/images/map/favorite_default.svg");
+    cursor: pointer;
 }
 
 .tltTime{

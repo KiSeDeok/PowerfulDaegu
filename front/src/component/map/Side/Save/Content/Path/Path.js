@@ -10,7 +10,8 @@ function Path(){
     const { isLoading, error, sendRequest: fetchData } = useHttp();
 
     // 컨텐츠 저장 및 관리
-    const pathData = useSelector(state => state.user.favorite)
+
+    const [pathData, setPathData] = useState([])
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -18,7 +19,7 @@ function Path(){
     }, [])
 
     const getFetchData = () => {
-        fetchData({url: `http://localhost:3001/store/like`}, (obj) => {
+        fetchData({url: `http://localhost:3001/store/direction`, type:"get"}, (obj) => {
             console.log("obj = ", obj)
             // dispatch(userActions.handleFavorite({favorite:obj}))
         })

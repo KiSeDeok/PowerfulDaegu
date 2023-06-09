@@ -2,7 +2,6 @@ import classes from "./Car.module.css"
 
 function Car(props){
     const summary = props.data?.summary
-    // const time = 139
     const time = ((summary?.duration / 1000) / 60).toFixed(0)
 
     return (
@@ -12,20 +11,20 @@ function Car(props){
                     <div className={classes.tlTop}>
                         <div className={classes.tltTime}>
                             {
-                                summary.duration ?
-                                    time > 60 ?
-                                        <>
-                                            <span>{(time / 60).toFixed(0)}</span>
-                                            <label>시</label>
-                                            <span>{time%60}</span>
-                                            <label>분</label>
-                                        </>
-                                            :
-                                        <>
-                                            <span>{time}</span>
-                                            <label>분</label>
-                                        </>
-                                    : "no time"
+                            summary.duration ?
+                                time > 60 ?
+                                    <>
+                                        <span>{(time / 60).toFixed(0)}</span>
+                                        <label>시</label>
+                                        <span>{time%60}</span>
+                                        <label>분</label>
+                                    </>
+                                        :
+                                    <>
+                                        <span>{time}</span>
+                                        <label>분</label>
+                                    </>
+                            : "no time"
                             }
                         </div>
                         <span>|</span>
@@ -49,9 +48,7 @@ function Car(props){
                     </div>
                 </div>
                 <div className={classes.tRight}>
-                    <div className={classes.trBox}>
-                        <img />
-                    </div>
+                    <div className={classes.trBox}></div>
                 </div>
             </div>
             <div className={classes.bottom}>

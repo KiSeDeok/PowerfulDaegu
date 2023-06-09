@@ -1,7 +1,7 @@
 import classes from "./Favorite.module.css"
 import Fcontent from "./Fcontent";
 import TitleModal from "../Modal/TitleModal";
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import {v4 as uuidv4} from "uuid";
 import FDelete from "./FDelete";
 import {useDispatch, useSelector} from "react-redux";
@@ -17,108 +17,26 @@ function Favorite(){
     // check된 컨텐츠 확인
     const [checkContents, setCheckContents] = useState([])
 
-    // 컨텐츠 저장 및 관리
-    const favoriteData = useSelector(state => state.user.favorite)
-    const dispatch = useDispatch()
 
-    // temp 저장 데이터
-    const tempArr = [
-        {
-            id:0,
-            name:"세븐일레븐 대구대구점",
-            type:"편의점"
-        },
-        {
-            id:1,
-            name:"세븐일레븐 대구대구점",
-            type:"편의점"
-        },
-        {
-            id:2,
-            name:"세븐일레븐 대구대구점",
-            type:"편의점"
-        },
-        {
-            id:3,
-            name:"세븐일레븐 대구대구점",
-            type:"편의점"
-        },
-        {
-            id:4,
-            name:"세븐일레븐 대구대구점",
-            type:"편의점"
-        },
-        {
-            id:5,
-            name:"세븐일레븐 대구대구점",
-            type:"편의점"
-        },
-        {
-            id:6,
-            name:"세븐일레븐 대구대구점",
-            type:"편의점"
-        },
-        {
-            id:7,
-            name:"세븐일레븐 대구대구점",
-            type:"편의점"
-        },
-        {
-            id:8,
-            name:"세븐일레븐 대구대구점",
-            type:"편의점"
-        },
-        {
-            id:9,
-            name:"세븐일레븐 대구대구점",
-            type:"편의점"
-        },
-        {
-            id:10,
-            name:"세븐일레븐 대구대구점",
-            type:"편의점"
-        },
-        {
-            id:11,
-            name:"세븐일레븐 대구대구점",
-            type:"편의점"
-        },
-        {
-            id:12,
-            name:"세븐일레븐 대구대구점",
-            type:"편의점"
-        },
-        {
-            id:13,
-            name:"세븐일레븐 대구대구점",
-            type:"편의점"
-        },
-        {
-            id:14,
-            name:"세븐일레븐 대구대구점",
-            type:"편의점"
-        },
-        {
-            id:15,
-            name:"세븐일레븐 대구대구점",
-            type:"편의점"
-        },
-        {
-            id:16,
-            name:"세븐일레븐 대구대구점",
-            type:"편의점"
-        },
-    ]
+    // 컨텐츠 저장 및 관리
+    const [favoriteData, setFavoriteData] = useState([])
+
+    const dispatch = useDispatch()
 
     useEffect(() => {
         getFetchData()
+        console.log("1")
     }, [])
 
     const getFetchData = () => {
         fetchData({url: `http://localhost:3001/store/like`}, (obj) => {
             console.log("obj = ", obj)
-            if(obj.store) {
-                dispatch(userActions.handleFavorite({favorite: obj.store}))
+            if(obj && obj.length > 0) {
+                const categoryValues = obj.map((item) => item.store);
+
+                console.log("categoryValues = ", categoryValues)
+                setFavoriteData(categoryValues)
+                setCheckContents([])
             }
         })
     }
@@ -156,6 +74,23 @@ function Favorite(){
         }
     }
 
+    const handleSelectedItem = (id) => {
+    // const handleSelectedItem = useCallback((id) => {
+        const temp = JSON.parse(JSON.stringify(checkContents));
+        const index = temp.findIndex(item => item === id); // id값이 있는 요소의 인덱스를 찾습니다.
+        // console.log("temp= ", temp)
+
+        if (index !== -1) {
+            temp.splice(index, 1); // 해당 인덱스의 요소를 삭제합니다.
+        }
+        else{
+            temp.push(id)
+        }
+
+        setCheckContents(temp)
+    }
+    // }, []);
+
     return (
         <div className={classes.box}>
             <div className={classes.fHead}>
@@ -177,9 +112,9 @@ function Favorite(){
             </div>
             <div className={classes.fBody}>
                 {favoriteData && favoriteData.length > 0 ?
-                    favoriteData.map((ele) => {
-                        return <Fcontent key={uuidv4()} data={ele}/>
-                    })
+                    favoriteData.map((ele, index) => (
+                        <Fcontent checks={checkContents} key={index} data={ele} handleItem={handleSelectedItem}/>
+                    ))
                     :
                     <div className={classes.nofBody}>
                         <img src={"/images/map/noSearchImg.svg"}/>
@@ -187,7 +122,7 @@ function Favorite(){
                     </div>
                 }
             </div>
-            <FDelete/>
+            <FDelete data={checkContents} fetch={getFetchData}/>
         </div>
     )
 }

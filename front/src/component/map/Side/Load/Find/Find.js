@@ -6,21 +6,23 @@ import Car from "./Type/Car";
 import {v4 as uuidv4} from "uuid";
 import {mapActions} from "../../../../../store/map/map-slice";
 import useHttp from "../../../../../hooks/use-http";
+import Walk from "./Type/Walk";
 
 function Find(){
     const { isLoading, error, sendRequest: fetchData } = useHttp();
 
     const [index, setIndex] = useState(0)
     const searchData = useSelector(state => state.map.searchData)
-    const [getData, setGetData] = useState([])
+    const [carData, setCarData] = useState([])
+    const [walkData, setWalkData] = useState([])
+
+    console.log("searchData= ", searchData)
 
     const handleIndex= (index) => {
         setIndex(index)
 
         if(index == 1) {
             fetchData({url: `http://localhost:3001/maps/car?start=${searchData.point.start}&goal=${searchData.point.end}`}, (obj) => {
-                console.log("car =", obj)
-                console.log("car =", obj.route)
                 if(obj.route && Object.keys(obj.route).length !== 0 ){
                     const dataArray = [];
 
@@ -28,18 +30,16 @@ function Find(){
                         const values = obj.route[key];
                         dataArray.push(...values);
                     }
-
-                    console.log("dataArray =", dataArray)
-                    setGetData(dataArray)
+                    setCarData(dataArray)
                 }
-                // dispatch(mapActions.handleSearch({data: {point: {start: position.start, end: point}, data: obj}}))
             })
         }
 
         if(index == 2) {
             fetchData({url: `http://localhost:3001/maps/walk?start=${searchData.point.start}&goal=${searchData.point.end}`}, (obj) => {
-                console.log("walk =", obj)
-                // dispatch(mapActions.handleSearch({data: {point: {start: position.start, end: point}, data: obj}}))
+                if(obj.routes && obj.routes.length > 0) {
+                    setWalkData(obj.routes)
+                }
             })
         }
 
@@ -64,14 +64,14 @@ function Find(){
             <div className={classes.body}>
                 {index === 0 ?
                     searchData.data ? searchData.data.paths ? searchData.data.paths.map((ele) => (
-                        <Transfort key={uuidv4()} data={ele}/>
+                        <Transfort key={uuidv4()} data={ele} address={searchData.point}/>
                     )) : searchData.data.staticPaths && searchData.data.staticPaths.map((ele) => (
-                        <Transfort key={uuidv4()} data={ele}/>
+                        <Transfort key={uuidv4()} data={ele} address={searchData.point}/>
                     )) : ""
                 : index === 1 ?
-                    getData && getData.length > 0 ? getData.map((ele)=> (<Car key={uuidv4()} data={ele}/>)) : ""
+                    carData && carData.length > 0 ? carData.map((ele)=> (<Car key={uuidv4()} data={ele} address={`http://localhost:3001/maps/car?start=${searchData.point.start}&goal=${searchData.point.end}`}/>)) : ""
                 :
-                    <div></div>
+                    walkData && walkData.length > 0 ? walkData.map((ele)=> (<Walk key={uuidv4()} data={ele} address={`http://localhost:3001/maps/walk?start=${searchData.point.start}&goal=${searchData.point.end}`}/>)) : ""
                 }
             </div>
         </div>

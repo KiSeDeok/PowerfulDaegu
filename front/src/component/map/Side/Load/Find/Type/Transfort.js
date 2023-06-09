@@ -4,9 +4,11 @@ import {useState} from "react";
 import TransfortSet from "../TransfortSet";
 import {useDispatch, useSelector} from "react-redux";
 import {mapActions} from "../../../../../../store/map/map-slice";
+import useHttp from "../../../../../../hooks/use-http";
 
 function Transfort(props){
     const dispatch = useDispatch()
+    const { isLoading, error, sendRequest: fetchData } = useHttp();
 
     const [type, setType] = useState("short")
     const destination = useSelector(state => state.map.destination)
@@ -40,6 +42,14 @@ function Transfort(props){
         dispatch(mapActions.handlePolyline({polyline:position}))
     }
 
+    const handleFavorite = () => {
+        const address = `http://localhost:3001/maps?start=${props.address.start}&goal=${props.address.end}`
+
+        fetchData({url: `http://localhost:3001/store/direction`, type:"post", data:{url:address}}, (obj) => {
+            console.log("obj = ", obj)
+        })
+    }
+
     return (
         <div key={uuidv4()} className={classes.box} onClick={handleMapClick}>
             <div className={classes.head}>
@@ -58,7 +68,7 @@ function Transfort(props){
                     </div>
                 </div>
                 <div className={classes.headRight}>
-                    <div className={classes.hrBox}>
+                    <div onClick={handleFavorite} className={classes.hrBox}>
                         <img src={"/images/map/star.svg"}/>
                     </div>
                 </div>

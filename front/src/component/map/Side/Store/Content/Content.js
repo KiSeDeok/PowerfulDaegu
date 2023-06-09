@@ -5,6 +5,7 @@ import {mapModalActions} from "../../../../../store/map/modal-slice";
 import Talk from "./Talk";
 import {mapActions} from "../../../../../store/map/map-slice";
 import useHttp from "../../../../../hooks/use-http";
+import ContentDetail from "./ContentDetail";
 
 function Content(props){
     const data = props.data
@@ -14,16 +15,18 @@ function Content(props){
     // 목적지 이벤트
     const [isDn, setDn] = useState(false)
 
-    // 시작, 종료 지점
-    const [start, setStart] = useState("")
-    const [end, setEnd] = useState("")
-
     // 즐겨찾기 목록
     const [isFavorite, setFavorite] = useState(data.favorite ? true : false)
 
     // 컨텐츠 active 여부
     const [isActive, setActive] = useState(false)
-    const addContentRef = useRef()
+
+    // 시간 계산 과정
+    const currentDate = new Date();
+    const currentHour = currentDate.getHours() * 100 + currentDate.getMinutes();
+    const startTime = parseInt(data.sat_start.slice(0, 2)) * 100 + parseInt(data.sat_start.slice(2));
+    const endTime = parseInt(data.sat_end.slice(0, 2)) * 100 + parseInt(data.sat_end.slice(2));
+    const isWithinTimeRange = startTime <= currentHour && currentHour <= endTime;
 
     const handleDestinationOpt = (e) => {
         e.preventDefault()
@@ -55,9 +58,6 @@ function Content(props){
         e.preventDefault()
         e.stopPropagation()
 
-        console.log("start= ", start)
-        console.log("data= ", data)
-
         if(type === "start"){
             dispatch(mapActions.handleIndex({index: {place: {start:{name:data.name, point:data.point}}, num: 1}}))
         }
@@ -71,22 +71,9 @@ function Content(props){
         e.stopPropagation()
 
         const temp = isActive
-
         setActive(!temp)
-
-        if(temp) {
-            setTimeout(() => {
-                addContentRef.current.querySelectorAll('*').forEach(element => {
-                    element.style.maxHeight = '0';
-                });
-            }, 400)
-        }
-        else{
-            addContentRef.current.querySelectorAll('*').forEach(element => {
-                element.style.maxHeight = '100%';
-            });
-        }
     }
+
 
     return (
         <div className={isActive ? classes.contentActive : classes.content} onClick={(e) => handleIsActive(e)}>
@@ -97,12 +84,12 @@ function Content(props){
                         <label>{data?.store_type?.category}</label>
                     </div>
                     <div className={classes.typesDiv}>
-                        {true && <div className={classes.open}><span>영업 중</span></div>}
-                        {data.delivery && <div className={classes.delivery}><span>배달º포장</span></div>}
+                        {isWithinTimeRange ? <div className={classes.open}><span>영업 중</span></div> : <div className={classes.close}><span>영업 종료</span></div>}
+                        {data.delivery && <div className={classes.delivery}><span>배달•포장</span></div>}
                         {/*{data.point[1].has && <div className={classes.nice}><img src={"/images/map/goodShop.svg"}/><span>선한영향력가게</span></div>}*/}
                     </div>
                     <div className={classes.addressDiv}>
-                        <img src={"/images/map/address.svg"}/>
+                        <img style={{width:"13px", height:"16px"}} src={"/images/map/address.svg"}/>
                         <div>
                             <div className={classes.address}>
                                 <span>{data.street_address}</span>
@@ -111,21 +98,28 @@ function Content(props){
                             <span className={classes.jibun}>{data.detail_address}</span>
                         </div>
                     </div>
-                    <div className={classes.timeDiv}>
-                        <img src={"/images/map/time.svg"}/>
-                        <span>11:00 ~ 19:00</span>
-                    </div>
-                    <div className={classes.phoneDiv}>
-                        <img src={"/images/map/phone.svg"}/>
-                        <span>{data.phone_number}</span>
-                    </div>
+                    {data.sat_end !== "0" && data.sat_start !== "0" &&
+                        <div className={classes.timeDiv}>
+                            <img style={{width:"13px", height:"16px"}} src={"/images/map/time.svg"}/>
+                            <span>
+                                {data.sat_start.slice(0, 2)+ ":" + data.sat_start.slice(2)} ~
+                                {data.sat_end.slice(0, 2)+ ":" + data.sat_end.slice(2)}
+                            </span>
+                        </div>
+                    }
+                    {data.phone_number !== "0" &&
+                        <div className={classes.phoneDiv}>
+                            <img style={{width:"13px", height:"16px"}} src={"/images/map/phone.svg"}/>
+                            <span>{data.phone_number}</span>
+                        </div>
+                    }
                 </div>
                 <div className={classes.right}>
                     <div className={isDn ? classes.destinationActiveDiv : classes.destinationDiv} onClick={(e) => handleDestinationOpt(e)}>
                         <div className={isDn ? classes.destinationActive : classes.destinationDefault}>
-                           <span onClick={(e) => handlePoint(e,"start")} className={start ? classes.activeSpan : ""}>출발</span>
+                           <span onClick={(e) => handlePoint(e,"start")} className={classes.activeSpan}>출발</span>
                            <span>|</span>
-                           <span onClick={(e) => handlePoint(e,"end")} className={end ? classes.activeSpan : ""}>도착</span>
+                           <span onClick={(e) => handlePoint(e,"end")} className={classes.activeSpan}>도착</span>
                         </div>
                         <div className={isDn ? classes.destinationActiveDiv : classes.destinationDiv}>
                             <img src={isDn ? "/images/map/destination_active.svg" : "/images/map/destination_default.svg"}/>
@@ -136,66 +130,9 @@ function Content(props){
                     </div>
                 </div>
             </div>
-            <div ref={addContentRef} className={isActive ? classes.addActiveContent : classes.addContent}>
-                <div className={isActive ? classes.contentActiveSet : classes.contentSet}>
-                    <div className={classes.menu}>
-                        <div className={classes.menuTop}><span>메뉴</span></div>
-                        {
-                            !data.menu ?
-                                <div className={classes.menuContents}>
-                                    <div className={classes.menuContent}>
-                                        <span>자연산 참가자미 모둠(1인)</span>
-                                        <div className={classes.dotDiv}></div>
-                                        <label>25,000</label>
-                                    </div>
-                                    <div className={classes.menuContent}>
-                                        <span>도다리 세꼬시, 대방어 (1인)</span>
-                                        <div className={classes.dotDiv}></div>
-                                        <label>35,000</label>
-                                    </div>
-                                    <div className={classes.menuContent}>
-                                        <span>줄가자미 (1인)</span>
-                                        <div className={classes.dotDiv}></div>
-                                        <label>48,000</label>
-                                    </div>
-                                    <div className={classes.menuContent}>
-                                        <span>물회</span>
-                                        <div className={classes.dotDiv}></div>
-                                        <label>23,000</label>
-                                    </div>
-                                    <div className={classes.menuContent}>
-                                        <span>공기밥</span>
-                                        <div className={classes.dotDiv}></div>
-                                        <label>2,000</label>
-                                    </div>
-                                    <div className={classes.menuContent}>
-                                        <span>어린이 돈가스</span>
-                                        <div className={classes.dotDiv}></div>
-                                        <label>5,000</label>
-                                    </div>
-                                </div>
-                                :
-                                <div className={classes.noMenuDiv}>
-                                    <img src={"/images/map/noMenu.svg"}/>
-                                    <span>등록된 메뉴가 없어요</span>
-                                </div>
-                        }
-
-                    </div>
-                    <Talk data={props.data}/>
-                    <div className={classes.functionSet}>
-                        <div className={classes.functionDiv}>
-                            <img src={"/images/map/share_default.svg"}/>
-                        </div>
-                        <div className={classes.functionDiv}>
-                            <img src={"/images/map/destination_default.svg"}/>
-                        </div>
-                        <div className={classes.functionDiv}>
-                            <img src={"/images/map/favorite_default.svg"}/>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {isActive ?
+            <ContentDetail data={data}/> : ""
+            }
         </div>
     )
 }

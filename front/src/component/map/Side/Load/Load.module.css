@@ -1,5 +1,10 @@
 .box{
     /*margin: 44px 22px;*/
+    height: 100%;
+}
+
+.loadBox{
+    height: 100%;
 }
 
 .searchBox{
