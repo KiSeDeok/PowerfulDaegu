@@ -1,9 +1,10 @@
-import {useState} from "react";
+import {useState, useContext } from "react";
 import { useCookies } from 'react-cookie';
 import {useSelector, useDispatch} from "react-redux";
 import moment from 'moment';
 import axios from 'axios';
 
+import {AppContext} from "../../App";
 import LoginHeader from "./header/LoginHeader";
 import InputTag from "../Public/Desktop/input/InputTag";
 import SubmitBtn from "../Public/Desktop/button/SubmitBtn";
@@ -14,6 +15,7 @@ import {Link} from "react-router-dom";
 import {authorityActions} from "../../store/user/authority-slice";
 
 function Login(props) {
+    const {serverUrl} = useContext(AppContext);
     const dispatch = useDispatch()
     const authority = useSelector((state) => state.authority.mode)
 
@@ -32,7 +34,7 @@ function Login(props) {
 
     const loginBtn = () => {
         try {
-            axios.post('http://localhost:3001/users/login', {
+            axios.post(serverUrl + 'users/login', {
                 "email": id,
                 "password": pw
             }, {withCredentials: true}).then(data => {
