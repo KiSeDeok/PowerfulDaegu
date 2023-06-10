@@ -27,3 +27,15 @@
     border: 1px solid #303030;
 }
 
+.errorArea {
+    width: 500px;
+    display: flex;
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+
+    color: #F21724;
+    margin-bottom: -14px;
+}
