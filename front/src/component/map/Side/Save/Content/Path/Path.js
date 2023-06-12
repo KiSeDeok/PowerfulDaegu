@@ -34,13 +34,12 @@ function Path(){
         setSortModal(sTemp)
     }
 
-
     return (
         <div className={classes.box}>
             <div className={classes.fHead}>
                 <div className={classes.fhContent} onClick={() => handleModal(0)}>
                     <span>{sortModal.text}</span>
-                    <img src={"/images/map/saveType/arrow.svg"}/>
+                    <img style={{height:"6px", width:"8px"}} src={"/images/map/saveType/arrow.svg"}/>
                     {sortModal.open ? <TitleModal index={sortModal.index} func={handleType} type={"sort"}/> : ""}
                 </div>
             </div>
@@ -49,8 +48,8 @@ function Path(){
                     <Pcontent/>
                     :
                     <div className={classes.nofBody}>
-                        <img src={"/images/map/noSearchImg.svg"}/>
-                        <span>저장된 스토어가 없어요</span>
+                        <img style={{height: "19px", width: "13px"}} src={"/images/map/noSearchImg.svg"}/>
+                        <span>저장된 경로가 없어요</span>
                     </div>
                 }
             </div>

@@ -72,7 +72,7 @@ function Load(){
             // 도착지가 있을 경우에는 검색
             if(!(position.end && Object.keys(position.end).length === 0 && position.end.constructor === Object)) {
                 fetchData({url: `http://localhost:3001/maps?start=${point}&goal=${position.end}`}, (obj) => {
-                    dispatch(mapActions.handleSearch({data: {point:{start:point, end:position.end}, data:obj}}))
+                    dispatch(mapActions.handleSearch({data: {point:{start:point, startName:name, endName:position.endValue, end:position.end}, data:obj}}))
                 })
             }
         }
@@ -86,7 +86,7 @@ function Load(){
             // 출발지가 있을 경우에는 검색
             if(!(position.start && Object.keys(position.start).length === 0 && position.start.constructor === Object)){
                 fetchData({url: `http://localhost:3001/maps?start=${position.start}&goal=${point}`}, (obj) => {
-                    dispatch(mapActions.handleSearch({data: {point:{start:position.start, end:point}, data:obj}}))
+                    dispatch(mapActions.handleSearch({data: {point:{start:position.start, startName:position.startValue, endName:name, end:point}, data:obj}}))
                 })
             }
         }

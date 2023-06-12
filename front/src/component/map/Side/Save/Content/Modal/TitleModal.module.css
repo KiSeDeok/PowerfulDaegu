@@ -12,6 +12,7 @@
     font-size: 16px;
     color: #969696;
     box-sizing: border-box;
+    z-index: 3;
     /*transition: all 1.0s ease;*/
 }
 

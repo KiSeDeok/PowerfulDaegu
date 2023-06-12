@@ -17,6 +17,7 @@ function Favorite(){
     // check된 컨텐츠 확인
     const [checkContents, setCheckContents] = useState([])
 
+    const [isLoad, setLoad] = useState(false)
 
     // 컨텐츠 저장 및 관리
     const [favoriteData, setFavoriteData] = useState([])
@@ -37,6 +38,7 @@ function Favorite(){
                 console.log("categoryValues = ", categoryValues)
                 setFavoriteData(categoryValues)
                 setCheckContents([])
+                setLoad(true)
             }
         })
     }
@@ -91,40 +93,48 @@ function Favorite(){
     }
     // }, []);
 
-    return (
-        <div className={classes.box}>
-            <div className={classes.fHead}>
-                <div className={classes.fhContent} onClick={() => handleModal(0)}>
-                    <span>{sortModal.text}</span>
-                    <img src={"/images/map/saveType/arrow.svg"}/>
-                    {sortModal.open ? <TitleModal index={sortModal.index} func={handleType} type={"sort"}/> : ""}
-                </div>
-                <div className={classes.fhContent} onClick={() => handleModal(1)}>
-                    <span>{placeModal.text}</span>
-                    <img src={"/images/map/saveType/arrow.svg"}/>
-                    {placeModal.open ? <TitleModal index={placeModal.index} func={handleType} type={"place"}/> : ""}
-                </div>
-                <div className={classes.fhContent} onClick={() => handleModal(2)}>
-                    <span>{regionModal.text}</span>
-                    <img src={"/images/map/saveType/arrow.svg"}/>
-                    {regionModal.open ? <TitleModal index={regionModal.index} func={handleType} type={"region"}/> : ""}
-                </div>
-            </div>
-            <div className={classes.fBody}>
-                {favoriteData && favoriteData.length > 0 ?
-                    favoriteData.map((ele, index) => (
-                        <Fcontent checks={checkContents} key={index} data={ele} handleItem={handleSelectedItem}/>
-                    ))
-                    :
-                    <div className={classes.nofBody}>
-                        <img src={"/images/map/noSearchImg.svg"}/>
-                        <span>저장된 스토어가 없어요</span>
+
+        return (
+            <div className={classes.box}>
+                <div className={classes.fHead}>
+                    <div className={classes.fhContent} onClick={() => handleModal(0)}>
+                        <span>{sortModal.text}</span>
+                        <img style={{height: "6px", width: "8px"}} src={"/images/map/saveType/arrow.svg"}/>
+                        {sortModal.open ? <TitleModal index={sortModal.index} func={handleType} type={"sort"}/> : ""}
                     </div>
+                    <div className={classes.fhContent} onClick={() => handleModal(1)}>
+                        <span>{placeModal.text}</span>
+                        <img style={{height: "6px", width: "8px"}} src={"/images/map/saveType/arrow.svg"}/>
+                        {placeModal.open ? <TitleModal index={placeModal.index} func={handleType} type={"place"}/> : ""}
+                    </div>
+                    <div className={classes.fhContent} onClick={() => handleModal(2)}>
+                        <span>{regionModal.text}</span>
+                        <img style={{height: "6px", width: "8px"}} src={"/images/map/saveType/arrow.svg"}/>
+                        {regionModal.open ?
+                            <TitleModal index={regionModal.index} func={handleType} type={"region"}/> : ""}
+                    </div>
+                </div>
+                {isLoad ?
+                    <div className={favoriteData.length !== 0 ? classes.fBody : `${classes.fBody} ${classes.noCont}`}>
+                        {favoriteData && favoriteData.length > 0 ?
+                            favoriteData.map((ele, index) => (
+                                <Fcontent checks={checkContents} key={index} data={ele}
+                                          handleItem={handleSelectedItem}/>
+                            ))
+                            :
+                            <div className={classes.nofBody}>
+                                <img style={{height: "19px", width: "13px"}} src={"/images/map/noSearchImg.svg"}/>
+                                <span>저장된 스토어가 없어요</span>
+                            </div>
+                        }
+                    </div>
+
+                    : ""
                 }
+                <FDelete data={checkContents} fetch={getFetchData}/>
             </div>
-            <FDelete data={checkContents} fetch={getFetchData}/>
-        </div>
-    )
+        )
+
 }
 
 export default Favorite

@@ -14,7 +14,7 @@ function TransfortSet(props){
         <div className={classes.box}>
             <div className={selected ? classes.selectedBox : classes.noSelectedBox} onClick={handleSelect}>
                 <span>{station.length}개 정류장 이동</span>
-                <img src={!selected ? "/images/map/selectArrow.svg" : "/images/map/selectArrow_select.svg"}/>
+                <img style={{width:"7px", height:"4px"}} src={!selected ? "/images/map/selectArrow.svg" : "/images/map/selectArrow_select.svg"}/>
             </div>
             <div className={selected ? classes.selectedStation : classes.noSelectedStation}>
                 {station.map((ele) => {

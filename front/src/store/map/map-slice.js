@@ -20,12 +20,17 @@ const mapSlice = createSlice({
         searchData:{
             point:{
                 start:"",
-                end:""
+                end:"",
+                startName:"",
+                endName:""
             },
             data:[]
         },
         destination:"",
-        polyline:"",
+        polyline:{
+            type:"",
+            data:""
+        },
         sideFold:false,
         location:{
             latitude:"",

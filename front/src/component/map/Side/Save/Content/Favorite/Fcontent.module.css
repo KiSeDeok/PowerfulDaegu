@@ -58,3 +58,64 @@
     border: 1px solid #EEEEEE;
     border-radius: 100px;
 }
+
+
+.destinationActiveDiv{
+    transition: all 0.3s linear;
+
+    border: 1px solid #FF7D00;
+}
+
+.destinationActive, .destinationDefault{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    right: 0;
+    width: 110px;
+    height: 30px;
+    padding-left: 12px;
+    box-sizing: border-box;
+    font-weight: 400;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.4);
+    background: #FF7D00;
+    border-radius: 100px;
+    z-index: 1;
+    gap: 6px;
+    transition: all 0.25s ease;
+}
+
+.destinationDefault{
+    width: 0px;
+    background: #ffffff;
+    padding-left:0;
+    gap:0px;
+}
+
+.destinationDefault > span{
+    width: 0;
+    opacity: 0;
+}
+
+
+.destinationDiv ,.favoriteDiv, .destinationActiveDiv, .favoriteActiveDiv{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background: #FFFFFF;
+    border: 1px solid #EAEAEA;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 2;
+    box-sizing: border-box;
+    /*transition: all 0.3s linear;*/
+}
+
+.right > .destinationDiv,
+.right > .destinationActiveDiv{
+
+    border: none;
+}

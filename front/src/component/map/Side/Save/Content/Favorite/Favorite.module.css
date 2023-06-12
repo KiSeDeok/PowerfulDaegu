@@ -23,6 +23,10 @@
     overflow-y:scroll;
 }
 
+.fBody.noCont{
+    overflow: hidden;
+}
+
 .fhContent{
     position: relative;
     display: flex;

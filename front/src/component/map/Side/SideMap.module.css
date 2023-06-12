@@ -110,7 +110,7 @@
 }
 .contentBox {
     height: calc(100% - 176px);
-    overflow-y: scroll;
+    /*overflow-y: scroll;*/
 }
 
 .contentBox::-webkit-scrollbar{

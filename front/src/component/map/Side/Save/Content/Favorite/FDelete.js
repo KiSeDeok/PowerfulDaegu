@@ -6,15 +6,10 @@ import useHttp from "../../../../../../hooks/use-http";
 function FDelete(props){
     const { isLoading, error, sendRequest: fetchData } = useHttp();
 
-    console.log("props= ", props)
     const handleDelete = () => {
-
         fetchData({url: `http://localhost:3001/store/like`, type:"delete", data:{id:props.data}}, (obj) => {
-            console.log("obj = ", obj)
             props.fetch()
-
         })
-
     }
 
     return (

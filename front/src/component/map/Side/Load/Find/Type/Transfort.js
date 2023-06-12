@@ -16,6 +16,8 @@ function Transfort(props){
     const data = props.data
     const busSubwaySet = props.data?.legs[0]?.steps.filter(ele => ele.type === "BUS" || ele.type === "SUBWAY")
 
+    console.log("data ", props)
+
     const handleDetail = (e) => {
         e.stopPropagation()
         e.preventDefault()
@@ -39,7 +41,9 @@ function Transfort(props){
             position.push(ele)
         })
 
-        dispatch(mapActions.handlePolyline({polyline:position}))
+        console.log("position= ", position)
+
+        dispatch(mapActions.handlePolyline({polyline: {data:position, type:"transfort"}}))
     }
 
     const handleFavorite = () => {
@@ -64,7 +68,7 @@ function Transfort(props){
                         <span>청소년 {data.fare === 1250 ? 850 : data.fare === 1650 ? 1100 : 400}원</span>
                         <span>|</span>
                         <span>일반 {data.fare}원</span>
-                        <img src={"/images/map/help.svg"}/>
+                        <img style={{height:"13px", width:"16px"}} src={"/images/map/help.svg"}/>
                     </div>
                 </div>
                 <div className={classes.headRight}>
@@ -105,7 +109,7 @@ function Transfort(props){
                                 <div key={uuidv4()}
                                     className={`${ele.type === "BUS" ? classes.sdDetailBusBox : classes.sdDetailBusBox} ${index === busSubwaySet.length - 1 ? classes.sdLastIndexBox : ""}`}>
                                     <div className={classes.sdLeftArea}>
-                                        <img
+                                        <img style={{height:"13px", width:"14px"}}
                                             src={ele.type === "BUS" ? "/images/map/bus_large.svg" : "/images/map/subway_large.svg"}/>
                                         <span>{ele.routes[0].name}</span>
                                     </div>
@@ -144,7 +148,6 @@ function Transfort(props){
                             </div>
                         )
                     })
-
                     :
                     <>
                         {
@@ -155,7 +158,7 @@ function Transfort(props){
                                     <div
                                         className={`${ele.type === "WALKING" ? classes.sdDetailWalkBox : classes.sdDetailBusBox} ${index === busSubwaySet.length - 1 ? classes.sdLastIndexBox : ""}`}>
                                         <div className={classes.sdLeftArea}>
-                                            <img
+                                            <img style={ele.type === "WALKING" ? {width:"10px", height:"13px"} : ele.type === "BUS" ? {width:"13px", height:"13px"} : {width:"13px", height:"14px"}}
                                                 src={ele.type === "WALKING" ? "/images/map/walk_large.svg" : ele.type === "BUS" ? "/images/map/bus_large.svg" : "/images/map/subway_large.svg"}/>
                                             <span>{ele.routes[0]?.name || "걷기"}</span>
                                         </div>

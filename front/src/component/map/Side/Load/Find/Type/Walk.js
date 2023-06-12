@@ -1,11 +1,22 @@
 import classes from "./Walk.module.css"
+import {mapActions} from "../../../../../../store/map/map-slice";
+import {useDispatch} from "react-redux";
 
 function Walk(props){
+    const dispatch = useDispatch()
+
     const summary = props?.data?.summary
     const time = (summary?.duration / 60).toFixed(0)
 
+    const handleMapClick = () => {
+        console.log("props.data =", props.data)
+        if(props?.data?.legs[0]?.steps) {
+            dispatch(mapActions.handlePolyline({polyline: {data: props.data.legs[0].steps, type: "walk"}}))
+        }
+    }
+
     return (
-        <div className={classes.box}>
+        <div className={classes.box} onClick={handleMapClick}>
             <div className={classes.left}>
                 {summary.option && (summary.option === "reco" || summary.option === "wide" || summary.option) ?
                     <div className={summary.option === "reco" ? classes.blReco : summary.option === "wide" ? classes.blWide : classes.blShort}>
