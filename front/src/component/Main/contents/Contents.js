@@ -4,6 +4,7 @@ import PublicView from "./PublicView";
 import {v4 as uuidv4} from "uuid";
 
 import classes from "./Contents.module.css";
+import {Link} from "react-router-dom";
 
 function Contents() {
     const notification = [
@@ -68,63 +69,63 @@ function Contents() {
     ]
 
     return (
-        <div className={classes.ccc}>
-            <div className={classes.ddd}>
+        <div>
+            <div className={classes.topArea}>
 
-                <div className={classes.aaa}>
-                    <div className={classes.ggg}>
+                <div className={classes.contentHeader}>
+                    <div className={classes.contentTitle}>
                         공지사항
                     </div>
-                    <div className={classes.hhh}>
-                        <div className={classes.iii}>
+                    <div className={classes.contentViewMore}>
+                        <div className={classes.contentText}>
                             놓치지 말고 확인해요
-                            <img className={classes.lll} src='/icon/check_icon.png' />
+                            <img className={classes.checkIcon} src='/icon/check_icon.png' />
                         </div>
-                        <div className={classes.jjj}>
+                        <Link to={"/community/notice"} className={classes.viewMore}>
                             전체보기 >
-                        </div>
+                        </Link>
                     </div>
                 </div>
 
-                <div className={classes.kkk}>
+                <div className={classes.notificationContent}>
                     {notification.map(notification => (
-                        <ContentsNotification key={uuidv4()} notification={notification} />
+                        <ContentsNotification key={notification.id} notification={notification} />
                     ))}
                 </div>
             </div>
 
 
-            <div className={classes.eee}>
-                <div className={classes.nnn}>
-                    <div className={classes.mmm}>
+            <div className={classes.bottomArea}>
+                <div className={classes.faqHeader}>
+                    <div className={classes.faqTitle}>
                         FAQ
                     </div>
-                    <div className={classes.ooo}>
+                    <div className={classes.faqViewMore}>
                         <div> </div>
-                        <div className={classes.qqq}>자주 묻는 질문</div>
-                        <div className={classes.ppp}>전체 보기 ></div>
+                        <div className={classes.faqText}>자주 묻는 질문</div>
+                        <Link to={"/community/feq"} className={classes.faqViewMoreArea}>전체 보기 ></Link>
                     </div>
                 </div>
 
 
-                <div className={classes.bbb}>
+                <div className={classes.faqContent}>
                     {question.map(question => (
-                        <ContentsQuestion key={uuidv4()} question={question} />
+                        <ContentsQuestion key={question.id} question={question} />
                     ))}
                 </div>
 
                 <div>
-                    <div className={classes.www}>
-                        <div className={classes.rrr}> </div>
+                    <div className={classes.gaugeBarBack}>
+                        <div className={classes.gaugeBarFront}> </div>
                     </div>
 
-                    <div className={classes.sss}>
-                        <div className={classes.ttt}>
-                            <div>{"<"}</div>
+                    <div className={classes.faqPageNation}>
+                        <div className={classes.faqPageNationLeft}>
+                            <div><img className={classes.arrowIcon} src='/icon/leftArrow_mini.png'/></div>
                         </div>
-                        <div className={classes.vvv}>1/3</div>
-                        <div className={classes.uuu}>
-                            <div>{">"}</div>
+                        <div className={classes.faqPageNationDetail}>1/3</div>
+                        <div className={classes.faqPageNationRight}>
+                            <div><img className={classes.arrowIcon} src='/icon/rightArrow_mini.png'/></div>
                         </div>
                     </div>
                 </div>

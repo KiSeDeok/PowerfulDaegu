@@ -1,4 +1,4 @@
-.aaa {
+.content {
     height: 64px;
     background-color: #FFE9A4;
     display: flex;
@@ -8,30 +8,51 @@
     font-size: 15px;
 }
 
-.bbb {
+.content2 {
+    height: 64px;
+    background-color: #595959;
+    display: flex;
+    align-items: center;
+
+    font-weight: 400;
+    font-size: 15px;
+}
+
+.content2 > div > * {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+
+    color: #F8F8F8;
+}
+
+.logo {
+    width: 90px;
+    height: 19px;
+    margin: 4px 27px 0 27px;
+}
+
+.topBar {
+    display: flex;
+}
+
+.topBar > * {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    text-decoration: none;
+    width: 90px;
+    text-align: center;
+    color: #303030;
+}
+
+.loginBtn {
     position: absolute;
     right: 58px;
     text-decoration: none;
     font-weight: 400;
     font-size: 15px;
     color: black;
-}
-
-.ccc {
-    display: flex;
-}
-
-.ccc > div {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 15px;
-
-    width: 90px;
-    text-align: center;
-}
-
-.ddd {
-    width: 40px;
-    height: 40px;
-    margin: 0 27px;
 }

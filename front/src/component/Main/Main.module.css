@@ -1,17 +1,15 @@
-.aaa {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.bbb {
-
-}
-
-.ccc {
-    background-image: url("/public/img/main_banner.png");
+.bannerArea {
+    background-color: #FFDA68;
     background-size: cover;
     display: flex;
     justify-content: center;
     height: 656px;
+    position: relative;
+}
+
+.bannerImg {
+    position: absolute;
+    height: 424px;
+    width: 1200px;
+    bottom: 0;
 }

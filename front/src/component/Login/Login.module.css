@@ -1,15 +1,15 @@
-.aaa {
+.content {
     display: flex;
     width: 100%;
     flex-direction: column;
     align-items: center;
 }
 
-.aaa > * {
+.content > * {
     width: 300px;
 }
 
-.bbb {
+.header {
     font-weight: 700;
     font-size: 24px;
     line-height: 29px;
@@ -17,13 +17,13 @@
     margin-bottom: 54px;
 }
 
-.ccc {
+.funArea {
     display: flex;
     justify-content: center;
     margin-top: 24px;
 }
 
-.ccc > * {
+.funArea > * {
     font-style: normal;
     text-decoration: none;
     font-weight: 400;
@@ -32,16 +32,16 @@
     color: #303030;
 }
 
-.ccc > div:nth-child(2) {
+.funArea > div:nth-child(2) {
     margin: 0 8px;
 }
 
-.ddd {
+.line {
     border: 1px solid #DDDDDD;
     margin: 32px 0;
 }
 
-.eee {
+.socialFunc {
     text-align: center;
     font-style: normal;
     font-weight: 400;
@@ -51,10 +51,10 @@
     margin-bottom: 24px;
 }
 
-.fff {
+.inputArea {
     margin-bottom: 44px;
 }
 
-.fff > div:nth-child(1){
+.inputArea > div:nth-child(1){
     margin-bottom: 24px;
 }

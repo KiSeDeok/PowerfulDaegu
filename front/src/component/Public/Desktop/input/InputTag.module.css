@@ -1,4 +1,4 @@
-.aaa {
+.header {
     font-style: normal;
     font-weight: 700;
     font-size: 14px;
@@ -6,7 +6,7 @@
     margin-bottom: 8px;
 }
 
-.bbb {
+.inputBox {
     width: 100%;
     height: 44px;
     outline: none;
@@ -23,7 +23,7 @@
 }
 
 
-.bbb:focus {
+.inputBox:focus {
     border: 1px solid #303030;
 }
 

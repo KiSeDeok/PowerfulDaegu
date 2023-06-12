@@ -3,7 +3,11 @@ import mapSlice from "./map/map-slice";
 import saveLocationSlice from "./map/saveLoaction-slice";
 import mapModalSlice from "./map/modal-slice";
 import mapStoreSlice from "./map/mapStore-slice";
+
 import userSlice from "./map/user-slice";
+
+import authoritySlice from "./user/authority-slice";
+
 
 const store = configureStore({
     reducer:{
@@ -11,7 +15,7 @@ const store = configureStore({
         mapModal: mapModalSlice.reducer,
         saveLocation: saveLocationSlice.reducer,
         mapStore: mapStoreSlice.reducer,
-        user: userSlice.reducer,
+        authority : authoritySlice.reducer
     },
     middleware: getDefaultMiddleware => getDefaultMiddleware({ serializableCheck: false })
 })
