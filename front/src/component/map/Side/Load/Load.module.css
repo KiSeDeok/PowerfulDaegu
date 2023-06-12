@@ -1,5 +1,10 @@
 .box{
     /*margin: 44px 22px;*/
+    height: 100%;
+}
+
+.loadBox{
+    height: 100%;
 }
 
 .searchBox{
@@ -25,7 +30,7 @@
 }
 
 .searchBox input{
-    min-width: 325px;
+    min-width: 304px;
     height: 90%;
     outline: none;
     border: none;
@@ -39,7 +44,7 @@
     /*position: relative;*/
     display: flex;
     align-items: center;
-    padding-left: 0px;
+    padding-left: 10px;
     margin-right: 58px;
     height: 46px;
     font-weight: 400;
@@ -58,14 +63,25 @@
     min-width: 300px;
 }
 
+.startDiv img,
+.endDiv img{
+    display: none;
+}
+
 .startDiv.startFocus img,
 .endDiv.startFocus img{
+    /*padding-left: 10px;*/
     display: block;
 }
 
-.startDiv > img,
-.endDiv > img{
-    display: none;
+.noImg{
+    /*display: none;*/
+}
+
+.startDiv .startImg,
+.endDiv .endImg{
+    display: block;
+    /*padding-left: 15px;*/
 }
 
 .onFocus{

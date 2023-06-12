@@ -22,7 +22,8 @@ const useHttp = () => {
                     method: requestConfig.type,
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
-                    data: requestConfig.data || null
+                    data: requestConfig.data || null,
+                    withCredentials: true
                 }
 
                 if(header){
@@ -56,7 +57,8 @@ const useHttp = () => {
                     method: "get",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
-                    data: requestConfig.data || null
+                    data: requestConfig.data || null,
+                    withCredentials: true
                 }
 
                 if(header){

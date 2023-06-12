@@ -5,14 +5,67 @@
     left: -1px;
     min-width: 418px;
     height: 492px;
-     background: #ffffff;
+    background: #ffffff;
     border: 1px solid #FF7D00;
     box-sizing: border-box;
     padding: 18px 0;
     box-sizing: border-box;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.hasBox::-webkit-scrollbar{
+    width: 0px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    right: 10px;
+    transition: opacity 0.5s ease-in-out;
+    margin-right: 4px;
+}
+
+/* 수직 스크롤바 thumb(스크롤바 핸들)에 대한 스타일 설정 */
+.hasBox::-webkit-scrollbar-thumb {
+    background-color: #EEEEEE;
+    border-radius: 5px;
+    margin-right: 4px;
+    right: 10px;
+
 }
 
 .hasBox.endHasBox{
+    top: 83px;
+}
+
+.noSearchHasBox, .noSearchHasBoxEnd{
+    z-index: 3;
+    position: absolute;
+    top: 46px;
+    left: -1px;
+    display: flex;
+    align-items: center;
+    min-width: 418px;
+    height: 70px;
+    background: #FAFAFA;
+    border: 1px solid #FF7D00;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    box-sizing: border-box;
+    padding: 18px 22px;
+    box-sizing: border-box;
+    overflow: hidden;
+    overflow-y: scroll;
+    font-weight: 400;
+    font-size: 16px;
+    color: #969696;
+    gap: 15px;
+}
+
+div .noSearchHasBox > img,
+div .noSearchHasBoxEnd > img{
+    display: block;
+}
+
+.noSearchHasBoxEnd{
     top: 83px;
 }
 

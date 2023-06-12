@@ -1,6 +1,7 @@
 import ContentsNotification from "./ContentsNotification"
 import ContentsQuestion from "./ContentsQuestion"
 import PublicView from "./PublicView";
+import {v4 as uuidv4} from "uuid";
 
 import classes from "./Contents.module.css";
 import {Link} from "react-router-dom";
