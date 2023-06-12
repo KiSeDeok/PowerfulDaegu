@@ -36,8 +36,6 @@ function Login(props) {
     };
 
     const loginBtn = () => {
-        setPwError("가입되어 있지 않은 계정이거나, 이메일 또는 비밀번호가 일치하지 않습니다.")
-
         fetchData({
             url: serverUrl + 'users/login',
             type:'post',
