@@ -4,12 +4,16 @@ import {useEffect, useState} from "react";
 import TitleModal from "../Modal/TitleModal";
 import {useDispatch, useSelector} from "react-redux";
 import useHttp from "../../../../../../hooks/use-http";
+import FDelete from "../Favorite/FDelete";
 
 function Path(){
     const [sortModal, setSortModal] = useState({open:false, index:0, text:"최근 저장순"})
     const { isLoading, error, sendRequest: fetchData } = useHttp();
 
-    // 컨텐츠 저장 및 관리
+    // check된 컨텐츠 확인
+    const [checkContents, setCheckContents] = useState([])
+
+    const [isLoad, setLoad] = useState(false)
 
     const [pathData, setPathData] = useState([])
     const dispatch = useDispatch()
@@ -20,8 +24,18 @@ function Path(){
 
     const getFetchData = () => {
         fetchData({url: `http://localhost:3001/store/direction`, type:"get"}, (obj) => {
-            console.log("obj = ", obj)
-            // dispatch(userActions.handleFavorite({favorite:obj}))
+            console.log("pathData= ", pathData)
+            console.log("obj= ", obj)
+
+            if(obj && obj.length > 0) {
+                setPathData(obj)
+            }
+            else{
+                setPathData([])
+            }
+
+            setCheckContents([])
+            setLoad(true)
         })
     }
     const handleModal = () => {
@@ -34,6 +48,20 @@ function Path(){
         setSortModal(sTemp)
     }
 
+    const handleSelectedItem = (id) => {
+        const temp = JSON.parse(JSON.stringify(checkContents));
+        const index = temp.findIndex(item => item === id); // id값이 있는 요소의 인덱스를 찾습니다.
+
+        if (index !== -1) {
+            temp.splice(index, 1); // 해당 인덱스의 요소를 삭제합니다.
+        }
+        else{
+            temp.push(id)
+        }
+
+        setCheckContents(temp)
+    }
+
     return (
         <div className={classes.box}>
             <div className={classes.fHead}>
@@ -43,16 +71,23 @@ function Path(){
                     {sortModal.open ? <TitleModal index={sortModal.index} func={handleType} type={"sort"}/> : ""}
                 </div>
             </div>
-            <div className={classes.fBody}>
-                {pathData && pathData.length > 0 ?
-                    <Pcontent/>
-                    :
-                    <div className={classes.nofBody}>
-                        <img style={{height: "19px", width: "13px"}} src={"/images/map/noSearchImg.svg"}/>
-                        <span>저장된 경로가 없어요</span>
-                    </div>
-                }
-            </div>
+            {isLoad ?
+                <div className={classes.fBody}>
+                    {pathData && pathData.length > 0 ?
+                        pathData.map((ele, index) => {
+                            return <Pcontent checks={checkContents} key={index} data={ele}
+                                             handleItem={handleSelectedItem}/>
+                        })
+                        :
+                        <div className={classes.nofBody}>
+                            <img style={{height: "19px", width: "13px"}} src={"/images/map/noSearchImg.svg"}/>
+                            <span>저장된 경로가 없어요</span>
+                        </div>
+                    }
+                </div> : ""
+            }
+
+            <FDelete data={checkContents} fetch={getFetchData} type={"path"}/>
         </div>
     )
 }

@@ -55,8 +55,9 @@
     width: 30px;
     height: 30px;
     background: #FFFFFF;
-    border: 1px solid #EEEEEE;
+    border: 2px solid #EEEEEE;
     border-radius: 100px;
+    box-sizing: border-box;
 }
 
 
@@ -114,8 +115,11 @@
     /*transition: all 0.3s linear;*/
 }
 
+.fbFunction > .destinationDiv{
+    /*border: none;*/
+}
+
 .right > .destinationDiv,
 .right > .destinationActiveDiv{
-
     border: none;
 }

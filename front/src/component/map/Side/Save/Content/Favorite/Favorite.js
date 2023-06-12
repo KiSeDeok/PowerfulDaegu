@@ -26,20 +26,18 @@ function Favorite(){
 
     useEffect(() => {
         getFetchData()
-        console.log("1")
     }, [])
 
     const getFetchData = () => {
         fetchData({url: `http://localhost:3001/store/like`}, (obj) => {
-            console.log("obj = ", obj)
             if(obj && obj.length > 0) {
                 const categoryValues = obj.map((item) => item.store);
 
-                console.log("categoryValues = ", categoryValues)
                 setFavoriteData(categoryValues)
                 setCheckContents([])
-                setLoad(true)
             }
+
+            setLoad(true)
         })
     }
     const handleModal = (index) => {
@@ -131,7 +129,7 @@ function Favorite(){
 
                     : ""
                 }
-                <FDelete data={checkContents} fetch={getFetchData}/>
+                <FDelete data={checkContents} fetch={getFetchData} type={"favorite"}/>
             </div>
         )
 

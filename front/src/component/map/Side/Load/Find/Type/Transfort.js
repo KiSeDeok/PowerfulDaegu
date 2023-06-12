@@ -49,7 +49,7 @@ function Transfort(props){
     const handleFavorite = () => {
         const address = `http://localhost:3001/maps?start=${props.address.start}&goal=${props.address.end}`
 
-        fetchData({url: `http://localhost:3001/store/direction`, type:"post", data:{url:address}}, (obj) => {
+        fetchData({url: `http://localhost:3001/store/direction`, type:"post", data:{url:address, start:props.address.startName, goal:props.address.endName }}, (obj) => {
             console.log("obj = ", obj)
         })
     }
