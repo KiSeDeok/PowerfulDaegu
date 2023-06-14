@@ -39,6 +39,7 @@ function Path(){
             }
 
             setCheckContents([])
+            setIsAll(false)
             setLoad(true)
         })
     }
