@@ -1,7 +1,7 @@
 import classes from "./Favorite.module.css"
 import Fcontent from "./Fcontent";
 import TitleModal from "../Modal/TitleModal";
-import {useCallback, useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import {v4 as uuidv4} from "uuid";
 import FDelete from "./FDelete";
 import {useDispatch, useSelector} from "react-redux";
@@ -17,7 +17,11 @@ function Favorite(){
     // check된 컨텐츠 확인
     const [checkContents, setCheckContents] = useState([])
 
+    // 데이터 로딩 확인
     const [isLoad, setLoad] = useState(false)
+
+    // 전체 체크
+    const [isAllCheck, setIsAll] = useState(false)
 
     // 컨텐츠 저장 및 관리
     const [favoriteData, setFavoriteData] = useState([])
@@ -34,9 +38,13 @@ function Favorite(){
                 const categoryValues = obj.map((item) => item.store);
 
                 setFavoriteData(categoryValues)
-                setCheckContents([])
+            }
+            else{
+                setFavoriteData([])
             }
 
+            setCheckContents([])
+            setIsAll(false)
             setLoad(true)
         })
     }
@@ -74,11 +82,22 @@ function Favorite(){
         }
     }
 
+    const handleAllItem = () => {
+        if(isAllCheck){
+            setIsAll(false)
+            setCheckContents([])
+        }
+        else{
+            setIsAll(true)
+            const array = favoriteData.map((ele) => {return ele.id})
+            setCheckContents(array)
+        }
+    }
+
     const handleSelectedItem = (id) => {
     // const handleSelectedItem = useCallback((id) => {
         const temp = JSON.parse(JSON.stringify(checkContents));
         const index = temp.findIndex(item => item === id); // id값이 있는 요소의 인덱스를 찾습니다.
-        // console.log("temp= ", temp)
 
         if (index !== -1) {
             temp.splice(index, 1); // 해당 인덱스의 요소를 삭제합니다.
@@ -110,6 +129,14 @@ function Favorite(){
                         <img style={{height: "6px", width: "8px"}} src={"/images/map/saveType/arrow.svg"}/>
                         {regionModal.open ?
                             <TitleModal index={regionModal.index} func={handleType} type={"region"}/> : ""}
+                    </div>
+                </div>
+                <div className={classes.fAllBox}>
+                    <div className={classes.faBox} onClick={handleAllItem}>
+                        <div className={isAllCheck ? classes.activeCheckbox : classes.defaultCheckbox}>
+                            {isAllCheck && <img src={"/images/map/saveType/check.svg"} />}
+                        </div>
+                        <span>전체</span>
                     </div>
                 </div>
                 {isLoad ?
