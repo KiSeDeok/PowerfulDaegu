@@ -1,8 +1,8 @@
-.aaa {
+.header {
     margin: 72px 0 36px 0;
 }
 
-.bbb {
+.title {
     font-style: normal;
     font-weight: 800;
     font-size: 24px;
@@ -12,7 +12,7 @@
     margin-bottom: 8px;
 }
 
-.ccc {
+.detail {
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
@@ -22,11 +22,11 @@
     color: #666666;
 }
 
-.ddd {
+.categoryArea {
     margin-bottom: 28px;
 }
 
-.eee {
+.categoryTitle {
     display: flex;
     font-style: normal;
     font-weight: 700;
@@ -37,19 +37,20 @@
     margin-bottom: 8px;
 }
 
-.fff {
+.categoryTitle > div {
     color: #FF7D00;
+
 }
 
-.ggg {
+.categoryBtnArea {
     display: flex;
 }
 
-.ggg > div:not(:last-child) {
+.categoryBtnArea > div:not(:last-child) {
     margin-right: 8px;
 }
 
-.hhh {
+.categoryBtnDefault {
     background: #FFFFFF;
     border: 1px solid #DDDDDD;
     border-radius: 20px;
@@ -65,7 +66,7 @@
     cursor: pointer;
 }
 
-.iii {
+.categoryBtnActive {
     background: #FFEEDD;
     border: 1px solid #FF7D00;
     border-radius: 20px;
@@ -81,7 +82,7 @@
     cursor: pointer;
 }
 
-.jjj {
+.inputBox {
     height: 44px;
     width: 100%;
     background: #FFFFFF;
@@ -100,15 +101,15 @@
     color: #303030;
 }
 
-.jjj::placeholder {
+.inputBox::placeholder {
     color: #969696;
 }
 
-.jjj:focus {
+.inputBox:focus {
     outline: 1px solid #303030;
 }
 
-.kkk {
+.textArea {
     height: 248px;
     width: 100%;
     background: #FFFFFF;
@@ -127,23 +128,19 @@
     color: #303030;
 }
 
-.kkk::placeholder {
+.textArea::placeholder {
     color: #969696;
 }
 
-.kkk:focus {
+.textArea:focus {
     outline: 1px solid #303030;
 }
 
-.lll {
+.inputTitle {
     margin-bottom: 28px;
 }
 
-.nnn {
-
-}
-
-.mmm {
+.fileUploadBtn {
     height: 44px;
 
     background: #FFFFFF;
@@ -161,16 +158,17 @@
     letter-spacing: 0.01em;
 
     color: #666666;
+    cursor: pointer;
 }
 
-.ooo {
+.submitArea {
     display: flex;
     justify-content: center;
 
     margin: 28px 0 108px 0
 }
 
-.ppp {
+.submitBtnDisable {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -187,9 +185,10 @@
     line-height: 17px;
 
     color: #969696;
+    cursor: default;
 }
 
-.qqq {
+.submitBtnActive {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -206,8 +205,9 @@
     line-height: 17px;
 
     color: #FFFFFF;
+    cursor: pointer;
 }
 
-.qqq:hover {
+.submitBtnActive:hover {
     background-color: #C36000;
 }

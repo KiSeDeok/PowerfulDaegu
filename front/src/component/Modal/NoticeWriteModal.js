@@ -4,9 +4,9 @@ import axios from 'axios';
 import classes from "./NoticeWriteModal.module.css";
 
 function NoticeWriteModal(props) {
-    const [title, setTitle] = useState('');
-    const [detail, setDetail] = useState('');
-    const [category, setCategory] = useState(0);
+    const [title, setTitle] = useState('')
+    const [detail, setDetail] = useState('')
+    const [category, setCategory] = useState(0)
 
     useEffect(() => {
         setTitle("")

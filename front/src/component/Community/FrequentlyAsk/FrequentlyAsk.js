@@ -70,9 +70,15 @@ function FrequentlyAsk() {
     ];
     const [category, setCategory] = useState(0)
     const [active, setActive] = useState(0)
+    const [nowPage, setNowPage] = useState(1);
+    const [totalPage, setTotalPage] = useState(1)
 
     function changeCategory(division) {
         setCategory(division)
+    }
+
+    function changePageNum(value) {
+        setNowPage(value)
     }
 
     return (
@@ -105,7 +111,7 @@ function FrequentlyAsk() {
                 ))}
             </div>
 
-            <Pagination nowPage={1} totalPage={2} />
+            <Pagination page={nowPage} totalPage={totalPage} setPage={changePageNum} />
         </>
     );
 }
