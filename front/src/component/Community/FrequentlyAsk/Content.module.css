@@ -1,10 +1,10 @@
-.bbb {
+.content {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.ccc {
+.detail {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -14,11 +14,11 @@
     cursor:pointer;
 }
 
-.ddd {
+.leftArea {
     display: flex;
 }
 
-.eee {
+.category {
     font-style: normal;
     font-weight: 600;
     font-size: 18px;
@@ -29,7 +29,7 @@
     width: 100px;
 }
 
-.fff {
+.question {
     font-style: normal;
     font-weight: 600;
     font-size: 18px;
@@ -39,12 +39,12 @@
     color: #303030;
 }
 
-.ggg {
+.rightArea {
     height: 40px;
     width: 40px;
 }
 
-.hhh {
+.answer {
     height: 86px;
     background: #F9F9F9;
     border-bottom: 1px solid #DDDDDD;

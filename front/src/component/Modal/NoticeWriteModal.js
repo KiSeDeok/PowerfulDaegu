@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import axios from 'axios';
 
-import classes from "./NoticeWriteModal.module.css";
+import classes from "./PublicModal.module.css";
 
 function NoticeWriteModal(props) {
     const [title, setTitle] = useState('')
@@ -67,10 +67,10 @@ function NoticeWriteModal(props) {
                             <div>*</div>
                         </div>
                         <div className={classes.categoryBtnArea}>
-                            <div className={category === 0 ? classes.categoryBtnActive : classes.categoryBtnDisable} onClick={setCategory.bind(this, 0)}>
+                            <div className={category === 0 ? classes.noticeCategoryBtnActive : classes.noticeCategoryBtnDisable} onClick={setCategory.bind(this, 0)}>
                                 안내
                             </div>
-                            <div className={category === 1 ? classes.categoryBtnActive : classes.categoryBtnDisable} onClick={setCategory.bind(this, 1)}>
+                            <div className={category === 1 ? classes.noticeCategoryBtnActive : classes.noticeCategoryBtnDisable} onClick={setCategory.bind(this, 1)}>
                                 점검
                             </div>
                         </div>

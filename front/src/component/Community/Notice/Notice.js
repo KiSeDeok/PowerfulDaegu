@@ -1,23 +1,23 @@
 import {useState, useEffect, useContext} from "react";
+import axios from "axios";
 
+import {AppContext} from "../../../App";
 import useHttp from "../../../hooks/use-http";
 import Pagination from "../Pagination";
 import Content from "./Content";
 import NoticeWriteModal from "../../Modal/NoticeWriteModal";
 
 import classes from "./Notice.module.css";
-import {AppContext} from "../../../App";
-import axios from "axios";
 
 function Notice() {
     const {serverUrl} = useContext(AppContext)
     const { isLoading, error, sendRequest: fetchData } = useHttp()
 
-    const [category, setCategory] = useState(0);
-    const [checkItems, setCheckItems] = useState([]);
-    const [writeModal, setWriteModal] = useState(false);
-    const [contents, setContents] = useState([]);
-    const [nowPage, setNowPage] = useState(1);
+    const [category, setCategory] = useState(0)
+    const [checkItems, setCheckItems] = useState([])
+    const [writeModal, setWriteModal] = useState(false)
+    const [contents, setContents] = useState([])
+    const [nowPage, setNowPage] = useState(1)
     const [totalPage, setTotalPage] = useState(1)
 
     useEffect(() => {
