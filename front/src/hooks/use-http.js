@@ -3,6 +3,8 @@ import axios from "axios";
 import {useCookies} from "react-cookie";
 
 const useHttp = () => {
+    axios.defaults.withCredentials = true;
+
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
