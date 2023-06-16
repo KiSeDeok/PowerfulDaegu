@@ -16,8 +16,6 @@ function Transfort(props){
     const data = props.data
     const busSubwaySet = props.data?.legs[0]?.steps.filter(ele => ele.type === "BUS" || ele.type === "SUBWAY")
 
-    console.log("data ", props)
-
     const handleDetail = (e) => {
         e.stopPropagation()
         e.preventDefault()
@@ -41,7 +39,6 @@ function Transfort(props){
             position.push(ele)
         })
 
-        console.log("position= ", position)
 
         dispatch(mapActions.handlePolyline({polyline: {data:position, type:"transfort"}}))
     }
@@ -50,7 +47,6 @@ function Transfort(props){
         const address = `http://localhost:3001/maps?start=${props.address.start}&goal=${props.address.end}`
 
         fetchData({url: `http://localhost:3001/store/direction`, type:"post", data:{url:address, start:props.address.startName, goal:props.address.endName }}, (obj) => {
-            console.log("obj = ", obj)
         })
     }
 

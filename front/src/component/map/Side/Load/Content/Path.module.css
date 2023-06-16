@@ -36,6 +36,7 @@
     font-weight: 400;
     font-size: 14px;
     color: #FF7D00;
+    cursor: pointer;
 }
 
 .rContents{
@@ -48,6 +49,7 @@
     color: #575757;
     box-sizing: border-box;
     transition: all 0.1s linear;
+    cursor: pointer;
 }
 
 .rContents:hover{
@@ -64,6 +66,10 @@
     margin-right: 11px;
     gap: 11px;
     box-sizing: border-box;
+}
+
+.rcBody > label{
+    cursor: pointer;
 }
 
 .reSImg{

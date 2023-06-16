@@ -1,10 +1,16 @@
 import classes from "./Save.module.css"
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Favorite from "./Content/Favorite/Favorite";
 import Path from "./Content/Path/Path";
 
-function Save(){
+function Save(props){
     const [type, setType] = useState(0)
+
+    useEffect(() => {
+        if(props.index === 3){
+            setType(1)
+        }
+    }, [])
 
     const handleType = (index) => {
         if(type !== index) {

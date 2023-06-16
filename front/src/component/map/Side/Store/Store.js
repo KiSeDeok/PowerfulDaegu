@@ -16,7 +16,6 @@ function Store(){
             const region = storeValue.region.join(",");
             const type = storeValue.type.join(",")
 
-
             fetchData({url: `http://localhost:3001/store/search?storename=${storeValue.value}&region=${region}&place=`}, (obj) => {
                 if(obj.stores.length > 0) {
                     const updatedStore = obj.stores?.map((item) => {

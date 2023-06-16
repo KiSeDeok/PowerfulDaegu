@@ -63,13 +63,13 @@ function SideMain(){
             <div className={classes.categoryBox}>
                 <div className={pageData.num === 0 ? classes.activeCategory : ""} onClick={() => handleIndex(0)}><span>스토어 검색</span></div>
                 <div className={pageData.num === 1 ? classes.activeCategory : ""} onClick={() => handleIndex(1)}><span>길찾기</span></div>
-                <div className={pageData.num === 2 ? classes.activeCategory : ""} onClick={() => handleIndex(2)}><span>저장</span></div>
+                <div className={pageData.num === 2 || pageData.num === 3 ? classes.activeCategory : ""} onClick={() => handleIndex(2)}><span>저장</span></div>
             </div>
             <div className={classes.contentBox}>
                 {pageData.num === 0 ?
                     <Store /> : pageData.num === 1 ?
                     <Load /> :
-                    <Save />
+                    <Save index={pageData.num}/>
                 }
             </div>
             <div className={sideOpen ? classes.foldBtn : classes.unFoldBtn} onClick={handleOpen}>
