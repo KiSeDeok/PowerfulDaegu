@@ -152,7 +152,7 @@
     cursor: pointer;
 }
 
-.feqCategoryBtnActive {
+.faqCategoryBtnActive {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -171,7 +171,7 @@
     cursor: pointer;
 }
 
-.feqCategoryBtnDisable {
+.faqCategoryBtnDisable {
     display: flex;
     justify-content: center;
     align-items: center;

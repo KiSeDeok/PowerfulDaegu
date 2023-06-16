@@ -1,10 +1,18 @@
 import classes from "./Content.module.css";
 
 function Content(props) {
+    function checkBoxHandler(event) {
+        event.preventDefault();
+        props.checkHandler(props.checked, props.content.id)
+    }
+
     return (
         <div className={classes.content}>
             <div className={classes.detail}  onClick={props.content.id === props.active ? props.setActive.bind(this, 0) : props.setActive.bind(this, props.content.id)}>
                 <div className={classes.leftArea}>
+                    <div className={props.checked ? classes.checkBoxChecked : classes.checkBoxDefault} onClick={checkBoxHandler}>
+                        <div/>
+                    </div>
                     <div className={classes.category}>
                         Q.{props.content.category}
                     </div>

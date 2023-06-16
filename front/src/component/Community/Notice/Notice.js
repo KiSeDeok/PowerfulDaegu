@@ -1,5 +1,4 @@
 import {useState, useEffect, useContext} from "react";
-import axios from "axios";
 
 import {AppContext} from "../../../App";
 import useHttp from "../../../hooks/use-http";
@@ -95,26 +94,27 @@ function Notice() {
             setTotalPage(parseInt(parseInt(data.count / 10) + ((data.count % 10) !== 0)))
             setContents(noticeData)
         }).catch(error => {
-
+            alert("공지를 받아오지 못했습니다. : error code : " + error)
         })
     }
 
     function deleteNotice() {
-        axios.delete( serverUrl + 'notice', {
-            data: {
+        fetchData({
+            url: serverUrl + 'notice',
+            type:'delete',
+            data:{
                 id : checkItems
-            },
-            withCredentials: true
-        }).then(data => {
+            }}, (data) => {
+            let dataLen = checkItems.length
+            let nowCategory = category === 0 ? "all" : category === 1 ? "guide" : "inspection"
+
             setCheckItems([])
 
-            let nowCategory = category === 0 ? "all" : category === 1 ? "guide" : "inspection"
+            alert(dataLen + "개의 공지가 삭제되었습니다.")
             getContents(1, nowCategory)
-        }).catch(e => {
-            console.log(e)
-            alert("권한이 부족합니다.")
+        }).catch(error => {
+            alert("권한이 부족합니다 : error code : " + error)
         })
-
     }
 
     return (

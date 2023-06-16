@@ -14,6 +14,10 @@
     cursor:pointer;
 }
 
+.content:nth-child(1) {
+    border-top: 1px solid #DDDDDD;
+}
+
 .leftArea {
     display: flex;
 }
@@ -52,4 +56,43 @@
     box-sizing: border-box;
     display: flex;
     align-items: center;
+}
+
+.checkBoxDefault {
+    box-sizing: border-box;
+    width: 20px;
+    height: 20px;
+
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    margin-left: 16px;
+    margin-right: 24px;
+    cursor: pointer;
+}
+
+.checkBoxDefault:hover {
+    border: 1px solid #FF7D00;
+}
+
+.checkBoxChecked {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    margin-left: 16px;
+    margin-right: 24px;
+
+    box-sizing: border-box;
+    background: #FF7D00;
+    border-radius: 4px;
+    border: 1px solid #FF7D00;
+    cursor: pointer;
+}
+
+.checkBoxChecked > div {
+    background-image: url("/public/icon/checkBox_icon.png");
+    background-size: cover;
+    width: 11px;
+    height: 8px;
 }

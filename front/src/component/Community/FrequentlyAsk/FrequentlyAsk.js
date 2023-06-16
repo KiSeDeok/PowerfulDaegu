@@ -1,5 +1,4 @@
 import {useState, useEffect, useContext} from "react";
-import axios from "axios";
 
 import {AppContext} from "../../../App";
 import useHttp from "../../../hooks/use-http";
@@ -101,6 +100,11 @@ function FrequentlyAsk() {
         }
     }, [error, serverUrl]);
 
+    useEffect(() => {
+        let nowCategory = category === 0 ? "all" : category === 1 ? "franchisee" : category === 2 ? "map" : "etc"
+        getContents(1, nowCategory)
+    }, [])
+
     function handleAllCheck() {
         if(!(checkItems.length === contents.length)) {
             const idArray = [];
@@ -112,16 +116,71 @@ function FrequentlyAsk() {
         }
     }
 
-    function changeCategory(division) {
-        setCategory(division)
+    function handleSingleCheck(checked, id) {
+        if (!checked) {
+            setCheckItems(prev => [...prev, id]);
+        } else {
+            setCheckItems(checkItems.filter((el) => el !== id));
+        }
     }
 
     function changePageNum(value) {
         setNowPage(value)
+        setCheckItems([])
+
+        let nowCategory = category === 0 ? "all" : category === 1 ? "franchisee" : category === 2 ? "map" : "etc"
+        getContents(value, nowCategory)
+    }
+
+    function changeCategory(value) {
+        setCategory(value)
+        setNowPage(1)
+        setCheckItems([])
+
+        let nowCategory = value === 0 ? "all" : value === 1 ? "franchisee" : value === 2 ? "map" : "etc"
+        getContents(1, nowCategory)
+    }
+
+    function getContents(pageNum, category) {
+        fetchData({
+            url: serverUrl + 'faq?page=' + pageNum + '&category=' + category,
+            type:'get'
+        }, (data) => {
+            let fapData = []
+
+            data[0].forEach((faq => {
+                fapData.push({
+                    id: faq.id,
+                    question: faq.question,
+                    answer: faq.answer,
+                    category: faq.category === "franchisee" ? "가맹점" : faq.category === "map" ? "길찾기" : "기타"
+                })
+            }))
+
+            setTotalPage(parseInt(parseInt(data[1] / 10) + ((data[1] % 10) !== 0)))
+            setContents(fapData)
+        }).catch(error => {
+            alert("공지를 받아오지 못했습니다. : error code : " + error)
+        })
     }
 
     function deleteNotice() {
-        alert("삭제")
+        fetchData({
+            url: serverUrl + 'faq',
+            type:'delete',
+            data:{
+                id : checkItems
+            }}, (data) => {
+            let dataLen = checkItems.length
+            let nowCategory = category === 0 ? "all" : category === 1 ? "franchisee" : category === 2 ? "map" : "etc"
+
+            setCheckItems([])
+
+            alert(dataLen + "개의 FAQ가 삭제되었습니다.")
+            getContents(1, nowCategory)
+        }).catch(error => {
+            alert("권한이 부족합니다 : error code : " + error)
+        })
     }
 
     return (
@@ -171,7 +230,7 @@ function FrequentlyAsk() {
 
             <div>
                 {contents.map(content => (
-                    <Content key={content.id} content={content} active={active} setActive={setActive} />
+                    <Content key={content.id} content={content} checked={checkItems.includes(content.id)} checkHandler={handleSingleCheck} active={active} setActive={setActive} />
                 ))}
             </div>
 

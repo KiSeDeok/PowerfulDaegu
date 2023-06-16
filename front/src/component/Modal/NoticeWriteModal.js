@@ -1,12 +1,33 @@
-import {useEffect, useState} from "react";
-import axios from 'axios';
+import {useState, useEffect, useContext} from "react";
+
+import {AppContext} from "../../App";
+import useHttp from "../../hooks/use-http";
 
 import classes from "./PublicModal.module.css";
 
 function NoticeWriteModal(props) {
+    const {serverUrl} = useContext(AppContext)
+    const { isLoading, error, sendRequest: fetchData } = useHttp()
+
     const [title, setTitle] = useState('')
     const [detail, setDetail] = useState('')
     const [category, setCategory] = useState(0)
+
+    useEffect(() => {
+        if(!error) return
+
+        const method = error.config.method
+        const url = error.config.url
+        switch (url) {
+            case serverUrl + "notice" :
+                if (method === "post") {
+                    alert("권한이 부족합니다 : error code : " + error)
+                }
+                break
+            default:
+                return
+        }
+    }, [error, serverUrl]);
 
     useEffect(() => {
         setTitle("")
@@ -25,19 +46,18 @@ function NoticeWriteModal(props) {
     function saveNotice() {
         if (title.length === 0 || detail.length === 0) return
 
-        try {
-            axios.post('http://localhost:3001/notice', {
+        fetchData({
+            url: serverUrl + 'notice',
+            type:'post',
+            data:{
                 "title": title,
                 "content": detail,
                 "category": category === 0 ? "guide" : "inspection"
-            }, {withCredentials: true}).then(data => {
-                props.modalHandler(false)
-            }).catch(e => {
-                alert("권한이 부족합니다 : error code : " + e)
-            })
-        } catch (e) {
-            alert("권한이 부족합니다 : error code : " + e)
-        }
+            }}, (data) => {
+            props.modalHandler(false)
+        }).catch(error => {
+            alert("권한이 부족합니다 : error code : " + error)
+        })
     }
 
     return (
