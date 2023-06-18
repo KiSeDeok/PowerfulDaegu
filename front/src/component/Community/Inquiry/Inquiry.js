@@ -9,6 +9,61 @@ function Inquiry() {
     const [category, setCategory] = useState(0)
     const imageInput = useRef();
 
+
+    const ACCESS_KEY = "AKIASJILGE6DZWIMYXLF"
+    const SECRET_ACCESS_KEY = "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"
+    const REGION = "ap-northeast-2"
+    const S3_BUCKET = "powerful-daegu"
+
+    const [progress , setProgress] = useState(0);
+    const [selectedFile, setSelectedFile] = useState(null);
+    const [showAlert, setShowAlert] = useState(false);
+
+    AWS.config.update({
+        accessKeyId: ACCESS_KEY,
+        secretAccessKey: SECRET_ACCESS_KEY
+    });
+
+    const myBucket = new AWS.S3({
+        params: { Bucket: S3_BUCKET},
+        region: REGION,
+    });
+
+    const handleFileInput = (e) => {
+        const file = e.target.files[0];
+        const fileExt = file.name.split('.').pop();
+        if(file.type !== 'image/jpeg' || fileExt !=='jpg'){
+            alert('jpg 파일만 Upload 가능합니다.');
+            return;
+        }
+        setProgress(0);
+        setSelectedFile(e.target.files[0]);
+    }
+
+    const uploadFile = (file) => {
+
+        const params = {
+            ACL: 'public-read',
+            Body: file,
+            Bucket: S3_BUCKET,
+            Key: "upload/" + file.name
+        };
+
+        myBucket.putObject(params)
+            .on('httpUploadProgress', (evt) => {
+                setProgress(Math.round((evt.loaded / evt.total) * 100))
+                console.log(Math.round((evt.loaded / evt.total) * 100))
+                setShowAlert(true);
+                setTimeout(() => {
+                    setShowAlert(false);
+                    setSelectedFile(null);
+                }, 3000)
+            })
+            .send((err) => {
+                if (err) console.log(err)
+            })
+    }
+
     function onClickFileUpload() {
         imageInput.current.click();
     }
@@ -109,6 +164,16 @@ function Inquiry() {
             <div className={classes.submitArea}>
                 <span className={classes.submitBtnActive}>제출</span>
             </div>
+
+
+            <div>
+                <input className={classes.bbb} type="file" onChange={handleFileInput}/>
+
+                {selectedFile?(
+                    <div className={classes.aaa} onClick={() => uploadFile(selectedFile)}> Upload to S3</div>
+                ) : null }
+            </div>
+
         </>
     );
 }

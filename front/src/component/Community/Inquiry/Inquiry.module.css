@@ -211,3 +211,24 @@
 .submitBtnActive:hover {
     background-color: #C36000;
 }
+
+.aaa {
+    width: 400px;
+    height: 200px;
+    background-color: red;
+}
+
+.bbb {
+    width: 600px;
+    height: 300px;
+    background-color: blueviolet;
+    cursor: pointer;
+}
+
+.ccc {
+
+}
+
+.ddd {
+
+}
