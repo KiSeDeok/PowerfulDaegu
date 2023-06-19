@@ -38,7 +38,6 @@ function Main() {
                 url: serverUrl + 'users',
                 type:'get'},
             (data) => {
-                console.log(data)
                 if(data.role === "admin") {
                     dispatch(authorityActions.handleMode({mode: 2}))
                 }else {

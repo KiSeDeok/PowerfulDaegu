@@ -15,9 +15,15 @@ function Contents() {
 
     const [notification, setNotification] = useState([])
     const [question, setQuestion] = useState([])
-    const [questionPage, setQuestionPage] = useState(0)
+    const [viewQuestion, setViewQuestion] = useState([])
+    const [questionPage, setQuestionPage] = useState(1)
 
     useEffect(() => {
+        getNotification()
+        getFeqData()
+    }, [])
+
+    function getNotification() {
         fetchData({
             url: serverUrl + 'notice?page=1&category=all',
             type:'get'
@@ -38,14 +44,16 @@ function Contents() {
         }).catch(error => {
             alert("공지를 받아오지 못했습니다. : error code : " + error)
         })
+    }
 
+    function getFeqData() {
         fetchData({
             url: serverUrl + 'faq?page=1&category=all',
             type:'get'
         }, (data) => {
             let fapData = []
 
-            data[0].slice(0,6).forEach((faq => {
+            data[0].forEach((faq => {
                 fapData.push({
                     id: faq.id,
                     question: faq.question,
@@ -53,11 +61,46 @@ function Contents() {
                     category: faq.category === "franchisee" ? "가맹점" : faq.category === "map" ? "길찾기" : "기타"
                 })
             }))
-            setQuestion(fapData)
+            fetchData({
+                url: serverUrl + 'faq?page=2&category=all',
+                type:'get'
+            }, (data) => {
+                data[0].slice(0,8).forEach((faq => {
+                    fapData.push({
+                        id: faq.id,
+                        question: faq.question,
+                        answer: faq.answer,
+                        category: faq.category === "franchisee" ? "가맹점" : faq.category === "map" ? "길찾기" : "기타"
+                    })
+                }))
+                setViewQuestion(fapData.slice(0,6))
+                setQuestion(fapData)
+            }).catch(error => {
+                alert("공지를 받아오지 못했습니다. : error code : " + error)
+            })
         }).catch(error => {
             alert("공지를 받아오지 못했습니다. : error code : " + error)
         })
-    }, [])
+    }
+
+    function nextPage() {
+        if (questionPage === 3) return
+
+        setQuestionPage(questionPage + 1)
+    }
+
+    function beforePage() {
+        if (questionPage === 1) return
+
+        setQuestionPage(questionPage - 1)
+    }
+
+    function setPage(pageNum) {
+        if (pageNum <= 0 || pageNum >= 4) return
+
+        setQuestionPage(pageNum)
+        setViewQuestion(question.slice((pageNum - 1) * 6, pageNum * 6))
+    }
 
     return (
         <div>
@@ -100,22 +143,24 @@ function Contents() {
 
 
                 <div className={classes.faqContent}>
-                    {question.map(question => (
+                    {viewQuestion.map(question => (
                         <ContentsQuestion key={question.id} question={question} />
                     ))}
                 </div>
 
                 <div>
                     <div className={classes.gaugeBarBack}>
-                        <div className={classes.gaugeBarFront}> </div>
+                        <div className={questionPage === 1 ? classes.gaugeBarFront : classes.gaugeBarFrontDisable} onClick={setPage.bind(this, 1)}> </div>
+                        <div className={questionPage === 2 ? classes.gaugeBarFront : classes.gaugeBarFrontDisable} onClick={setPage.bind(this, 2)}> </div>
+                        <div className={questionPage === 3 ? classes.gaugeBarFront : classes.gaugeBarFrontDisable} onClick={setPage.bind(this, 3)}> </div>
                     </div>
 
                     <div className={classes.faqPageNation}>
-                        <div className={classes.faqPageNationLeft}>
+                        <div className={questionPage === 1 ? classes.faqPageNationDisable : classes.faqPageNationActive} onClick={setPage.bind(this, questionPage - 1)}>
                             <div><img className={classes.arrowIcon} src='/icon/leftArrow_mini.png'/></div>
                         </div>
-                        <div className={classes.faqPageNationDetail}>1/3</div>
-                        <div className={classes.faqPageNationRight}>
+                        <div className={classes.faqPageNationDetail}>{questionPage}/3</div>
+                        <div className={questionPage === 3 ? classes.faqPageNationDisable : classes.faqPageNationActive}  onClick={setPage.bind(this, questionPage + 1)}>
                             <div><img className={classes.arrowIcon} src='/icon/rightArrow_mini.png'/></div>
                         </div>
                     </div>

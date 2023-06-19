@@ -144,13 +144,22 @@
     background-color: #616161;
     border-radius: 50px;
     margin-bottom: 44px;
+    display: flex;
 }
 
 .gaugeBarFront {
-    width: 33%;
+    width: 33.33333%;
     height: 6px;
     background-color: #FF7D00;
     border-radius: 50px;
+}
+
+.gaugeBarFrontDisable {
+    width: 33.33333%;
+    height: 6px;
+    background-color: #616161;
+    border-radius: 50px;
+    cursor: pointer;
 }
 
 .faqPageNation {
@@ -159,7 +168,7 @@
     justify-content: center;
 }
 
-.faqPageNationLeft {
+.faqPageNationDisable {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -169,7 +178,7 @@
     background: #767676;
 }
 
-.faqPageNationRight {
+.faqPageNationActive {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -177,9 +186,10 @@
     height: 36px;
     border-radius: 50px;
     background: #FFFFFF;
+    cursor: pointer;
 }
 
-.faqPageNationLeft > div, .faqPageNationRight > div {
+.faqPageNationDisable > div, .faqPageNationActive > div {
     margin-bottom: 4px;
     font-size: 20px;
 }
