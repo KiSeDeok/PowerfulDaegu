@@ -2,12 +2,11 @@ import {configureStore, combineReducers} from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
 
+import userSlice from "./map/user-slice";
 import mapSlice from "./map/map-slice";
 import saveLocationSlice from "./map/saveLoaction-slice";
 import mapModalSlice from "./map/modal-slice";
 import mapStoreSlice from "./map/mapStore-slice";
-
-import userSlice from "./map/user-slice";
 import authoritySlice from "./user/authority-slice";
 
 const persistConfig = {
