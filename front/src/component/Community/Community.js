@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import {useEffect, useState} from "react";
+import {useSelector} from "react-redux";
 
 import Header from "../Main/header/Header";
 import Footer from "../Main/footer/Footer";
@@ -14,7 +15,7 @@ import classes from "./Community.module.css";
 
 function Community() {
     const [selector, setSelector] = useState("")
-
+    const authority = useSelector((state) => state.authority.mode)
 
     useEffect(() => {
         const pathName = window.location.pathname
@@ -30,7 +31,7 @@ function Community() {
 
     return (
         <>
-            <Header/>
+            <Header mode={authority}/>
             <div className={classes.content}>
                 <CommunityHeader selector={selector} setSelector={setSelector}/>
 

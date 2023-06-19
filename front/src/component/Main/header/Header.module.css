@@ -56,3 +56,13 @@
     font-size: 15px;
     color: black;
 }
+
+.loginProfile {
+    position: absolute;
+    right: 58px;
+    text-decoration: none;
+
+    width: 33px;
+    height: 33px;
+    cursor: pointer;
+}

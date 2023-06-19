@@ -1,3 +1,7 @@
+import {useState, useEffect, useContext} from "react";
+
+import {AppContext} from "../../../App";
+import useHttp from "../../../hooks/use-http";
 import ContentsNotification from "./ContentsNotification"
 import ContentsQuestion from "./ContentsQuestion"
 import PublicView from "./PublicView";
@@ -7,66 +11,97 @@ import classes from "./Contents.module.css";
 import {Link} from "react-router-dom";
 
 function Contents() {
-    const notification = [
-        {
-            id: 1,
-            title: '급식 단가 인상 안내',
-            category: '안내',
-            date: '2023.02.02'
-        },
-        {
-            id: 2,
-            title: '급식 단가 인상 안내',
-            category: '안내',
-            date: '2023.02.02'
-        },
-        {
-            id: 3,
-            title: '급식 단가 인상 안내',
-            category: '안내',
-            date: '2023.02.02'
-        },
-        {
-            id: 4,
-            title: '급식 단가 인상 안내',
-            category: '안내',
-            date: '2023.02.02'
-        },
-        {
-            id: 5,
-            title: '급식 단가 인상 안내',
-            category: '안내',
-            date: '2023.02.02'
-        }
-    ];
+    const {serverUrl} = useContext(AppContext)
+    const { isLoading, error, sendRequest: fetchData } = useHttp()
 
-    const question = [
-        {
-            id: 1,
-            question: "이사를 한 경우에는?",
-            answer: "관내로 이사한 경우 기존의 카드를 그대로 이용가능하며, 타 지역으로 이사한 경우 기존 카드는 사용이 불가합니다. (이사 후 주민센터로 문의)",
-        },
-        {
-            id: 2,
-            question: "이사를 한 경우에는?",
-            answer: "관내로 이사한 경우 기존의 카드를 그대로 이용가능하며, 타 지역으로 이사한 경우 기존 카드는 사용이 불가합니다. (이사 후 주민센터로 문의)",        },
-        {
-            id: 3,
-            question: "이사를 한 경우에는?",
-            answer: "관내로 이사한 경우 기존의 카드를 그대로 이용가능하며, 타 지역으로 이사한 경우 기존 카드는 사용이 불가합니다. (이사 후 주민센터로 문의)",        },
-        {
-            id: 4,
-            question: "이사를 한 경우에는?",
-            answer: "관내로 이사한 경우 기존의 카드를 그대로 이용가능하며, 타 지역으로 이사한 경우 기존 카드는 사용이 불가합니다. (이사 후 주민센터로 문의)",        },
-        {
-            id: 5,
-            question: "이사를 한 경우에는?",
-            answer: "관내로 이사한 경우 기존의 카드를 그대로 이용가능하며, 타 지역으로 이사한 경우 기존 카드는 사용이 불가합니다. (이사 후 주민센터로 문의)",        },
-        {
-            id: 6,
-            question: "이사를 한 경우에는?",
-            answer: "관내로 이사한 경우 기존의 카드를 그대로 이용가능하며, 타 지역으로 이사한 경우 기존 카드는 사용이 불가합니다. (이사 후 주민센터로 문의)",        }
-    ]
+    const [notification, setNotification] = useState([])
+    const [question, setQuestion] = useState([])
+    const [viewQuestion, setViewQuestion] = useState([])
+    const [questionPage, setQuestionPage] = useState(1)
+
+    useEffect(() => {
+        getNotification()
+        getFeqData()
+    }, [])
+
+    function getNotification() {
+        fetchData({
+            url: serverUrl + 'notice?page=1&category=all',
+            type:'get'
+        }, (data) => {
+            let noticeData = []
+
+            data.notice.forEach((notice => {
+                if(noticeData.length < 5){
+                    noticeData.push({
+                        id: notice.id,
+                        title: notice.title,
+                        category: notice.category === "inspection" ? "점검" : "안내",
+                        date: notice.createdAt.slice(0, 10).replaceAll("-", ".")
+                    })
+                }
+            }))
+            setNotification(noticeData)
+        }).catch(error => {
+            alert("공지를 받아오지 못했습니다. : error code : " + error)
+        })
+    }
+
+    function getFeqData() {
+        fetchData({
+            url: serverUrl + 'faq?page=1&category=all',
+            type:'get'
+        }, (data) => {
+            let fapData = []
+
+            data[0].forEach((faq => {
+                fapData.push({
+                    id: faq.id,
+                    question: faq.question,
+                    answer: faq.answer,
+                    category: faq.category === "franchisee" ? "가맹점" : faq.category === "map" ? "길찾기" : "기타"
+                })
+            }))
+            fetchData({
+                url: serverUrl + 'faq?page=2&category=all',
+                type:'get'
+            }, (data) => {
+                data[0].slice(0,8).forEach((faq => {
+                    fapData.push({
+                        id: faq.id,
+                        question: faq.question,
+                        answer: faq.answer,
+                        category: faq.category === "franchisee" ? "가맹점" : faq.category === "map" ? "길찾기" : "기타"
+                    })
+                }))
+                setViewQuestion(fapData.slice(0,6))
+                setQuestion(fapData)
+            }).catch(error => {
+                alert("공지를 받아오지 못했습니다. : error code : " + error)
+            })
+        }).catch(error => {
+            alert("공지를 받아오지 못했습니다. : error code : " + error)
+        })
+    }
+
+    function nextPage() {
+        if (questionPage === 3) return
+
+        setQuestionPage(questionPage + 1)
+    }
+
+    function beforePage() {
+        if (questionPage === 1) return
+
+        setQuestionPage(questionPage - 1)
+    }
+
+    function setPage(pageNum) {
+        if (pageNum <= 0 || pageNum >= 4) return
+
+        setQuestionPage(pageNum)
+        setViewQuestion(question.slice((pageNum - 1) * 6, pageNum * 6))
+    }
 
     return (
         <div>
@@ -109,22 +144,24 @@ function Contents() {
 
 
                 <div className={classes.faqContent}>
-                    {question.map(question => (
+                    {viewQuestion.map(question => (
                         <ContentsQuestion key={question.id} question={question} />
                     ))}
                 </div>
 
                 <div>
                     <div className={classes.gaugeBarBack}>
-                        <div className={classes.gaugeBarFront}> </div>
+                        <div className={questionPage === 1 ? classes.gaugeBarFront : classes.gaugeBarFrontDisable} onClick={setPage.bind(this, 1)}> </div>
+                        <div className={questionPage === 2 ? classes.gaugeBarFront : classes.gaugeBarFrontDisable} onClick={setPage.bind(this, 2)}> </div>
+                        <div className={questionPage === 3 ? classes.gaugeBarFront : classes.gaugeBarFrontDisable} onClick={setPage.bind(this, 3)}> </div>
                     </div>
 
                     <div className={classes.faqPageNation}>
-                        <div className={classes.faqPageNationLeft}>
+                        <div className={questionPage === 1 ? classes.faqPageNationDisable : classes.faqPageNationActive} onClick={setPage.bind(this, questionPage - 1)}>
                             <div><img className={classes.arrowIcon} src='/icon/leftArrow_mini.png'/></div>
                         </div>
-                        <div className={classes.faqPageNationDetail}>1/3</div>
-                        <div className={classes.faqPageNationRight}>
+                        <div className={classes.faqPageNationDetail}>{questionPage}/3</div>
+                        <div className={questionPage === 3 ? classes.faqPageNationDisable : classes.faqPageNationActive}  onClick={setPage.bind(this, questionPage + 1)}>
                             <div><img className={classes.arrowIcon} src='/icon/rightArrow_mini.png'/></div>
                         </div>
                     </div>

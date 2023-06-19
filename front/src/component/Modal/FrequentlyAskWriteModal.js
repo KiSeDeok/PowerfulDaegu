@@ -5,12 +5,12 @@ import useHttp from "../../hooks/use-http";
 
 import classes from "./PublicModal.module.css";
 
-function NoticeWriteModal(props) {
+function FrequentlyAskWriteModal(props) {
     const {serverUrl} = useContext(AppContext)
     const { isLoading, error, sendRequest: fetchData } = useHttp()
 
-    const [title, setTitle] = useState('')
-    const [detail, setDetail] = useState('')
+    const [question, setQuestion] = useState('')
+    const [answer, setAnswer] = useState('')
     const [category, setCategory] = useState(0)
 
     useEffect(() => {
@@ -19,7 +19,7 @@ function NoticeWriteModal(props) {
         const method = error.config.method
         const url = error.config.url
         switch (url) {
-            case serverUrl + "notice" :
+            case serverUrl + "faq" :
                 if (method === "post") {
                     alert("권한이 부족합니다 : error code : " + error)
                 }
@@ -30,29 +30,29 @@ function NoticeWriteModal(props) {
     }, [error, serverUrl]);
 
     useEffect(() => {
-        setTitle("")
-        setDetail("")
+        setQuestion("")
+        setAnswer("")
         setCategory(0)
     }, [props.isOpen])
 
-    function saveNoticeTitle(event) {
-        setTitle(event.target.value)
+    function saveFaqQuestion(event) {
+        setQuestion(event.target.value)
     }
 
-    function saveNoticeDetail(event) {
-        setDetail(event.target.value)
+    function saveFaqAnswer(event) {
+        setAnswer(event.target.value)
     }
 
-    function saveNotice() {
-        if (title.length === 0 || detail.length === 0) return
+    function saveFaq() {
+        if (question.length === 0 || answer.length === 0) return
 
         fetchData({
-            url: serverUrl + 'notice',
+            url: serverUrl + 'faq',
             type:'post',
             data:{
-                "title": title,
-                "content": detail,
-                "category": category === 0 ? "guide" : "inspection"
+                "question": question,
+                "answer": answer,
+                "category": category === 0 ? "franchisee" : category === 1 ? "map" : "etc"
             }}, (data) => {
             props.modalHandler(false)
         }).catch(error => {
@@ -66,19 +66,10 @@ function NoticeWriteModal(props) {
                 <section>
                     <div className={classes.header}>
                         <div className={classes.title}>
-                            게시글 작성
+                            FAQ 작성
                         </div>
 
                         <img className={classes.deleteBtn} src='/icon/deleteBtn_icon.png' onClick={props.modalHandler.bind(this, false)} />
-                    </div>
-
-                    <div className={classes.locationArea}>
-                        <div>
-                            게시 위치
-                        </div>
-                        <div>
-                            공지사항
-                        </div>
                     </div>
 
                     <div>
@@ -87,33 +78,36 @@ function NoticeWriteModal(props) {
                             <div>*</div>
                         </div>
                         <div className={classes.categoryBtnArea}>
-                            <div className={category === 0 ? classes.noticeCategoryBtnActive : classes.noticeCategoryBtnDisable} onClick={setCategory.bind(this, 0)}>
-                                안내
+                            <div className={category === 0 ? classes.faqCategoryBtnActive : classes.faqCategoryBtnDisable} onClick={setCategory.bind(this, 0)}>
+                                가맹점
                             </div>
-                            <div className={category === 1 ? classes.noticeCategoryBtnActive : classes.noticeCategoryBtnDisable} onClick={setCategory.bind(this, 1)}>
-                                점검
+                            <div className={category === 1 ? classes.faqCategoryBtnActive : classes.faqCategoryBtnDisable} onClick={setCategory.bind(this, 1)}>
+                                길찾기
+                            </div>
+                            <div className={category === 2 ? classes.faqCategoryBtnActive : classes.faqCategoryBtnDisable} onClick={setCategory.bind(this, 2)}>
+                                기타
                             </div>
                         </div>
                     </div>
 
                     <div>
                         <div className={classes.contentTitle}>
-                            <div>제목</div>
+                            <div>질문</div>
                             <div>*</div>
                         </div>
-                        <input placeholder="게시글의 제목을 입력해주세요." className={classes.inputBox} value={title} onChange={saveNoticeTitle}/>
+                        <textarea placeholder="질문 내용을 입력해 주세요." className={classes.questionAreaBox} value={question} onChange={saveFaqQuestion}/>
                     </div>
 
                     <div>
                         <div className={classes.contentTitle}>
-                            <div>내용</div>
+                            <div>답변</div>
                             <div>*</div>
                         </div>
-                        <textarea placeholder="게시글의 내용을 입력해주세요." className={classes.textAreaBox} value={detail} onChange={saveNoticeDetail}/>
+                        <textarea placeholder="답변 내용을 입력해 주세요." className={classes.answerAreaBox} value={answer} onChange={saveFaqAnswer}/>
                     </div>
 
-                    <div className={detail.length === 0 || title.length === 0 ? classes.disableBtn : classes.activeBtn} onClick={saveNotice}>
-                        게시글 등록
+                    <div className={answer.length === 0 || question.length === 0 ? classes.disableBtn : classes.activeBtn} onClick={saveFaq}>
+                        FAQ 등록
                     </div>
                 </section>
             ) : null}
@@ -121,4 +115,4 @@ function NoticeWriteModal(props) {
     );
 }
 
-export default NoticeWriteModal;
+export default FrequentlyAskWriteModal;

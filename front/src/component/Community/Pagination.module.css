@@ -27,6 +27,7 @@
 .leftArrowActive {
     background-image: url("/public/icon/leftArrow_active.png");
     background-size: cover;
+    cursor: pointer;
 }
 
 .leftArrowDisable {
@@ -37,6 +38,7 @@
 .rightArrowActive {
     background-image: url("/public/icon/rightArrow_active.png");
     background-size: cover;
+    cursor: pointer;
 }
 
 .rightArrowDisable {
@@ -48,7 +50,9 @@
     color: #F8F8F8;
     background: #FF7D00;
     border-radius: 20px;
+    cursor: default;
 }
 
 .pageDisable {
+    cursor: pointer;
 }
