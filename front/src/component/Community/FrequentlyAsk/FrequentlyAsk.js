@@ -1,4 +1,5 @@
 import {useState, useEffect, useContext} from "react";
+import {useSelector} from "react-redux";
 
 import {AppContext} from "../../../App";
 import useHttp from "../../../hooks/use-http";
@@ -11,6 +12,7 @@ import classes from "./FrequentlyAsk.module.css";
 function FrequentlyAsk() {
     const {serverUrl} = useContext(AppContext)
     const { isLoading, error, sendRequest: fetchData } = useHttp()
+    const authority = useSelector((state) => state.authority.mode)
 
     const [category, setCategory] = useState(0)
     const [feqModal, setFeqModal] = useState(false)
@@ -143,30 +145,34 @@ function FrequentlyAsk() {
                 </div>
             </div>
 
-            <div className={classes.adminContent}>
-                <div className={classes.checkBoxArea}>
-                    <div className={checkItems.length === contents.length ? classes.checkBoxChecked : classes.checkBoxDefault} onClick={handleAllCheck}>
-                        <div/>
-                    </div>
-                    <div className={classes.checkBoxText}>
-                        전체선택
-                    </div>
-                </div>
+            {
+                authority === 2 ?
+                    <div className={classes.adminContent}>
+                        <div className={classes.checkBoxArea}>
+                            <div className={checkItems.length === contents.length ? classes.checkBoxChecked : classes.checkBoxDefault} onClick={handleAllCheck}>
+                                <div/>
+                            </div>
+                            <div className={classes.checkBoxText}>
+                                전체선택
+                            </div>
+                        </div>
 
-                <div className={classes.adminFuncArea}>
-                    <div className={classes.deleteElementBtn} onClick={deleteNotice}>
-                        삭제
-                    </div>
-                    <div className={classes.addNoticeBtn} onClick={setFeqModal.bind(this, true)}>
-                        <img className={classes.addNoticeIcon} src='/icon/pencil_icon.png' />
-                        FAQ 등록
-                    </div>
-                </div>
-            </div>
+                        <div className={classes.adminFuncArea}>
+                            <div className={classes.deleteElementBtn} onClick={deleteNotice}>
+                                삭제
+                            </div>
+                            <div className={classes.addNoticeBtn} onClick={setFeqModal.bind(this, true)}>
+                                <img className={classes.addNoticeIcon} src='/icon/pencil_icon.png' />
+                                FAQ 등록
+                            </div>
+                        </div>
+                    </div>:
+                    null
+            }
 
             <div>
                 {contents.map(content => (
-                    <Content key={content.id} content={content} checked={checkItems.includes(content.id)} checkHandler={handleSingleCheck} active={active} setActive={setActive} />
+                    <Content key={content.id} content={content} checked={checkItems.includes(content.id)} checkHandler={handleSingleCheck} active={active} setActive={setActive}  isAdmin={authority===2} />
                 ))}
             </div>
 

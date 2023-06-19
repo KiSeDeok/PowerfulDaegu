@@ -10,9 +10,15 @@ function Content(props) {
         <div className={classes.content}>
             <div className={classes.detail}  onClick={props.content.id === props.active ? props.setActive.bind(this, 0) : props.setActive.bind(this, props.content.id)}>
                 <div className={classes.leftArea}>
-                    <div className={props.checked ? classes.checkBoxChecked : classes.checkBoxDefault} onClick={checkBoxHandler}>
-                        <div/>
-                    </div>
+
+                    {
+                        props.isAdmin ?
+                            <div className={props.checked ? classes.checkBoxChecked : classes.checkBoxDefault} onClick={checkBoxHandler}>
+                                <div/>
+                            </div>:
+                            null
+                    }
+
                     <div className={classes.category}>
                         Q.{props.content.category}
                     </div>

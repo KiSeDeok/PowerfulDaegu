@@ -12,9 +12,13 @@ function Content(props) {
         <Link to={"/community/notice/" + props.content.id} className={classes.content}>
             <div className={classes.detail}>
 
-                <div className={props.checked ? classes.checkBoxChecked : classes.checkBoxDefault} onClick={checkBoxHandler}>
-                    <div/>
-                </div>
+                {
+                    props.isAdmin ?
+                        <div className={props.checked ? classes.checkBoxChecked : classes.checkBoxDefault} onClick={checkBoxHandler}>
+                            <div/>
+                        </div>:
+                        null
+                }
 
                 <div className={classes.category}>{props.content.category}</div>
                 <div className={classes.title}>{props.content.title}</div>

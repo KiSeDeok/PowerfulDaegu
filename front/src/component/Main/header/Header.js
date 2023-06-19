@@ -11,7 +11,10 @@ function Header(props) {
                 <Link to={"/map"}>가맹점 조회</Link>
                 <Link to={"/community/notice"}>커뮤니티</Link>
             </div>
-            <Link to={"/login"} className={classes.loginBtn}>로그인</Link>
+            {
+                props.mode === 1 || props.mode === 2 ? <img className={classes.loginProfile} src="/icon/login_profile.png"/>
+                    : <Link to={"/login"} className={classes.loginBtn}>로그인</Link>
+            }
         </div>
     );
 }

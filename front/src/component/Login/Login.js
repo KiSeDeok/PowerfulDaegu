@@ -35,7 +35,7 @@ function Login(props) {
         setPw(event.target.value);
     };
 
-    const loginBtn = () => {
+    function loginBtn() {
         fetchData({
             url: serverUrl + 'users/login',
             type:'post',
@@ -47,9 +47,28 @@ function Login(props) {
 
             setCookie('access_token', data.access_token, {expires})
 
-            window.location.replace("home")
+            checkAuth()
         }).catch(error => {
             setPwError("가입되어 있지 않은 계정이거나, 이메일 또는 비밀번호가 일치하지 않습니다.")
+            dispatch(authorityActions.handleMode({mode: 0}))
+        })
+    }
+
+    function checkAuth() {
+        fetchData({
+                url: serverUrl + 'users',
+                type:'get'},
+            (data) => {
+                if(data.role === "admin") {
+                    dispatch(authorityActions.handleMode({mode: 2}))
+                }else {
+                    dispatch(authorityActions.handleMode({mode: 1}))
+                }
+
+                window.location.replace("home")
+            }).catch(error => {
+            setPwError("가입되어 있지 않은 계정이거나, 이메일 또는 비밀번호가 일치하지 않습니다.")
+            dispatch(authorityActions.handleMode({mode: 0}))
         })
     }
 
