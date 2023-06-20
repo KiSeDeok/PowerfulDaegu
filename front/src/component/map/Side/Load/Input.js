@@ -37,6 +37,7 @@ function Input(props){
 
                 if(filteredData.length > 0){
                     setSearchData(filteredData)
+                    console.log("filteredData= ", filteredData)
                 }
                 else{
                     setSearchData([false])
@@ -102,7 +103,7 @@ function Input(props){
                                                     <label>{ele.name ? ele.name.substring(input.length, ele.name.length) : ""}</label>
                                                 </div>
                                                 <div className={classes.bBottom}>
-                                                    <span>{ele.city_name && ele.datail_address ? ele.city_name + ele.detail_address : ""}</span>
+                                                    <span>{ele.city_name && ele.detail_address ? ele.city_name + ele.detail_address : ""}</span>
                                                 </div>
                                             </div>
                                         </div>

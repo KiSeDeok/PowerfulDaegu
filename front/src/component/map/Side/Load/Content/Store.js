@@ -41,34 +41,31 @@ function Store(){
         dispatch(mapStoreActions.handleStoreSearch({value:element.name, region:[], type:[]}))
     }
 
-    if(isLoad){
-        return (
-            <div className={classes.pathBox}>
-                <div className={classes.pHead}>
-                    <div className={classes.phLeft}>
-                        <img style={{width:"18px", height:"17px"}} src={"/images/map/favorite_active.svg"}/>
-                        <span>저장한 스토어</span>
-                    </div>
-                    <div onClick={handlePageIndex} className={classes.phRight}>
-                        <span>저장 관리</span>
-                    </div>
+    return (
+        <div className={classes.pathBox}>
+            <div className={classes.pHead}>
+                <div className={classes.phLeft}>
+                    <img style={{width:"18px", height:"17px"}} src={"/images/map/favorite_active.svg"}/>
+                    <span>저장한 스토어</span>
                 </div>
-                <div className={classes.pBody}>
-                    {data.map((ele, index) => {
-                        return (
-                            <div onClick={() => handleStoreItems(ele)} key={index} className={classes.pContents}>
-                                <img style={{width:"21px", height:"21px"}} src={"/images/map/tempSeven.svg"}/>
-                                <span>{ele.name}</span>
-                            </div>
-                        )
-                    })}
+                <div onClick={handlePageIndex} className={classes.phRight}>
+                    <span>저장 관리</span>
                 </div>
             </div>
-        )
-    }
-    else{
-        return;
-    }
+            <div className={classes.pBody}>
+
+                {isLoad && data.map((ele, index) => {
+                    return (
+                        <div onClick={() => handleStoreItems(ele)} key={index} className={classes.pContents}>
+                            <img style={{width:"21px", height:"21px"}} src={"/images/map/tempSeven.svg"}/>
+                            <span>{ele.name}</span>
+                        </div>
+                    )
+                })}
+            </div>
+        </div>
+    )
+
 }
 
 export default Store

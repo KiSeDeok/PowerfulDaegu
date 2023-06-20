@@ -15,12 +15,14 @@ function TitleModal(props){
         ],
         place:[
             {name:"장소 전체", index:0},
-            {name:"음식점", index:1},
-            {name:"편의점", index:2},
-            {name:"푸드 코트", index:3},
-            {name:"지역 아동센터", index:4},
-            {name:"주민 센터", index:5},
-            {name:"사회 복지관", index:6},
+            {name:"한식", index:1},
+            {name:"중식", index:2},
+            {name:"양식", index:3},
+            {name:"일식", index:4},
+            {name:"분식", index:5},
+            {name:"돈까스", index:6},
+            {name:"아시안", index:7},
+            {name:"편의점", index:8}
         ],
         region:[
             {name:"지역 전체", index:0},

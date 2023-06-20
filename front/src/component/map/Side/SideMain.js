@@ -13,12 +13,10 @@ function SideMain(){
     const pageData = useSelector(state => state.map.index)
     const [isSearchSet, setSearchOpen] = useState(false)
     const [searchRegion, setSearchRegion] = useState(["중구","동구","북구","남구","서구","수성구","달서구","달성군"])
-    const [type, setType] = useState(["음식점","편의점","푸드 코트","지역 아동센터","주민 센터","사회 복지관"])
+    const [type, setType] = useState(["한식","중식","양식","일식","분식","아시안","편의점"])
 
     // 사이드바 활성화 여부
     const [sideOpen, setSideOpen] = useState(true)
-
-    console.log("pageData =" , pageData)
 
     const handleIndex = (index) => {
         dispatch(mapActions.handleIndex({index: {num: index}}))
