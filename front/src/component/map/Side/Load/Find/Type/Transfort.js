@@ -16,8 +16,6 @@ function Transfort(props){
     const data = props.data
     const busSubwaySet = props.data?.legs[0]?.steps.filter(ele => ele.type === "BUS" || ele.type === "SUBWAY")
 
-    console.log("data ", props)
-
     const handleDetail = (e) => {
         e.stopPropagation()
         e.preventDefault()
@@ -41,17 +39,8 @@ function Transfort(props){
             position.push(ele)
         })
 
-        console.log("position= ", position)
 
         dispatch(mapActions.handlePolyline({polyline: {data:position, type:"transfort"}}))
-    }
-
-    const handleFavorite = () => {
-        const address = `http://localhost:3001/maps?start=${props.address.start}&goal=${props.address.end}`
-
-        fetchData({url: `http://localhost:3001/store/direction`, type:"post", data:{url:address, start:props.address.startName, goal:props.address.endName }}, (obj) => {
-            console.log("obj = ", obj)
-        })
     }
 
     return (
@@ -71,11 +60,7 @@ function Transfort(props){
                         <img style={{height:"13px", width:"16px"}} src={"/images/map/help.svg"}/>
                     </div>
                 </div>
-                <div className={classes.headRight}>
-                    <div onClick={handleFavorite} className={classes.hrBox}>
-                        <img src={"/images/map/star.svg"}/>
-                    </div>
-                </div>
+
             </div>
             {type === "short" ?
                 <div className={classes.shortSummary}>
@@ -84,7 +69,7 @@ function Transfort(props){
                             <div key={uuidv4()} className={`${classes.shortFormDiv} ${index === 0 ? classes.firstForm : index === data.legs[0]?.steps.length-1 ?  classes.lastForm : ""}`}>
                                 <div className={`${classes.leftCircle} ${ele.type === "WALKING" ? classes.walkCircle : classes.busCircle}`}></div>
                                 <div className={`${ele.type === "WALKING" ? classes.walkLine : classes.busLine}`}></div>
-                                <img src={ele.type === "WALKING" ? "/images/map/walk_small.svg" : ele.type === "BUS" ? "/images/map/bus_small.svg" : "/images/map/subway_small.svg"} />
+                                <img style={{width:"10px", height:"10px"}}src={ele.type === "WALKING" ? "/images/map/walk_small.svg" : ele.type === "BUS" ? "/images/map/bus_small.svg" : "/images/map/subway_small.svg"} />
                                 {
                                     index === data.legs[0]?.steps.length-1 ? <div className={`${classes.lastCircle}`}></div> : ""
                                 }

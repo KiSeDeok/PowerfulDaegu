@@ -12,10 +12,11 @@
     align-items: center;
     width: 100%;
     height: 42px;
+    min-height: 42px;
     max-height: 42px;
-    margin-bottom: 25px;
     border-top: 1px solid #EEEEEE;
     border-bottom: 1px solid #EEEEEE;
+    box-sizing: border-box;
 
 }
 
@@ -32,7 +33,52 @@
 }
 
 .fBody{
-    height: calc(100% - 42px);
+    height: calc(100% - 142px);
+}
+
+.fAllBox{
+    display: flex;
+    align-items: center;
+    min-height: 41px;
+    max-height: 41px;
+    margin: 0 10px 10px 10px;
+    border-bottom: 1px solid #EEEEEE;
+    box-sizing: border-box;
+}
+
+.faBox{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding-left: 31px;
+    gap: 9px;
+    box-sizing: border-box;
+    cursor: pointer;
+
+}
+
+.faBox > span{
+    font-weight: 400;
+    font-size: 14px;
+    color: #A8A8A8;
+}
+
+.activeCheckbox, .defaultCheckbox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 16px;
+    max-height: 16px;
+    min-height: 16px;
+    min-width: 16px;
+    border: 1px solid #DDDDDD;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.activeCheckbox{
+    background: #FFEEDD;
+    border: 1px solid #FF7D00;
 }
 
 .nofBody{
@@ -40,7 +86,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 462px;
     height: 80%;
     font-weight: 400;
     font-size: 14px;

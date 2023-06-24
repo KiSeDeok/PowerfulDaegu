@@ -36,6 +36,7 @@
     font-weight: 400;
     font-size: 14px;
     color: #FF7D00;
+    cursor: pointer;
 }
 
 .pContents{
@@ -49,7 +50,7 @@
     box-sizing: border-box;
     transition: all 0.1s linear;
     gap: 7px;
-
+    cursor: pointer;
 }
 
 .pContents:hover{

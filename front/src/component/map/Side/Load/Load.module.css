@@ -96,5 +96,6 @@
     position: absolute;
     right: 13px;
     cursor: pointer;
+    z-index: 3;
 }
 

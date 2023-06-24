@@ -13,12 +13,10 @@ function SideMain(){
     const pageData = useSelector(state => state.map.index)
     const [isSearchSet, setSearchOpen] = useState(false)
     const [searchRegion, setSearchRegion] = useState(["중구","동구","북구","남구","서구","수성구","달서구","달성군"])
-    const [type, setType] = useState(["음식점","편의점","푸드 코트","지역 아동센터","주민 센터","사회 복지관"])
+    const [type, setType] = useState(["한식","중식","양식","일식","분식","아시안","편의점"])
 
     // 사이드바 활성화 여부
     const [sideOpen, setSideOpen] = useState(true)
-
-    console.log("pageData =" , pageData)
 
     const handleIndex = (index) => {
         dispatch(mapActions.handleIndex({index: {num: index}}))
@@ -63,13 +61,13 @@ function SideMain(){
             <div className={classes.categoryBox}>
                 <div className={pageData.num === 0 ? classes.activeCategory : ""} onClick={() => handleIndex(0)}><span>스토어 검색</span></div>
                 <div className={pageData.num === 1 ? classes.activeCategory : ""} onClick={() => handleIndex(1)}><span>길찾기</span></div>
-                <div className={pageData.num === 2 ? classes.activeCategory : ""} onClick={() => handleIndex(2)}><span>저장</span></div>
+                <div className={pageData.num === 2 || pageData.num === 3 ? classes.activeCategory : ""} onClick={() => handleIndex(2)}><span>저장</span></div>
             </div>
             <div className={classes.contentBox}>
                 {pageData.num === 0 ?
                     <Store /> : pageData.num === 1 ?
                     <Load /> :
-                    <Save />
+                    <Save index={pageData.num}/>
                 }
             </div>
             <div className={sideOpen ? classes.foldBtn : classes.unFoldBtn} onClick={handleOpen}>

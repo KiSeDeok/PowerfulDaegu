@@ -49,7 +49,7 @@ function SearchModal(props){
         <div className={props.isSearchSet ? classes.activeSearchDiv : classes.noSearchDiv} >
             {props.isSearchSet ?
                 <>
-                <div className={classes.sHead} onClick={handleReset}><img src={"/images/map/return.svg"}/></div>
+                <div className={classes.sHead} onClick={handleReset}><img style={{width:"20px", height:"20px"}} src={"/images/map/return.svg"}/></div>
                 <div className={classes.sBody}>
                     <div className={classes.ssHead}><span>지역</span></div>
                     <div className={classes.ssBody}>
@@ -77,20 +77,22 @@ function SearchModal(props){
                     <div className={classes.ssHead}><span>장소</span></div>
                     <div className={classes.ssBody}>
                         <div>
-                            <div className={onType.includes("음식점") ? classes.ssActiveItem : classes.ssItem}
-                                 onClick={() => handleType("음식점")}><span>음식점</span></div>
-                            <div className={onType.includes("편의점") ? classes.ssActiveItem : classes.ssItem}
-                                 onClick={() => handleType("편의점")}><span>편의점</span></div>
-                            <div className={onType.includes("푸드 코트") ? classes.ssActiveItem : classes.ssItem}
-                                 onClick={() => handleType("푸드 코트")}><span>푸드 코트</span></div>
+                            <div className={onType.includes("한식") ? classes.ssActiveItem : classes.ssItem}
+                                 onClick={() => handleType("한식")}><span>한식</span></div>
+                            <div className={onType.includes("중식") ? classes.ssActiveItem : classes.ssItem}
+                                 onClick={() => handleType("중식")}><span>중식</span></div>
+                            <div className={onType.includes("양식") ? classes.ssActiveItem : classes.ssItem}
+                                 onClick={() => handleType("양식")}><span>양식</span></div>
+                            <div className={onType.includes("일식") ? classes.ssActiveItem : classes.ssItem}
+                                 onClick={() => handleType("일식")}><span>일식</span></div>
+                            <div className={onType.includes("분식") ? classes.ssActiveItem : classes.ssItem}
+                                 onClick={() => handleType("분식")}><span>분식</span></div>
                         </div>
                         <div>
-                            <div className={onType.includes("지역 아동센터") ? classes.ssActiveItem : classes.ssItem}
-                                 onClick={() => handleType("지역 아동센터")}><span>지역 아동센터</span></div>
-                            <div className={onType.includes("주민 센터") ? classes.ssActiveItem : classes.ssItem}
-                                 onClick={() => handleType("주민 센터")}><span>주민 센터</span></div>
-                            <div className={onType.includes("사회 복지관") ? classes.ssActiveItem : classes.ssItem}
-                                 onClick={() => handleType("사회 복지관")}><span>사회 복지관</span></div>
+                            <div className={onType.includes("아시안") ? classes.ssActiveItem : classes.ssItem}
+                                 onClick={() => handleType("아시안")}><span>아시안</span></div>
+                            <div className={onType.includes("편의점") ? classes.ssActiveItem : classes.ssItem}
+                                 onClick={() => handleType("편의점")}><span>편의점</span></div>
                         </div>
                     </div>
                 </div>

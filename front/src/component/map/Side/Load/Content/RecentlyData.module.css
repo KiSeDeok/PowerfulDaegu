@@ -1,0 +1,43 @@
+
+.rContents{
+    display: flex;
+    align-items: center;
+    min-height: fit-content;
+    padding: 9px 28px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #575757;
+    box-sizing: border-box;
+    transition: all 0.1s linear;
+    cursor: pointer;
+}
+
+.rContents:hover{
+    background: #FAFAFA;
+}
+
+.reFImg{
+    margin-right: 11px;
+}
+
+.rcBody{
+    display: flex;
+    width: 100%;
+    margin-right: 11px;
+    gap: 11px;
+    box-sizing: border-box;
+}
+
+.rcBody > label{
+    cursor: pointer;
+}
+
+.reSImg{
+    display: none;
+    cursor: pointer;
+}
+
+.rContents:hover .reSImg{
+    display: flex;
+    cursor: pointer;
+}

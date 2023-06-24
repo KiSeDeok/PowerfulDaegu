@@ -11,11 +11,9 @@ function Pcontent({checks, data, handleItem}){
     const [isDn, setDn] = useState(false)
 
     useEffect(()=> {
-        console.log("checks = ", checks)
-        console.log("data = ", data)
+        console.log("data =" , data)
 
         if(checks.includes(data.id)){
-            console.log("11")
             setCheck(true)
         }
         else{
@@ -44,12 +42,10 @@ function Pcontent({checks, data, handleItem}){
         e.preventDefault()
         e.stopPropagation()
 
-        if(type === "start"){
-            dispatch(mapActions.handleIndex({index: {place: {start:{name:data.name, point:data.point}}, num: 1}}))
-        }
-        else{
-            dispatch(mapActions.handleIndex({index: {place: {end:{name:data.name, point:data.point}}, num: 1}}))
-        }
+        const sPoint = data.url.match(/start=(.*?)&/)?.[1];
+        const gPoint = data.url.match(/goal=(.*)/)?.[1];
+
+        dispatch(mapActions.handleIndex({index: {place: {start:{name:data.start, point:sPoint}, end:{name:data.goal, point:gPoint}}, num: 1}}))
     }
 
     return (
@@ -58,9 +54,9 @@ function Pcontent({checks, data, handleItem}){
                 {check && <img src={"/images/map/saveType/check.svg"} />}
             </div>
             <div className={classes.fbSpan}>
-                <span className={classes.fbName}>세븐일레븐 대구대봉점</span>
+                <span className={classes.fbName}>{data.start}</span>
                 <img src={"/images/map/arrow.svg"}/>
-                <span className={classes.fbName}>편의점</span>
+                <span className={classes.fbName}>{data.goal}</span>
             </div>
             <div className={classes.fbFunction}>
                 <div className={classes.fbShare}>

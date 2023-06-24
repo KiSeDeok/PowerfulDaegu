@@ -1,6 +1,6 @@
 import classes from "./Path.module.css"
 import Pcontent from "./Pcontent";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import TitleModal from "../Modal/TitleModal";
 import {useDispatch, useSelector} from "react-redux";
 import useHttp from "../../../../../../hooks/use-http";
@@ -13,7 +13,11 @@ function Path(){
     // check된 컨텐츠 확인
     const [checkContents, setCheckContents] = useState([])
 
+    // 데이터 로딩 확인
     const [isLoad, setLoad] = useState(false)
+
+    // 전체 체크
+    const [isAllCheck, setIsAll] = useState(false)
 
     const [pathData, setPathData] = useState([])
     const dispatch = useDispatch()
@@ -35,6 +39,7 @@ function Path(){
             }
 
             setCheckContents([])
+            setIsAll(false)
             setLoad(true)
         })
     }
@@ -46,6 +51,18 @@ function Path(){
     const handleType = (el) => {
         const sTemp = {open:false, index:el.index, text:el.text}
         setSortModal(sTemp)
+    }
+
+    const handleAllItem = () => {
+        if(isAllCheck){
+            setIsAll(false)
+            setCheckContents([])
+        }
+        else{
+            setIsAll(true)
+            const array = pathData.map((ele) => {return ele.id})
+            setCheckContents(array)
+        }
     }
 
     const handleSelectedItem = (id) => {
@@ -69,6 +86,14 @@ function Path(){
                     <span>{sortModal.text}</span>
                     <img style={{height:"6px", width:"8px"}} src={"/images/map/saveType/arrow.svg"}/>
                     {sortModal.open ? <TitleModal index={sortModal.index} func={handleType} type={"sort"}/> : ""}
+                </div>
+            </div>
+            <div className={classes.fAllBox}>
+                <div className={classes.faBox} onClick={handleAllItem}>
+                    <div className={isAllCheck ? classes.activeCheckbox : classes.defaultCheckbox}>
+                        {isAllCheck && <img src={"/images/map/saveType/check.svg"} />}
+                    </div>
+                    <span>전체</span>
                 </div>
             </div>
             {isLoad ?
