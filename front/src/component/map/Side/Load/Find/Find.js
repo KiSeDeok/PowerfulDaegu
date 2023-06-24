@@ -4,7 +4,6 @@ import {useSelector} from "react-redux";
 import Transfort from "./Type/Transfort";
 import Car from "./Type/Car";
 import {v4 as uuidv4} from "uuid";
-import {mapActions} from "../../../../../store/map/map-slice";
 import useHttp from "../../../../../hooks/use-http";
 import Walk from "./Type/Walk";
 
@@ -44,7 +43,6 @@ function Find(){
             fetchData({url: `http://localhost:3001/maps/car?start=${searchData.point.start}&goal=${searchData.point.end}`}, (obj) => {
                 if(obj.route && Object.keys(obj.route).length !== 0 ){
                     const dataArray = [];
-
                     for (const key in obj.route) {
                         const values = obj.route[key];
                         dataArray.push(...values);
