@@ -20,9 +20,8 @@ function TitleModal(props){
             {name:"양식", index:3},
             {name:"일식", index:4},
             {name:"분식", index:5},
-            {name:"돈까스", index:6},
-            {name:"아시안", index:7},
-            {name:"편의점", index:8}
+            {name:"아시안", index:6},
+            {name:"편의점", index:7}
         ],
         region:[
             {name:"지역 전체", index:0},

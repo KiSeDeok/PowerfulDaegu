@@ -17,8 +17,6 @@ function ContentDetail(props){
         })
     }, [])
 
-    console.log("storeData =", storeData)
-
     if(load) {
 
         return (
