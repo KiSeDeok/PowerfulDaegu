@@ -37,13 +37,10 @@ function Favorite(){
         fetchData({url: `http://localhost:3001/store/like`}, (obj) => {
             if(obj && obj.length > 0) {
                 const categoryValues = obj.map((item) => {
-                    console.log("item =", item)
                     return {...item.store, createdAt:item.createdAt}
                 });
                 // 원본 데이터 설정
                 setFavoriteData(categoryValues)
-
-                console.log("categoryValues = ", categoryValues)
 
                 // 데이터 필터링
                 handleSetType("",categoryValues)
