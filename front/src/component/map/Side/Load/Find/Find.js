@@ -16,8 +16,6 @@ function Find(){
     const [walkData, setWalkData] = useState([])
     const [isFavorite, setFavorite] = useState({type:false, id:""})
 
-    console.log("searchData= ", searchData)
-
     useEffect(()=> {
         getDirection()
 
@@ -27,7 +25,6 @@ function Find(){
         setFavorite({type:false, id:""})
 
         fetchData({url: `http://localhost:3001/store/direction`, type:"get"}, (obj) => {
-            console.log("obj = ", obj)
             obj.map((ele) => {
                 if(ele.start === searchData.point.startName && ele.goal === searchData.point.endName){
                     setFavorite({type:true, id:ele.id})
