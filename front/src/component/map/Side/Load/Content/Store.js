@@ -54,14 +54,17 @@ function Store(){
             </div>
             <div className={classes.pBody}>
 
-                {isLoad && data.map((ele, index) => {
+                {isLoad ? data.map((ele, index) => {
                     return (
                         <div onClick={() => handleStoreItems(ele)} key={index} className={classes.pContents}>
                             <img style={{width:"21px", height:"21px"}} src={"/images/map/tempSeven.svg"}/>
                             <span>{ele.name}</span>
                         </div>
                     )
-                })}
+                })
+
+                    : <div className={classes.pEmptyBody}><span>관심있는 스토어를 저장하여 빠르게 정보를 확인해보세요</span></div>
+                }
             </div>
         </div>
     )

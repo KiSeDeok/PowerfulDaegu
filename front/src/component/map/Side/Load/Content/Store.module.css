@@ -56,3 +56,10 @@
 .pContents:hover{
     background: #FAFAFA;
 }
+
+
+.pEmptyBody > span{
+    font-weight: 400;
+    font-size: 14px;
+    color: #575757;
+}
