@@ -50,9 +50,10 @@ function Find(){
         }
 
         if(index == 2) {
+
             fetchData({url: `http://localhost:3001/maps/walk?start=${searchData.point.start}&goal=${searchData.point.end}`}, (obj) => {
                 if(obj.routes && obj.routes.length > 0) {
-                    setFavorite({type:false, id:""})
+                    setWalkData(obj.routes)
                 }
             })
         }

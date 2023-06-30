@@ -1,9 +1,13 @@
 import classes from "./Store.module.css"
+
 import {useEffect, useState} from "react";
 import useHttp from "../../../../../hooks/use-http";
-import {mapActions} from "../../../../../store/map/map-slice";
 import {useDispatch} from "react-redux";
+import {useCookies} from "react-cookie";
+
+import {mapActions} from "../../../../../store/map/map-slice";
 import {mapStoreActions} from "../../../../../store/map/mapStore-slice";
+
 
 function Store(){
     const dispatch = useDispatch()
@@ -12,24 +16,30 @@ function Store(){
     const [isLoad, setLoad] = useState(false)
     const { isLoading, error, sendRequest: fetchData } = useHttp();
 
+    // 쿠키
+    const [cookies, setCookie, removeCookie] = useCookies(['access_token']);
+
     useEffect(() => {
         getFetchData()
     }, [])
 
     const getFetchData = () => {
-        fetchData({url: `http://localhost:3001/store/like`}, (obj) => {
-            if(obj && obj.length > 0) {
-                const categoryValues = obj.map((item) => item.store);
+        if(cookies && cookies.access_token) {
+            fetchData({url: `http://localhost:3001/store/like`}, (obj) => {
+                if (obj && obj.length > 0) {
+                    const categoryValues = obj.map((item) => item.store);
 
-                console.log("categoryValues= ", categoryValues)
-                setData(categoryValues)
-            }
-            else{
-                setData([])
-            }
-
+                    console.log("categoryValues= ", categoryValues)
+                    setData(categoryValues)
+                } else {
+                    setData([])
+                }
+            })
             setLoad(true)
-        })
+
+        }
+        setLoad(true)
+
     }
 
     const handlePageIndex = () => {
@@ -54,7 +64,7 @@ function Store(){
             </div>
             <div className={classes.pBody}>
 
-                {isLoad ? data.map((ele, index) => {
+                {isLoad && data.length > 0 ? data.map((ele, index) => {
                     return (
                         <div onClick={() => handleStoreItems(ele)} key={index} className={classes.pContents}>
                             <img style={{width:"21px", height:"21px"}} src={"/images/map/tempSeven.svg"}/>
@@ -63,7 +73,10 @@ function Store(){
                     )
                 })
 
-                    : <div className={classes.pEmptyBody}><span>관심있는 스토어를 저장하여 빠르게 정보를 확인해보세요</span></div>
+                    :
+                    <div className={classes.pEmptyBody}>
+                        <span>관심있는 스토어를 저장하여 빠르게 정보를 확인해보세요</span>
+                    </div>
                 }
             </div>
         </div>

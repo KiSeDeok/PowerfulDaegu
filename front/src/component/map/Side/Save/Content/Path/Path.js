@@ -5,10 +5,14 @@ import TitleModal from "../Modal/TitleModal";
 import {useDispatch, useSelector} from "react-redux";
 import useHttp from "../../../../../../hooks/use-http";
 import FDelete from "../Favorite/FDelete";
+import {useCookies} from "react-cookie";
 
 function Path(){
     const [sortModal, setSortModal] = useState({open:false, index:0, text:"최근 저장순"})
     const { isLoading, error, sendRequest: fetchData } = useHttp();
+
+    // 쿠키
+    const [cookies, setCookie, removeCookie] = useCookies(['access_token']);
 
     // check된 컨텐츠 확인
     const [checkContents, setCheckContents] = useState([])
@@ -27,21 +31,22 @@ function Path(){
     }, [])
 
     const getFetchData = () => {
-        fetchData({url: `http://localhost:3001/store/direction`, type:"get"}, (obj) => {
-            console.log("pathData= ", pathData)
-            console.log("obj= ", obj)
+        if(cookies && cookies.access_token) {
+            fetchData({url: `http://localhost:3001/store/direction`, type: "get"}, (obj) => {
+                console.log("pathData= ", pathData)
+                console.log("obj= ", obj)
 
-            if(obj && obj.length > 0) {
-                setPathData(obj)
-            }
-            else{
-                setPathData([])
-            }
+                if (obj && obj.length > 0) {
+                    setPathData(obj)
+                } else {
+                    setPathData([])
+                }
+            })
+        }
 
-            setCheckContents([])
-            setIsAll(false)
-            setLoad(true)
-        })
+        setCheckContents([])
+        setIsAll(false)
+        setLoad(true)
     }
     const handleModal = () => {
         const temp = {...sortModal, open: !sortModal.open}

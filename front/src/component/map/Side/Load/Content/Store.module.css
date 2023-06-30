@@ -57,6 +57,10 @@
     background: #FAFAFA;
 }
 
+.pEmptyBody {
+    margin: 0 22px 28px 22px
+
+}
 
 .pEmptyBody > span{
     font-weight: 400;
