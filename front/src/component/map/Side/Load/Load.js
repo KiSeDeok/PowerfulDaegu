@@ -53,6 +53,7 @@ function Load(){
             })
 
             fetchData({url: `http://localhost:3001/maps?start=${pageData.place.start.point}&goal=${pageData.place.end.point}`}, (obj) => {
+                console.log("obj= ", obj)
                 // redux 값 설정
                 dispatch(mapActions.handleSearch({
                     data: {
@@ -137,6 +138,7 @@ function Load(){
             // 도착지가 있을 경우에는 검색
             if(!(position.end && Object.keys(position.end).length === 0 && position.end.constructor === Object)) {
                 fetchData({url: `http://localhost:3001/maps?start=${point}&goal=${position.end}`}, (obj) => {
+                    console.log("obj= ", obj)
                     // redux 값 설정
                     dispatch(mapActions.handleSearch({data: {point:{start:point, startName:name, endName:position.endValue, end:position.end}, data:obj}}))
 

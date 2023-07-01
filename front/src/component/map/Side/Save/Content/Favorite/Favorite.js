@@ -6,12 +6,16 @@ import TitleModal from "../Modal/TitleModal";
 import FDelete from "./FDelete";
 import useHttp from "../../../../../../hooks/use-http";
 import classes from "./Favorite.module.css"
+import {useCookies} from "react-cookie";
 
 function Favorite(){
     const [sortModal, setSortModal] = useState({open:false, index:0, text:"최근 저장순"})
     const [placeModal, setPlaceModal] = useState({open:false, index:0, text:"장소 전체"})
     const [regionModal, setRegionModal] = useState({open:false, index:0, text:"지역 전체"})
     const { isLoading, error, sendRequest: fetchData } = useHttp();
+
+    // 쿠키
+    const [cookies, setCookie, removeCookie] = useCookies(['access_token']);
 
     // check된 컨텐츠 확인
     const [checkContents, setCheckContents] = useState([])
@@ -34,28 +38,25 @@ function Favorite(){
 
     /** 데이터 가져오기*/
     const getFetchData = () => {
-        fetchData({url: `http://localhost:3001/store/like`}, (obj) => {
-            if(obj && obj.length > 0) {
-                const categoryValues = obj.map((item) => {
-                    console.log("item =", item)
-                    return {...item.store, createdAt:item.createdAt}
-                });
-                // 원본 데이터 설정
-                setFavoriteData(categoryValues)
+        if(cookies && cookies.access_token) {
+            fetchData({url: `http://localhost:3001/store/like`}, (obj) => {
+                if (obj && obj.length > 0) {
+                    const categoryValues = obj.map((item) => {
+                        return {...item.store, createdAt: item.createdAt}
+                    });
+                    // 원본 데이터 설정
+                    setFavoriteData(categoryValues)
 
-                console.log("categoryValues = ", categoryValues)
-
-                // 데이터 필터링
-                handleSetType("",categoryValues)
-            }
-            else{
-                setFavoriteData([])
-            }
-
-            setCheckContents([])
-            setIsAll(false)
-            setLoad(true)
-        })
+                    // 데이터 필터링
+                    handleSetType("", categoryValues)
+                } else {
+                    setFavoriteData([])
+                }
+            })
+        }
+        setCheckContents([])
+        setIsAll(false)
+        setLoad(true)
     }
 
     /** 데이터 필터링*/
@@ -65,6 +66,8 @@ function Favorite(){
         const nowRegion = el && el.type === "region" ? {open:false, index:el.index, text:el.text} : regionModal
 
         const allData = favoriteData.length > 0 ? favoriteData : values
+
+        console.log("allData = ", allData)
 
         const filterData = allData.map((ele) => {
             // 정규식 추출
@@ -102,6 +105,8 @@ function Favorite(){
                 return a.createAt - b.createAt
             }
         });
+
+        console.log("filterData = ", filterData)
 
         setFilterData(filterData)
     }

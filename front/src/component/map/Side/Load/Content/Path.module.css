@@ -75,3 +75,14 @@
 .reSImg{
     cursor: pointer;
 }
+
+.pEmptyBody {
+    margin: 0 22px 0 22px
+
+}
+
+.pEmptyBody > span{
+    font-weight: 400;
+    font-size: 14px;
+    color: #575757;
+}

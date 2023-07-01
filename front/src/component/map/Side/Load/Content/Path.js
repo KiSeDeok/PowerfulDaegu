@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import useHttp from "../../../../../hooks/use-http";
 import {mapActions} from "../../../../../store/map/map-slice";
 import {useDispatch} from "react-redux";
+import {useCookies} from "react-cookie";
 
 function Path(){
     const dispatch = useDispatch()
@@ -11,22 +12,27 @@ function Path(){
     const [isLoad, setLoad] = useState(false)
     const { isLoading, error, sendRequest: fetchData } = useHttp();
 
+    // 쿠키
+    const [cookies, setCookie, removeCookie] = useCookies(['access_token']);
+
     useEffect(() => {
         getFetchData()
     }, [])
 
     const getFetchData = () => {
-        fetchData({url: `http://localhost:3001/store/direction`}, (obj) => {
-            if(obj && obj.length > 0) {
-                console.log("oboj = ", obj)
-                setData(obj)
-            }
-            else{
-                setData([])
-            }
+        if(cookies && cookies.access_token) {
+            fetchData({url: `http://localhost:3001/store/direction`}, (obj) => {
+                if (obj && obj.length > 0) {
+                    console.log("oboj = ", obj)
+                    setData(obj)
+                } else {
+                    setData([])
+                }
+            })
+        }
 
-            setLoad(true)
-        })
+        setLoad(true)
+
     }
 
     const handlePageIndex = () => {
@@ -77,7 +83,9 @@ function Path(){
                          </div>
                      )})
                     :
-                    ""
+                    <div className={classes.pEmptyBody}>
+                        <span>자주 이용하는 경로를 저장하여 빠르게 길을 찾아보세요</span>
+                    </div>
                 }
             </div>
         </div>
