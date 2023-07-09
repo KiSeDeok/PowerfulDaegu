@@ -23,6 +23,9 @@ function Favorite(){
     // 데이터 로딩 확인
     const [isLoad, setLoad] = useState(false)
 
+    // 임시 로딩 확인
+    const [tempLoad, setTempLoad] = useState(false)
+
     // 전체 체크
     const [isAllCheck, setIsAll] = useState(false)
 
@@ -31,6 +34,13 @@ function Favorite(){
     const [filteredData, setFilterData] = useState([])
 
     const dispatch = useDispatch()
+
+    // 로딩 창
+    useEffect(() => {
+        setTimeout(() => {
+            setTempLoad(true)
+        }, 500);
+    }, [])
 
     useEffect(() => {
         getFetchData()
@@ -105,8 +115,6 @@ function Favorite(){
                 return a.createAt - b.createAt
             }
         });
-
-        console.log("filterData = ", filterData)
 
         setFilterData(filterData)
     }
@@ -206,7 +214,10 @@ function Favorite(){
                     <span>전체</span>
                 </div>
             </div>
-            {isLoad ?
+            {!tempLoad ?
+                <div className={classes.tempLoadBox}>
+                    <img src={"/images/map/temp1.gif"}/>
+                </div> : isLoad ?
                 <div className={filteredData.length !== 0 ? classes.fBody : `${classes.fBody} ${classes.noCont}`}>
                     {filteredData && filteredData.length > 0 ?
                         filteredData.map((ele, index) => (

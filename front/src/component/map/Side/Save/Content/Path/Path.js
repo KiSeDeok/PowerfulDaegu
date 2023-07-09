@@ -17,6 +17,9 @@ function Path(){
     // check된 컨텐츠 확인
     const [checkContents, setCheckContents] = useState([])
 
+    // 임시 로딩 확인
+    const [tempLoad, setTempLoad] = useState(false)
+
     // 데이터 로딩 확인
     const [isLoad, setLoad] = useState(false)
 
@@ -25,6 +28,13 @@ function Path(){
 
     const [pathData, setPathData] = useState([])
     const dispatch = useDispatch()
+
+    // 로딩 창
+    useEffect(() => {
+        setTimeout(() => {
+            setTempLoad(true)
+        }, 500);
+    }, [])
 
     useEffect(() => {
         getFetchData()
@@ -101,7 +111,11 @@ function Path(){
                     <span>전체</span>
                 </div>
             </div>
-            {isLoad ?
+            {!tempLoad ?
+                <div className={classes.tempLoadBox}>
+                    <img src={"/images/map/temp1.gif"}/>
+                </div> :
+                isLoad ?
                 <div className={classes.fBody}>
                     {pathData && pathData.length > 0 ?
                         pathData.map((ele, index) => {

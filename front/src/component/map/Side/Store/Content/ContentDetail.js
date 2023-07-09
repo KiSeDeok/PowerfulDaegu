@@ -37,7 +37,7 @@ function ContentDetail(props){
                                     ))
                                     :
                                     <div className={classes.noMenuDiv}>
-                                        <img src={"/images/map/noMenu.svg"}/>
+                                        <img style={{width:"18px", height:"25px"}} src={"/images/map/noMenu.svg"}/>
                                         <span>등록된 메뉴가 없어요</span>
                                     </div>
                             }

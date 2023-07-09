@@ -32,7 +32,8 @@ function Save(props){
                 </div>
             </div>
             <div className={classes.body}>
-                {type === 0 ? <Favorite/> : <Path />}
+                {
+                    type === 0 ? <Favorite/> : <Path />}
             </div>
         </div>
     )

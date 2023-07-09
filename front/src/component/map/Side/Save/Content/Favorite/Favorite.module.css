@@ -97,3 +97,11 @@
     background: #FFEEDD;
     border: 1px solid #FF7D00;
 }
+
+.tempLoadBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: calc(100% - 256px);
+}

@@ -93,3 +93,11 @@
     color: #969696;
     gap: 14px;
 }
+
+.tempLoadBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: calc(100% - 256px);
+}

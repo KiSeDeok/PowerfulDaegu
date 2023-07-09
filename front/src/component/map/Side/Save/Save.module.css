@@ -50,3 +50,11 @@
 .rightHbColor{
     left:50%
 }
+
+.tempLoadBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: calc(100% - 326px);
+}

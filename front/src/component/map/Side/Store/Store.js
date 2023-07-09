@@ -3,13 +3,23 @@ import Content from "./Content/Content";
 import {useSelector} from "react-redux";
 import useHttp from "../../../../hooks/use-http";
 import {v4 as uuidv4} from "uuid";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 
 function Store(){
     const storeValue = useSelector(state => state.mapStore.search)
     const { isLoading, error, sendRequest: fetchData } = useHttp();
     const [load, setLoad] = useState(false)
     const [items, setItems] = useState([])
+
+    // 임시 로딩 확인
+    const [tempLoad, setTempLoad] = useState(false)
+
+    // 로딩 창
+    useEffect(() => {
+        setTimeout(() => {
+            setTempLoad(true)
+        }, 500);
+    }, [])
 
     useEffect(() => {
         if(storeValue.value) {
@@ -44,7 +54,10 @@ function Store(){
 
     return (
         <>
-        {
+        {!tempLoad ?
+            <div className={classes.tempLoadBox}>
+                <img src={"/images/map/temp1.gif"}/>
+            </div> :
             load ?
                 <div className={classes.box}>
                     {items && items.length > 0 && items[0] !== false ?

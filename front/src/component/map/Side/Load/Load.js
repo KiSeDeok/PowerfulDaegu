@@ -27,12 +27,19 @@ function Load(){
 
     // 검색 여부
     const [isSearch, setIsSearch] = useState(false)
+    const [isLoad, setIsLoad] = useState(false)
 
     // 쿠키 관련
     const [cookies, setCookie, removeCookie] = useCookies(['path']);
 
-
     const pageData = useSelector(state => state.map.index)
+
+    // 로딩 창
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoad(true)
+        }, 500);
+    }, [])
 
     useEffect(() => {
         console.log("pageData =" , pageData)
@@ -209,7 +216,11 @@ function Load(){
                 <img onClick={handleChangePlace} className={classes.changeDiv} src={"/images/map/changeBtn.svg"}/>
             </div>
             <div className={classes.loadBox}>
-                {isSearch ?
+                {!isLoad ?
+                    <div className={classes.tempLoadBox}>
+                        <img src={"/images/map/temp1.gif"}/>
+                    </div> :
+                    isSearch ?
                     <Find />
                     :
                     <>
