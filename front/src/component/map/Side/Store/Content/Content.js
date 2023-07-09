@@ -131,7 +131,7 @@ function Content(props){
                 </div>
             </div>
             {isActive ?
-            <ContentDetail data={data}/> : ""
+                <ContentDetail data={data}/> : ""
             }
         </div>
     )

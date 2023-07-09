@@ -1,16 +1,18 @@
 .talk{
     border-top: 1px solid #EEEEEE;
     box-sizing: border-box;
+    position: relative;
 }
 
 .talkTop{
     margin-top: 18px;
+    margin-bottom: 10px;
 }
 
 .talkContents{
     display: flex;
     gap: 13px;
-    overflow-x: scroll;
+    overflow-x: hidden;
 }
 
 .talkContents::-webkit-scrollbar{
@@ -69,4 +71,34 @@
 
 .noTalkDiv{
     height: 120px;
+}
+
+.leftArrow, .rightArrow{
+    z-index: 3;
+    position: absolute;
+    top: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #ffffff;
+}
+
+.rightArrow{
+    right: 0;
+}
+
+.leftArrow{
+    left: 0;
+}
+
+.leftArrow > img, .rightArrow > img{
+    width: 20px;
+    height: 20px;
+}
+
+.leftArrow > img{
+    transform: rotate(180deg);
 }
