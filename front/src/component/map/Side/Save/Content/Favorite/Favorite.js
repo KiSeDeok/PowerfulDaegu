@@ -15,7 +15,7 @@ function Favorite(){
     const { isLoading, error, sendRequest: fetchData } = useHttp();
 
     // 쿠키
-    const [cookies, setCookie, removeCookie] = useCookies(['access_token']);
+    const [cookies, setCookie, removeCookie] = useCookies([]);
 
     // check된 컨텐츠 확인
     const [checkContents, setCheckContents] = useState([])
@@ -48,8 +48,12 @@ function Favorite(){
 
     /** 데이터 가져오기*/
     const getFetchData = () => {
+        console.log("cok = ", cookies)
         if(cookies && cookies.access_token) {
+            console.log("11111")
             fetchData({url: `http://localhost:3001/store/like`}, (obj) => {
+                console.log("obj = ", obj)
+
                 if (obj && obj.length > 0) {
                     const categoryValues = obj.map((item) => {
                         return {...item.store, createdAt: item.createdAt}
@@ -185,6 +189,9 @@ function Favorite(){
 
         setCheckContents(temp)
     }
+
+    console.log("filteredData= ", filteredData)
+
 
     return (
         <div className={classes.box}>

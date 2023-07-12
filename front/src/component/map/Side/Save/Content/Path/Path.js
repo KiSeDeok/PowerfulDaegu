@@ -94,6 +94,8 @@ function Path(){
         setCheckContents(temp)
     }
 
+    console.log("pathData= ", pathData)
+
     return (
         <div className={classes.box}>
             <div className={classes.fHead}>
