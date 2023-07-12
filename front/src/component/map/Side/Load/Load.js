@@ -42,7 +42,8 @@ function Load(){
     }, [])
 
     useEffect(() => {
-        console.log("pageData =" , pageData)
+        console.log("11111111111 =" , pageData)
+        setIsLoad(false)
 
         // 경로검색일 경우
         if(pageData.place?.start && pageData.place?.end){
@@ -85,6 +86,7 @@ function Load(){
 
                 setCookie("path", newPaths, { path: "/"});
                 setIsSearch(true)
+                setIsLoad(true)
             })
         }
 
@@ -144,6 +146,9 @@ function Load(){
 
             // 도착지가 있을 경우에는 검색
             if(!(position.end && Object.keys(position.end).length === 0 && position.end.constructor === Object)) {
+                // 로딩 화면
+                setIsLoad(false)
+
                 fetchData({url: `http://localhost:3001/maps?start=${point}&goal=${position.end}`}, (obj) => {
                     console.log("obj= ", obj)
                     // redux 값 설정
@@ -155,6 +160,7 @@ function Load(){
 
                     setCookie("path", newPaths, { path: "/"});
                     setIsSearch(true)
+                    setIsLoad(true)
                 })
             }
         }
@@ -167,6 +173,9 @@ function Load(){
 
             // 출발지가 있을 경우에는 검색
             if(!(position.start && Object.keys(position.start).length === 0 && position.start.constructor === Object)){
+                // 로딩 화면
+                setIsLoad(false)
+
                 fetchData({url: `http://localhost:3001/maps?start=${position.start}&goal=${point}`}, (obj) => {
                     // redux 값 설정
                     dispatch(mapActions.handleSearch({data: {point:{start:position.start, startName:position.startValue, endName:name, end:point}, data:obj}}))
@@ -177,12 +186,16 @@ function Load(){
 
                     setCookie("path", newPaths, { path: "/"});
                     setIsSearch(true)
+                    setIsLoad(true)
                 })
             }
         }
     }
     /** 도착지, 목적기 변경 버튼 눌렀을 시 이벤트 */
     const handleChangePlace = () => {
+        // 로딩 화면
+        setIsLoad(false)
+
         setPosition({
             start: position.end,
             end: position.start,
@@ -197,7 +210,8 @@ function Load(){
 
         if(Object.keys(position.start).length !== 0 && Object.keys(position.end).length !== 0){
             fetchData({url: `http://localhost:3001/maps?start=${position.end}&goal=${position.start}`}, (obj) => {
-                dispatch(mapActions.handleSearch({data:obj}))
+                dispatch(mapActions.handleSearch({data: {data:obj}}))
+                setIsLoad(true)
             })
         }
     }

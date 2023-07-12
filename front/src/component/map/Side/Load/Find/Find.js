@@ -6,6 +6,7 @@ import Car from "./Type/Car";
 import {v4 as uuidv4} from "uuid";
 import useHttp from "../../../../../hooks/use-http";
 import Walk from "./Type/Walk";
+import loginHeader from "../../../../Login/header/LoginHeader";
 
 function Find(){
     const { isLoading, error, sendRequest: fetchData } = useHttp();
@@ -18,7 +19,7 @@ function Find(){
 
     useEffect(()=> {
         getDirection()
-
+        console.log("2111212")
     }, [])
 
     const getDirection = () => {
@@ -78,6 +79,9 @@ function Find(){
             })
         }
     }
+
+    console.log("index = ", index)
+    console.log("searchData = ", searchData)
 
     return (
         <div className={classes.box}>

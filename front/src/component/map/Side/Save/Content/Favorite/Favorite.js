@@ -64,6 +64,7 @@ function Favorite(){
                     // 데이터 필터링
                     handleSetType("", categoryValues)
                 } else {
+                    handleSetType("", [])
                     setFavoriteData([])
                 }
             })
@@ -79,9 +80,7 @@ function Favorite(){
         const nowPlace = el && el.type === "place" ? {open:false, index:el.index, text:el.text} : placeModal
         const nowRegion = el && el.type === "region" ? {open:false, index:el.index, text:el.text} : regionModal
 
-        const allData = favoriteData.length > 0 ? favoriteData : values
-
-        console.log("allData = ", allData)
+        const allData = values ? values : favoriteData
 
         const filterData = allData.map((ele) => {
             // 정규식 추출
